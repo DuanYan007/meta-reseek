@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Secrets / env
+.env
+*.key
+
+# Runtime artifacts: caches and raw run traces stay local.
+# Curated demo traces are force-added under artifacts/demo/.
+artifacts/cache/
+artifacts/runs/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

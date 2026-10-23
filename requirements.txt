@@ -1,0 +1,7 @@
+# MetaReSeek v0.1 runtime dependencies.
+# torch / transformers are intentionally NOT required for P0:
+# the metacognitive evaluator is deterministic + lexical and runs on CPU.
+# They become relevant for P1 (semantic evidence fusion / local embeddings).
+ddgs>=9.0
+PyYAML>=6.0
+requests>=2.28
