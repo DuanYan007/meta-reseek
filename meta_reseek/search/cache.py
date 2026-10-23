@@ -39,17 +39,24 @@ class FileCache:
         return [SearchHit(**h) for h in data["hits"]]
 
     def get_meta(self, key: str) -> dict | None:
-        """Cache entry metadata (e.g. whether the live call had erred)."""
+        """Cache entry metadata (final-error flag, retry count, fetch time)."""
         path = self._path(key)
         if not path.exists():
             return None
         data = json.loads(path.read_text(encoding="utf-8"))
-        return {"error": bool(data.get("error", False)), "fetched_at": data.get("fetched_at")}
+        return {
+            "error": bool(data.get("error", False)),
+            "retries": int(data.get("retries", 0)),
+            "fetched_at": data.get("fetched_at"),
+        }
 
-    def put(self, key: str, hits: list[SearchHit], error: bool = False) -> None:
+    def put(
+        self, key: str, hits: list[SearchHit], error: bool = False, retries: int = 0
+    ) -> None:
         payload = {
             "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "error": error,
+            "retries": retries,
             "hits": [asdict(h) for h in hits],
         }
         self._path(key).write_text(
@@ -75,7 +82,8 @@ class CachedProvider:
         self.mode = mode
         self.name = inner.name
         self.network_calls = 0
-        self.last_error: str | None = None  # error state of the LAST search call
+        self.last_error: str | None = None  # final-failure state of the LAST call
+        self.last_retries: int = 0          # recovered-retry count of the LAST call
 
     def search(self, query: str, max_results: int = 5) -> list[SearchHit]:
         key = FileCache.key(self.inner.name, query, max_results)
@@ -83,12 +91,14 @@ class CachedProvider:
             hits = self.cache.get(key)
             if hits is not None:
                 if hits or self.mode == "offline":
-                    # replay the recorded round exactly, error flag included:
-                    # an offline rerun must attribute failures the same way
+                    # replay the recorded round exactly, error and retry
+                    # metadata included: an offline rerun must attribute
+                    # failures and recoveries the same way
                     meta = self.cache.get_meta(key) or {}
                     self.last_error = (
                         "transport error (cached)" if meta.get("error") else None
                     )
+                    self.last_retries = int(meta.get("retries", 0))
                     return hits
                 # auto mode + cached empty: likely a transient backend
                 # failure worth retrying live
@@ -100,7 +110,10 @@ class CachedProvider:
         self.network_calls += 1
         hits = self.inner.search(query, max_results)
         self.last_error = getattr(self.inner, "last_error", None)
-        # Empty responses and errors are cached too (they are part of what
-        # really happened), but auto mode treats cached empties as a miss.
-        self.cache.put(key, hits, error=bool(self.last_error))
+        self.last_retries = int(getattr(self.inner, "last_retries", 0))
+        # Empty responses and final failures are cached too (they are part of
+        # what really happened), but auto mode treats cached empties as a miss.
+        self.cache.put(
+            key, hits, error=bool(self.last_error), retries=self.last_retries
+        )
         return hits

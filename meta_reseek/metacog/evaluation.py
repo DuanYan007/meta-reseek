@@ -1,8 +1,10 @@
 """Evaluation: judge whether current evidence is sufficient to stop.
 
-Deterministic and explainable by design: every verdict lists the factor
-values that produced it, so a reviewer can audit each stop/continue call.
-This is the baseline metacognitive evaluator; P1+ may add semantic or
+The score is a lexical sufficiency PROXY — 0.7 x sub-question keyword
+coverage + 0.3 x source-domain diversity — not a semantic sufficiency
+judgment. Deterministic and explainable by design: every verdict lists the
+factor values that produced it, so a reviewer can audit each stop/continue
+call. This is the baseline metacognitive evaluator; P1+ may add semantic or
 model-based judges behind the same interface.
 """
 

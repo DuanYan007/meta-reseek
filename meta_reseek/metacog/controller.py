@@ -133,21 +133,31 @@ class MetacognitiveController:
             feedback["provider_error"] = bool(
                 getattr(self.provider, "last_error", None)
             )
+            # retries that ended in SUCCESS are not failures, but stay visible
+            feedback["provider_retries"] = int(
+                getattr(self.provider, "last_retries", 0)
+            )
             record.ingest = report.as_dict()
             record.feedback = feedback
             log.add(record)
             counts_before = {
                 sq.id: len(store.relevant(sq)) for sq in task.sub_questions
             }
-            err_note = "，本轮检索通道故障" if feedback["provider_error"] else ""
+            notes = []
+            if feedback["provider_retries"]:
+                notes.append(f"经 {feedback['provider_retries']} 次重试后成功")
+            if feedback["provider_error"]:
+                notes.append("本轮检索通道故障")
+            note = ("，" + "，".join(notes)) if notes else ""
             self._emit(
-                f"[Round {round_idx}] 反馈: 新增相关 {feedback['new_relevant_total']} 条"
+                f"[Round {round_idx}] 反馈: 新增相关匹配 {feedback['new_relevant_total']}"
+                f"（新文档 {feedback['new_items']} 篇"
                 + (
-                    f"（目标 {feedback['target_subq']} +{feedback['new_relevant_for_target']}）"
+                    f"，目标 {feedback['target_subq']} +{feedback['new_relevant_for_target']}"
                     if feedback.get("target_subq")
                     else ""
                 )
-                + f" → 判定 {feedback['effect']}{err_note}"
+                + f"）→ 判定 {feedback['effect']}{note}"
             )
 
         if not stopped:
