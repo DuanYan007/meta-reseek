@@ -1,0 +1,577 @@
+{
+ "task": "kv_cache_llm",
+ "config": {
+  "provider": "ddg",
+  "max_rounds": 6,
+  "max_results": 5,
+  "min_relevant_per_subq": 2,
+  "weights": {
+   "coverage": 0.7,
+   "diversity": 0.3
+  },
+  "diversity_target": 4,
+  "stall_window": 2,
+  "stall_gain": 1,
+  "cache_mode": "auto",
+  "cache_network_calls": 3,
+  "provider_errors": [
+   "query 'What techniques reduce KV cache memory usage' attempt 0: No results found."
+  ]
+ },
+ "started_at": "2026-10-23T08:54:02+00:00",
+ "rounds": [
+  {
+   "round_idx": 1,
+   "perception": {
+    "round_idx": 1,
+    "total_items": 0,
+    "domain_count": 0,
+    "new_items_last_round": 0,
+    "per_subq": {
+     "definition": {
+      "relevant_count": 0,
+      "best_relevance": 0.0,
+      "domains": []
+     },
+     "cost": {
+      "relevant_count": 0,
+      "best_relevance": 0.0,
+      "domains": []
+     },
+     "techniques": {
+      "relevant_count": 0,
+      "best_relevance": 0.0,
+      "domains": []
+     }
+    }
+   },
+   "evaluation": {
+    "score": 0.0,
+    "verdict": "insufficient",
+    "factors": {
+     "coverage": 0.0,
+     "diversity": 0.0,
+     "domain_count": 0.0,
+     "total_items": 0.0,
+     "recent_gains": 0.0
+    },
+    "weakest": "definition",
+    "rationale": "证据不足：各子问题相关证据 {'definition': '0/2', 'cost': '0/2', 'techniques': '0/2'}（K=2，已达标: 无）；来源域 0 个，共 0 条，其中 definition、cost、techniques 完全无相关证据。最薄弱子问题: definition。"
+   },
+   "decision": "search",
+   "decision_reason": "证据不足：各子问题相关证据 {'definition': '0/2', 'cost': '0/2', 'techniques': '0/2'}（K=2，已达标: 无）；来源域 0 个，共 0 条，其中 definition、cost、techniques 完全无相关证据。最薄弱子问题: definition。",
+   "action": {
+    "strategy": "initial",
+    "query": "KV cache transformer inference explained",
+    "target_subq": null,
+    "reason": "首轮检索：使用任务自带的种子查询。"
+   },
+   "ingest": {
+    "candidates": 5,
+    "added": 5,
+    "duplicates": 0,
+    "irrelevant": 0
+   },
+   "feedback": {
+    "target_subq": null,
+    "new_items": 5,
+    "new_relevant_total": 6,
+    "new_relevant_for_target": null,
+    "counts_after": {
+     "definition": 5,
+     "cost": 0,
+     "techniques": 1
+    },
+    "effect": "helpful",
+    "provider_error": false,
+    "provider_retries": 0
+   }
+  },
+  {
+   "round_idx": 2,
+   "perception": {
+    "round_idx": 2,
+    "total_items": 5,
+    "domain_count": 5,
+    "new_items_last_round": 5,
+    "per_subq": {
+     "definition": {
+      "relevant_count": 5,
+      "best_relevance": 0.688,
+      "domains": [
+       "inference.net",
+       "krunalkanojiya.com",
+       "learncodecamp.net",
+       "machinelearningmastery.com",
+       "tensortonic.com"
+      ]
+     },
+     "cost": {
+      "relevant_count": 0,
+      "best_relevance": 0.0,
+      "domains": []
+     },
+     "techniques": {
+      "relevant_count": 1,
+      "best_relevance": 0.319,
+      "domains": [
+       "tensortonic.com"
+      ]
+     }
+    }
+   },
+   "evaluation": {
+    "score": 0.65,
+    "verdict": "insufficient",
+    "factors": {
+     "coverage": 0.5,
+     "diversity": 1.0,
+     "domain_count": 5.0,
+     "total_items": 5.0,
+     "recent_gains": 6.0
+    },
+    "weakest": "cost",
+    "rationale": "证据不足：各子问题相关证据 {'definition': '5/2', 'cost': '0/2', 'techniques': '1/2'}（K=2，已达标: definition）；来源域 5 个，共 5 条，其中 cost 完全无相关证据。最薄弱子问题: cost。"
+   },
+   "decision": "search",
+   "decision_reason": "证据不足：各子问题相关证据 {'definition': '5/2', 'cost': '0/2', 'techniques': '1/2'}（K=2，已达标: definition）；来源域 5 个，共 5 条，其中 cost 完全无相关证据。最薄弱子问题: cost。",
+   "action": {
+    "strategy": "broaden",
+    "query": "Why does the KV cache consume so much GPU memory",
+    "target_subq": "cost",
+    "reason": "子问题 cost 尚无任何相关证据，优先补齐：改用其候选查询变体。"
+   },
+   "ingest": {
+    "candidates": 5,
+    "added": 5,
+    "duplicates": 0,
+    "irrelevant": 0
+   },
+   "feedback": {
+    "target_subq": "cost",
+    "new_items": 5,
+    "new_relevant_total": 10,
+    "new_relevant_for_target": 5,
+    "counts_after": {
+     "definition": 10,
+     "cost": 5,
+     "techniques": 1
+    },
+    "effect": "helpful",
+    "provider_error": false,
+    "provider_retries": 0
+   }
+  },
+  {
+   "round_idx": 3,
+   "perception": {
+    "round_idx": 3,
+    "total_items": 10,
+    "domain_count": 10,
+    "new_items_last_round": 5,
+    "per_subq": {
+     "definition": {
+      "relevant_count": 10,
+      "best_relevance": 0.688,
+      "domains": [
+       "gigagpu.com",
+       "hivenet.com",
+       "inference.net",
+       "krunalkanojiya.com",
+       "learncodecamp.net",
+       "machinelearningmastery.com",
+       "sitepoint.com",
+       "spheron.network",
+       "tensortonic.com",
+       "unanswered.io"
+      ]
+     },
+     "cost": {
+      "relevant_count": 5,
+      "best_relevance": 0.462,
+      "domains": [
+       "gigagpu.com",
+       "hivenet.com",
+       "sitepoint.com",
+       "spheron.network",
+       "unanswered.io"
+      ]
+     },
+     "techniques": {
+      "relevant_count": 1,
+      "best_relevance": 0.319,
+      "domains": [
+       "tensortonic.com"
+      ]
+     }
+    }
+   },
+   "evaluation": {
+    "score": 0.883,
+    "verdict": "insufficient",
+    "factors": {
+     "coverage": 0.833,
+     "diversity": 1.0,
+     "domain_count": 10.0,
+     "total_items": 10.0,
+     "recent_gains": 16.0
+    },
+    "weakest": "techniques",
+    "rationale": "证据不足：各子问题相关证据 {'definition': '10/2', 'cost': '5/2', 'techniques': '1/2'}（K=2，已达标: definition、cost）；来源域 10 个，共 10 条。最薄弱子问题: techniques。"
+   },
+   "decision": "search",
+   "decision_reason": "证据不足：各子问题相关证据 {'definition': '10/2', 'cost': '5/2', 'techniques': '1/2'}（K=2，已达标: definition、cost）；来源域 10 个，共 10 条。最薄弱子问题: techniques。",
+   "action": {
+    "strategy": "target_weakest",
+    "query": "What techniques reduce KV cache memory usage",
+    "target_subq": "techniques",
+    "reason": "评价指向最薄弱子问题 techniques（1/2）。直接以最薄弱子问题的表述检索。"
+   },
+   "ingest": {
+    "candidates": 5,
+    "added": 5,
+    "duplicates": 0,
+    "irrelevant": 0
+   },
+   "feedback": {
+    "target_subq": "techniques",
+    "new_items": 5,
+    "new_relevant_total": 7,
+    "new_relevant_for_target": 2,
+    "counts_after": {
+     "definition": 14,
+     "cost": 6,
+     "techniques": 3
+    },
+    "effect": "helpful",
+    "provider_error": false,
+    "provider_retries": 1
+   }
+  },
+  {
+   "round_idx": 4,
+   "perception": {
+    "round_idx": 4,
+    "total_items": 15,
+    "domain_count": 14,
+    "new_items_last_round": 5,
+    "per_subq": {
+     "definition": {
+      "relevant_count": 14,
+      "best_relevance": 0.688,
+      "domains": [
+       "arxiv.org",
+       "gigagpu.com",
+       "gpuyard.com",
+       "hivenet.com",
+       "inference.net",
+       "krunalkanojiya.com",
+       "learncodecamp.net",
+       "machinelearningmastery.com",
+       "metaailabs.com",
+       "sitepoint.com",
+       "spheron.network",
+       "tensortonic.com",
+       "unanswered.io"
+      ]
+     },
+     "cost": {
+      "relevant_count": 6,
+      "best_relevance": 0.462,
+      "domains": [
+       "gigagpu.com",
+       "hivenet.com",
+       "metaailabs.com",
+       "sitepoint.com",
+       "spheron.network",
+       "unanswered.io"
+      ]
+     },
+     "techniques": {
+      "relevant_count": 3,
+      "best_relevance": 0.319,
+      "domains": [
+       "emergentmind.com",
+       "gpuyard.com",
+       "tensortonic.com"
+      ]
+     }
+    }
+   },
+   "evaluation": {
+    "score": 1.0,
+    "verdict": "sufficient",
+    "factors": {
+     "coverage": 1.0,
+     "diversity": 1.0,
+     "domain_count": 14.0,
+     "total_items": 15.0,
+     "recent_gains": 17.0
+    },
+    "weakest": "techniques",
+    "rationale": "证据充分：各子问题相关证据 {'definition': '14/2', 'cost': '6/2', 'techniques': '3/2'}（K=2，已达标: definition、cost、techniques）；来源域 14 个，共 15 条，且来源域≥2，可以停止检索。"
+   },
+   "decision": "stop_sufficient",
+   "decision_reason": "证据充分：各子问题相关证据 {'definition': '14/2', 'cost': '6/2', 'techniques': '3/2'}（K=2，已达标: definition、cost、techniques）；来源域 14 个，共 15 条，且来源域≥2，可以停止检索。",
+   "action": null,
+   "ingest": null,
+   "feedback": null
+  }
+ ],
+ "evidence": [
+  {
+   "eid": "e001",
+   "title": "KV Cache Explained for LLM Inference - krunalkanojiya.com",
+   "url": "https://krunalkanojiya.com/blog/kv-cache-explained",
+   "domain": "krunalkanojiya.com",
+   "round_added": 1,
+   "strategy": "initial",
+   "relevance": {
+    "definition": 0.688,
+    "cost": 0.051,
+    "techniques": 0.213
+   }
+  },
+  {
+   "eid": "e002",
+   "title": "KV Cache Explained: Why LLMs Remember Keys and Values During Inference",
+   "url": "https://learncodecamp.net/kv-cache-explained/",
+   "domain": "learncodecamp.net",
+   "round_added": 1,
+   "strategy": "initial",
+   "relevance": {
+    "definition": 0.312,
+    "cost": 0.051,
+    "techniques": 0.043
+   }
+  },
+  {
+   "eid": "e003",
+   "title": "KV Cache in LLMs Explained: How Transformers Make Inference Fast",
+   "url": "https://www.tensortonic.com/llm-internals/kv-cache",
+   "domain": "tensortonic.com",
+   "round_added": 1,
+   "strategy": "initial",
+   "relevance": {
+    "definition": 0.312,
+    "cost": 0.077,
+    "techniques": 0.319
+   }
+  },
+  {
+   "eid": "e004",
+   "title": "KV Cache Explained with Examples from Real World LLMs",
+   "url": "https://inference.net/content/kv-cache-explained/",
+   "domain": "inference.net",
+   "round_added": 1,
+   "strategy": "initial",
+   "relevance": {
+    "definition": 0.438,
+    "cost": 0.051,
+    "techniques": 0.043
+   }
+  },
+  {
+   "eid": "e005",
+   "title": "The Complete Guide to Inference Caching in LLMs - Machine Learning Mastery",
+   "url": "https://machinelearningmastery.com/the-complete-guide-to-inference-caching-in-llms/",
+   "domain": "machinelearningmastery.com",
+   "round_added": 1,
+   "strategy": "initial",
+   "relevance": {
+    "definition": 0.562,
+    "cost": 0.026,
+    "techniques": 0.021
+   }
+  },
+  {
+   "eid": "e006",
+   "title": "KV Cache Explained: LLM Context and GPU Memory | Hivenet",
+   "url": "https://www.hivenet.com/post/kv-cache-llm-gpu-memory-context-window",
+   "domain": "hivenet.com",
+   "round_added": 2,
+   "strategy": "broaden",
+   "relevance": {
+    "definition": 0.312,
+    "cost": 0.282,
+    "techniques": 0.064
+   }
+  },
+  {
+   "eid": "e007",
+   "title": "The KV Cache Survival Guide: Why Your GPU Runs Out of Memory ...",
+   "url": "https://www.sitepoint.com/kv-cache-survival-guide-local-llms/",
+   "domain": "sitepoint.com",
+   "round_added": 2,
+   "strategy": "broaden",
+   "relevance": {
+    "definition": 0.188,
+    "cost": 0.282,
+    "techniques": 0.064
+   }
+  },
+  {
+   "eid": "e008",
+   "title": "KV Cache Memory Usage in LLMs – Formulas & Examples",
+   "url": "https://unanswered.io/guide/kv-cache-memory-usage",
+   "domain": "unanswered.io",
+   "round_added": 2,
+   "strategy": "broaden",
+   "relevance": {
+    "definition": 0.188,
+    "cost": 0.282,
+    "techniques": 0.149
+   }
+  },
+  {
+   "eid": "e009",
+   "title": "KV Cache Explained: Why It Eats Your VRAM GIGAGPU",
+   "url": "https://gigagpu.com/kv-cache-explained-vram/",
+   "domain": "gigagpu.com",
+   "round_added": 2,
+   "strategy": "broaden",
+   "relevance": {
+    "definition": 0.312,
+    "cost": 0.462,
+    "techniques": 0.128
+   }
+  },
+  {
+   "eid": "e010",
+   "title": "KV Cache Optimization: Serve 10x More Users per GPU (2026 ...",
+   "url": "https://www.spheron.network/blog/kv-cache-optimization-guide/",
+   "domain": "spheron.network",
+   "round_added": 2,
+   "strategy": "broaden",
+   "relevance": {
+    "definition": 0.188,
+    "cost": 0.282,
+    "techniques": 0.064
+   }
+  },
+  {
+   "eid": "e011",
+   "title": "KV Cache Optimization Strategies for Scalable - arXiv.org",
+   "url": "https://arxiv.org/html/2603.20397v1",
+   "domain": "arxiv.org",
+   "round_added": 3,
+   "strategy": "target_weakest",
+   "relevance": {
+    "definition": 0.312,
+    "cost": 0.077,
+    "techniques": 0.149
+   }
+  },
+  {
+   "eid": "e012",
+   "title": "KV Cache Optimization Strategies for Scalable and Efficient LLM Inference",
+   "url": "https://arxiv.org/pdf/2603.20397",
+   "domain": "arxiv.org",
+   "round_added": 3,
+   "strategy": "target_weakest",
+   "relevance": {
+    "definition": 0.438,
+    "cost": 0.077,
+    "techniques": 0.149
+   }
+  },
+  {
+   "eid": "e013",
+   "title": "The Ultimate Guide to KV Cache Optimization for LLM Inference (2026)",
+   "url": "https://www.gpuyard.com/tutorials/howto/optimize-kv-cache/",
+   "domain": "gpuyard.com",
+   "round_added": 3,
+   "strategy": "target_weakest",
+   "relevance": {
+    "definition": 0.312,
+    "cost": 0.154,
+    "techniques": 0.298
+   }
+  },
+  {
+   "eid": "e014",
+   "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing ...",
+   "url": "https://metaailabs.com/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/",
+   "domain": "metaailabs.com",
+   "round_added": 3,
+   "strategy": "target_weakest",
+   "relevance": {
+    "definition": 0.312,
+    "cost": 0.282,
+    "techniques": 0.149
+   }
+  },
+  {
+   "eid": "e015",
+   "title": "KV-Cache Compression Techniques - emergentmind.com",
+   "url": "https://www.emergentmind.com/topics/kv-cache-compression-techniques",
+   "domain": "emergentmind.com",
+   "round_added": 3,
+   "strategy": "target_weakest",
+   "relevance": {
+    "definition": 0.188,
+    "cost": 0.077,
+    "techniques": 0.319
+   }
+  }
+ ],
+ "summary": {
+  "task": "kv_cache_llm",
+  "rounds_total": 4,
+  "search_rounds": 3,
+  "stop_decision": "stop_sufficient",
+  "final_score": 1.0,
+  "final_verdict": "sufficient",
+  "final_perception": {
+   "round_idx": 4,
+   "total_items": 15,
+   "domain_count": 14,
+   "new_items_last_round": 5,
+   "per_subq": {
+    "definition": {
+     "relevant_count": 14,
+     "best_relevance": 0.688,
+     "domains": [
+      "arxiv.org",
+      "gigagpu.com",
+      "gpuyard.com",
+      "hivenet.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ]
+    },
+    "cost": {
+     "relevant_count": 6,
+     "best_relevance": 0.462,
+     "domains": [
+      "gigagpu.com",
+      "hivenet.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "unanswered.io"
+     ]
+    },
+    "techniques": {
+     "relevant_count": 3,
+     "best_relevance": 0.319,
+     "domains": [
+      "emergentmind.com",
+      "gpuyard.com",
+      "tensortonic.com"
+     ]
+    }
+   }
+  },
+  "effect_counts": {
+   "helpful": 3
+  }
+ }
+}

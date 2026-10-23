@@ -1,0 +1,22 @@
+# 可复现示例任务 2：技术概念三子问题检索
+name: kv_cache_llm
+question: "What is the KV cache in Transformer inference, why does it matter, and what techniques mitigate its memory cost?"
+seed_query: "KV cache transformer inference explained"
+min_relevant_per_subq: 2
+max_rounds: 6
+sub_questions:
+  - id: definition
+    text: "What is the KV cache in transformer inference"
+    keywords: ["KV cache", "key", "value", "attention", "self-attention", "inference"]
+    alt_queries:
+      - "how key value cache works in large language model decoding"
+  - id: cost
+    text: "Why does the KV cache consume so much GPU memory"
+    keywords: ["memory", "GPU", "sequence length", "batch size", "VRAM", "bottleneck"]
+    alt_queries:
+      - "KV cache memory footprint grows with context length"
+  - id: techniques
+    text: "What techniques reduce KV cache memory usage"
+    keywords: ["MQA", "GQA", "grouped-query attention", "multi-query attention", "PagedAttention", "quantization"]
+    alt_queries:
+      - "grouped query attention multi query attention paged attention KV cache optimization"
