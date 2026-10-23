@@ -1,0 +1,22 @@
+# 可复现示例任务 3：对比型三子问题检索
+name: python_web_frameworks
+question: "Compare Flask, FastAPI and Django for building REST APIs: performance, typical use cases, and ecosystem."
+seed_query: "Flask FastAPI Django comparison REST API"
+min_relevant_per_subq: 2
+max_rounds: 6
+sub_questions:
+  - id: performance
+    text: "How do Flask FastAPI and Django compare in performance and asynchronous support"
+    keywords: ["FastAPI", "performance", "asynchronous", "async", "benchmark", "Uvicorn", "ASGI"]
+    alt_queries:
+      - "FastAPI vs Flask vs Django benchmark asynchronous"
+  - id: use_cases
+    text: "Which framework fits which use case microservices vs full website"
+    keywords: ["microservices", "use case", "prototype", "full-featured", "admin", "ORM"]
+    alt_queries:
+      - "when to choose FastAPI vs Django vs Flask"
+  - id: ecosystem
+    text: "How do their ecosystems and extensions compare"
+    keywords: ["extensions", "plugins", "SQLAlchemy", "Pydantic", "Django REST framework", "community"]
+    alt_queries:
+      - "Flask extensions Django packages FastAPI ecosystem comparison"
