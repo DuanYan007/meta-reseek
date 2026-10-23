@@ -20,3 +20,6 @@ artifacts/runs/
 Thumbs.db
 .idea/
 .vscode/
+
+# transient replay-verification output
+artifacts/replay_check/
