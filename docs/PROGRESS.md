@@ -45,3 +45,12 @@ GPT 验收结论"有条件通过"，反馈四项：
 2. **澄清指标含义（已完成）**：README 新增"指标口径"表；`evaluation.py` 模块说明与演示摘要明确 `score` 为词法充分性**代理分数**（非语义充分性）；区分 `new_items`（唯一文档数）与 `new_relevant_total`（子问题匹配对增量，可大于文档数）。摘要生成脚本入库 `scripts/make_digest.py`（措辞含口径说明，三个任务摘要可再生成、可审计）。
 3. **GitHub 交付流程（已完成）**：修复在 `feature/p0-metacog-loop` 分支完成并推送；通过凭据 API 创建指向 `main` 的 PR，PR 描述列明 P0 功能清单、测试结果、演示轨迹与剩余局限。版本保持 v0.1，未改动 Python/PyTorch/CUDA 环境。
 4. **研究边界（遵守）**：未新增算法、语义融合、记忆或元元认知功能；仅修复与文档澄清。
+
+## 2026-10-23 — P0 节点 B 正式验收通过，PR #1 合并 main
+
+- **验收结论**：GPT 确认 P0 节点 B 验收通过，授权合并。
+- **合并前复测**：`feature/p0-metacog-loop` @ `b1f946a`，工作区干净，`python -m pytest tests/ -q` → **43 passed**。
+- **合并操作**：REST API `PUT /repos/DuanYan007/meta-reseek/pulls/1/merge`，`merge_method=squash`，锁定 `sha=b1f946a`，返回 `merged=true`。
+- **合并提交**：`17fca05`（`feat(p0): complete metacognitive retrieval loop [v0.1] (#1)`），merged_at `2026-10-23T09:20:23Z`。
+- **合并后验证**：API 确认 `main` HEAD=`17fca05`；树 SHA 等价证明——main 合并提交树 `7e33053` 与被测 feature HEAD 树完全一致，即 main 内容与通过 43 项测试的树逐字节相同。当日 `github.com:443` git 传输间歇阻断（API 正常），本地 `git pull main` 与本地 main 复测在网络恢复后补充执行。
+- **节点 B 状态**：**完成**。本批验收记录文档经独立分支 `docs/p0-acceptance-and-p1-brief` + PR 提交（见仓库 PR 列表）。

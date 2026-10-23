@@ -2,7 +2,8 @@
 
 - **项目**：MetaReSeek v0.1（P0 元认知闭环）
 - **首轮交付**：2026-10-23（节点 B）｜ **验收**：有条件通过 ｜ **反馈收尾**：2026-10-23 完成
-- **交付分支**：`feature/p0-metacog-loop` → Pull Request [#1](https://github.com/DuanYan007/meta-reseek/pull/1)（指向 `main`，描述含功能清单/测试/演示/局限）
+- **验收状态（终）**：✅ **P0 节点 B 验收通过（2026-10-23，GPT）**；PR #1 已 squash 合并至 `main`（合并提交 `17fca05`，merged_at 2026-10-23T09:20:23Z）
+- **交付分支**：`feature/p0-metacog-loop` → Pull Request [#1](https://github.com/DuanYan007/meta-reseek/pull/1)（已合并）
 
 ## 〇、验收反馈处理结果（2026-10-23）
 
