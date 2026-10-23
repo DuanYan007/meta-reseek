@@ -13,9 +13,12 @@
   "stall_window": 2,
   "stall_gain": 1,
   "cache_mode": "auto",
-  "cache_network_calls": 0
+  "cache_network_calls": 3,
+  "provider_errors": [
+   "query 'Flask FastAPI Django comparison REST API' attempt 0: No results found."
+  ]
  },
- "started_at": "2026-10-23T08:35:37+00:00",
+ "started_at": "2026-10-23T08:54:27+00:00",
  "rounds": [
   {
    "round_idx": 1,
@@ -80,7 +83,8 @@
      "ecosystem": 1
     },
     "effect": "helpful",
-    "provider_error": false
+    "provider_error": false,
+    "provider_retries": 1
    }
   },
   {
@@ -156,7 +160,8 @@
      "ecosystem": 1
     },
     "effect": "helpful",
-    "provider_error": false
+    "provider_error": false,
+    "provider_retries": 0
    }
   },
   {
@@ -222,31 +227,32 @@
    },
    "ingest": {
     "candidates": 5,
-    "added": 3,
+    "added": 1,
     "duplicates": 0,
-    "irrelevant": 2
+    "irrelevant": 4
    },
    "feedback": {
     "target_subq": "ecosystem",
-    "new_items": 3,
-    "new_relevant_total": 3,
-    "new_relevant_for_target": 3,
+    "new_items": 1,
+    "new_relevant_total": 1,
+    "new_relevant_for_target": 1,
     "counts_after": {
      "performance": 5,
      "use_cases": 6,
-     "ecosystem": 4
+     "ecosystem": 2
     },
     "effect": "helpful",
-    "provider_error": false
+    "provider_error": false,
+    "provider_retries": 0
    }
   },
   {
    "round_idx": 4,
    "perception": {
     "round_idx": 4,
-    "total_items": 13,
-    "domain_count": 13,
-    "new_items_last_round": 3,
+    "total_items": 11,
+    "domain_count": 11,
+    "new_items_last_round": 1,
     "per_subq": {
      "performance": {
       "relevant_count": 5,
@@ -272,13 +278,11 @@
       ]
      },
      "ecosystem": {
-      "relevant_count": 4,
+      "relevant_count": 2,
       "best_relevance": 0.273,
       "domains": [
-       "browsers.to",
        "capitalnumbers.com",
-       "keep.konza.k-state.edu",
-       "slideshare.net"
+       "ecosystemsandlandcare.org"
       ]
      }
     }
@@ -289,15 +293,15 @@
     "factors": {
      "coverage": 1.0,
      "diversity": 1.0,
-     "domain_count": 13.0,
-     "total_items": 13.0,
-     "recent_gains": 8.0
+     "domain_count": 11.0,
+     "total_items": 11.0,
+     "recent_gains": 6.0
     },
     "weakest": "ecosystem",
-    "rationale": "证据充分：各子问题相关证据 {'performance': '5/2', 'use_cases': '6/2', 'ecosystem': '4/2'}（K=2，已达标: performance、use_cases、ecosystem）；来源域 13 个，共 13 条，且来源域≥2，可以停止检索。"
+    "rationale": "证据充分：各子问题相关证据 {'performance': '5/2', 'use_cases': '6/2', 'ecosystem': '2/2'}（K=2，已达标: performance、use_cases、ecosystem）；来源域 11 个，共 11 条，且来源域≥2，可以停止检索。"
    },
    "decision": "stop_sufficient",
-   "decision_reason": "证据充分：各子问题相关证据 {'performance': '5/2', 'use_cases': '6/2', 'ecosystem': '4/2'}（K=2，已达标: performance、use_cases、ecosystem）；来源域 13 个，共 13 条，且来源域≥2，可以停止检索。",
+   "decision_reason": "证据充分：各子问题相关证据 {'performance': '5/2', 'use_cases': '6/2', 'ecosystem': '2/2'}（K=2，已达标: performance、use_cases、ecosystem）；来源域 11 个，共 11 条，且来源域≥2，可以停止检索。",
    "action": null,
    "ingest": null,
    "feedback": null
@@ -436,41 +440,15 @@
   },
   {
    "eid": "e011",
-   "title": "Lesson 3: Comparing Ecosystems",
-   "url": "https://keep.konza.k-state.edu/education/Tallgrass+Prairie+Storyline-Lesson3-OutlineB.pdf",
-   "domain": "keep.konza.k-state.edu",
+   "title": "Ecosystems · Ecosystems Extension · UHELP",
+   "url": "https://www.ecosystemsandlandcare.org/ecosystems",
+   "domain": "ecosystemsandlandcare.org",
    "round_added": 3,
    "strategy": "target_weakest",
    "relevance": {
-    "performance": 0.024,
+    "performance": 0.0,
     "use_cases": 0.0,
-    "ecosystem": 0.152
-   }
-  },
-  {
-   "eid": "e012",
-   "title": "How do ecosystems compare | PPTX - SlideShare",
-   "url": "https://www.slideshare.net/slideshow/how-do-ecosystems-compare/28462086",
-   "domain": "slideshare.net",
-   "round_added": 3,
-   "strategy": "target_weakest",
-   "relevance": {
-    "performance": 0.024,
-    "use_cases": 0.0,
-    "ecosystem": 0.152
-   }
-  },
-  {
-   "eid": "e013",
-   "title": "Best Browsers for Extensions in 2026",
-   "url": "https://browsers.to/articles/best-browsers-for-extensions",
-   "domain": "browsers.to",
-   "round_added": 3,
-   "strategy": "target_weakest",
-   "relevance": {
-    "performance": 0.122,
-    "use_cases": 0.0,
-    "ecosystem": 0.273
+    "ecosystem": 0.242
    }
   }
  ],
@@ -483,9 +461,9 @@
   "final_verdict": "sufficient",
   "final_perception": {
    "round_idx": 4,
-   "total_items": 13,
-   "domain_count": 13,
-   "new_items_last_round": 3,
+   "total_items": 11,
+   "domain_count": 11,
+   "new_items_last_round": 1,
    "per_subq": {
     "performance": {
      "relevant_count": 5,
@@ -511,13 +489,11 @@
      ]
     },
     "ecosystem": {
-     "relevant_count": 4,
+     "relevant_count": 2,
      "best_relevance": 0.273,
      "domains": [
-      "browsers.to",
       "capitalnumbers.com",
-      "keep.konza.k-state.edu",
-      "slideshare.net"
+      "ecosystemsandlandcare.org"
      ]
     }
    }

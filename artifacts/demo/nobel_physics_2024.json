@@ -13,9 +13,9 @@
   "stall_window": 2,
   "stall_gain": 1,
   "cache_mode": "auto",
-  "cache_network_calls": 0
+  "cache_network_calls": 1
  },
- "started_at": "2026-10-23T08:35:36+00:00",
+ "started_at": "2026-10-23T08:53:55+00:00",
  "rounds": [
   {
    "round_idx": 1,
@@ -67,14 +67,15 @@
    "feedback": {
     "target_subq": null,
     "new_items": 5,
-    "new_relevant_total": 8,
+    "new_relevant_total": 7,
     "new_relevant_for_target": null,
     "counts_after": {
      "winners": 5,
-     "work": 3
+     "work": 2
     },
     "effect": "helpful",
-    "provider_error": true
+    "provider_error": false,
+    "provider_retries": 0
    }
   },
   {
@@ -90,12 +91,12 @@
       "best_relevance": 1.0,
       "domains": [
        "en.wikipedia.org",
-       "nobelprize.org",
-       "nsf.gov"
+       "nature.com",
+       "nobelprize.org"
       ]
      },
      "work": {
-      "relevant_count": 3,
+      "relevant_count": 2,
       "best_relevance": 0.545,
       "domains": [
        "en.wikipedia.org",
@@ -112,13 +113,13 @@
      "diversity": 0.75,
      "domain_count": 3.0,
      "total_items": 5.0,
-     "recent_gains": 8.0
+     "recent_gains": 7.0
     },
     "weakest": "work",
-    "rationale": "证据充分：各子问题相关证据 {'winners': '5/2', 'work': '3/2'}（K=2，已达标: winners、work）；来源域 3 个，共 5 条，且来源域≥2，可以停止检索。"
+    "rationale": "证据充分：各子问题相关证据 {'winners': '5/2', 'work': '2/2'}（K=2，已达标: winners、work）；来源域 3 个，共 5 条，且来源域≥2，可以停止检索。"
    },
    "decision": "stop_sufficient",
-   "decision_reason": "证据充分：各子问题相关证据 {'winners': '5/2', 'work': '3/2'}（K=2，已达标: winners、work）；来源域 3 个，共 5 条，且来源域≥2，可以停止检索。",
+   "decision_reason": "证据充分：各子问题相关证据 {'winners': '5/2', 'work': '2/2'}（K=2，已达标: winners、work）；来源域 3 个，共 5 条，且来源域≥2，可以停止检索。",
    "action": null,
    "ingest": null,
    "feedback": null
@@ -157,8 +158,8 @@
    "round_added": 1,
    "strategy": "initial",
    "relevance": {
-    "winners": 0.667,
-    "work": 0.545
+    "winners": 1.0,
+    "work": 0.318
    }
   },
   {
@@ -175,14 +176,14 @@
   },
   {
    "eid": "e005",
-   "title": "NSF congratulates laureates of the 2024 Nobel Prize in physics",
-   "url": "https://www.nsf.gov/news/nsf-congratulates-laureates-2024-nobel-prize-physics",
-   "domain": "nsf.gov",
+   "title": "Nobel Prize in Physics 2024 - Nature",
+   "url": "https://www.nature.com/collections/ehbjaifcgc",
+   "domain": "nature.com",
    "round_added": 1,
    "strategy": "initial",
    "relevance": {
-    "winners": 1.0,
-    "work": 0.227
+    "winners": 0.667,
+    "work": 0.364
    }
   }
  ],
@@ -204,12 +205,12 @@
      "best_relevance": 1.0,
      "domains": [
       "en.wikipedia.org",
-      "nobelprize.org",
-      "nsf.gov"
+      "nature.com",
+      "nobelprize.org"
      ]
     },
     "work": {
-     "relevant_count": 3,
+     "relevant_count": 2,
      "best_relevance": 0.545,
      "domains": [
       "en.wikipedia.org",
