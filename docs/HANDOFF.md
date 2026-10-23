@@ -2,7 +2,7 @@
 
 - **项目**：MetaReSeek v0.1（P0 元认知闭环）
 - **首轮交付**：2026-10-23（节点 B）｜ **验收**：有条件通过 ｜ **反馈收尾**：2026-10-23 完成
-- **交付分支**：`feature/p0-metacog-loop` → Pull Request 指向 `main`（链接见文末与交付消息）
+- **交付分支**：`feature/p0-metacog-loop` → Pull Request [#1](https://github.com/DuanYan007/meta-reseek/pull/1)（指向 `main`，描述含功能清单/测试/演示/局限）
 
 ## 〇、验收反馈处理结果（2026-10-23）
 
@@ -10,7 +10,7 @@
 |---|---|---|
 | 1. 修复错误状态记录：成功返回但 `provider_error=true`；区分"曾重试"与"最终失败" | ✅ 已修复并加测试。根因：重试成功路径不清除 `last_error`，且该标志曾随缓存持久化。现：成功即清除；`provider_retries` 记录恢复次数（不算失败）；两者均随缓存持久化、回放还原 | `tests/test_ddg_retry.py`（+9 用例）；重跑真实运行（冷缓存）后演示轨迹已无该情况，且 kv R3、frameworks R1 真实出现"重试 1 次后成功"（`retries=1, error=false`） |
 | 2. 澄清指标含义 | ✅ README 新增"指标口径"表；代码与演示摘要均注明 `score` 为词法充分性**代理分数**；区分 `new_items`（唯一文档数）与 `new_relevant_total`（子问题匹配增量） | README"指标口径"节；`scripts/make_digest.py`；`artifacts/demo/*_digest.md` |
-| 3. 完成 GitHub 交付流程 | ✅ 修复在功能分支完成；PR 已创建指向 `main`，描述含功能清单/测试/演示/局限；版本保持 v0.1；未动 Python/PyTorch/CUDA 环境 | PR 链接（交付消息） |
+| 3. 完成 GitHub 交付流程 | ✅ 修复在功能分支完成；PR [#1](https://github.com/DuanYan007/meta-reseek/pull/1) 已补全描述（功能清单/测试/演示/局限）；版本保持 v0.1；未动 Python/PyTorch/CUDA 环境 | PR 链接 |
 | 4. 保留研究边界 | ✅ 未新增算法/语义融合/记忆/元元认知，仅修复与文档澄清 | 本 PR diff |
 
 ## 一、本轮已实现（对照 P0 验收要求）
