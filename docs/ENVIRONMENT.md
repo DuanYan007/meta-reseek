@@ -26,6 +26,12 @@ P0 完全复用系统已有 Python 环境，仅新增 1 个小依赖（`ddgs`）
 |---|---|---|---|
 | `ddgs` | 9.16.0 | DuckDuckGo 检索（无 API Key） | **清华 pip 镜像无此包**，须 `pip install ddgs -i https://pypi.org/simple` |
 
+### 2026-10-24 P1-a 实验新增（记录）
+
+- 模型缓存：`sentence-transformers/all-MiniLM-L6-v2`（约 90MB）下载至用户级 `~/.cache/huggingface`，**不入仓库**；
+- 未新增任何 pip 包（复用已装 transformers 4.57.6 + torch 2.6.0 CPU）；实验脚本 `experiments/p1a/run_experiment.py` 仅在语义臂运行时需要该模型，词法臂无额外依赖；
+- 下载途径：`hf-mirror.com` 的 hub 元数据接口与 huggingface_hub 不兼容（FileMetadataError），实际经 `huggingface.co` 直连成功（当日该域名可达；两域名连通性均间歇波动）。
+
 运行依赖固化在 `requirements.txt`（ddgs / PyYAML / requests）。torch/transformers 有意不列入 P0 依赖。
 
 ## 风险与注意事项

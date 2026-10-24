@@ -1,0 +1,90 @@
+{
+  "task": "examples/tasks/kv_cache_llm.yaml",
+  "note": "P1-a 最小实验：人工核对案例集。gold 为人工标注（该文档是否真正回答该子问题）。intent 标注预期失误模式：tp=true positive 基线, fn=预期漏检(同义改写/行话), fp=预期伪相关(主题词重叠/缩写碰撞/词面诱饵), noise=无关。",
+  "cases": [
+    {
+      "id": "A-tp-definition",
+      "intent": "tp_baseline",
+      "title": "KV Caching Explained for LLM Inference",
+      "snippet": "The key-value cache stores attention keys and values for previous tokens during autoregressive inference, so self-attention need not recompute them at each step.",
+      "gold": ["definition"]
+    },
+    {
+      "id": "B-fn-definition-paraphrase",
+      "intent": "fn_paraphrase",
+      "title": "Memoizing past attention states in decoder-only models",
+      "snippet": "Instead of recomputing intermediate projections at every generation step, serving engines memoize them, trading extra accelerator memory for lower latency.",
+      "gold": ["definition"]
+    },
+    {
+      "id": "C-fp-cost-topic-overlap",
+      "intent": "fp_topic_overlap",
+      "title": "Best gaming GPUs by memory size: the 2024 VRAM tier list",
+      "snippet": "We compare GPU memory across graphics cards and explain why GPU memory matters for gaming and which card to buy.",
+      "gold": []
+    },
+    {
+      "id": "D-tp-cost",
+      "intent": "tp_baseline",
+      "title": "Why KV cache memory grows with sequence length and batch size",
+      "snippet": "KV cache memory scales linearly with tokens and batch size; for long contexts it becomes the dominant GPU memory bottleneck in LLM serving.",
+      "gold": ["cost"]
+    },
+    {
+      "id": "E-fn-cost-jargon",
+      "intent": "fn_jargon",
+      "title": "The hidden memory wall of autoregressive serving",
+      "snippet": "Per-token intermediate states accumulate with context length and quickly exhaust HBM on accelerator cards during long-generation workloads.",
+      "gold": ["cost"]
+    },
+    {
+      "id": "F-fp-techniques-acronym",
+      "intent": "fp_acronym_collision",
+      "title": "MQL: advanced query optimization techniques for databases",
+      "snippet": "Multi-query planning reduces redundant computation across similar queries by grouping shared subplans.",
+      "gold": []
+    },
+    {
+      "id": "G-tp-techniques",
+      "intent": "tp_baseline",
+      "title": "Grouped-Query Attention and PagedAttention explained",
+      "snippet": "GQA and MQA share key-value heads across query groups; PagedAttention pages the KV cache into blocks to cut memory waste.",
+      "gold": ["techniques"]
+    },
+    {
+      "id": "H-fn-techniques-paraphrase",
+      "intent": "fn_paraphrase",
+      "title": "Cutting the memory bill of large-model serving",
+      "snippet": "Sharing attention heads and compressing cached token states are the two main levers providers use to fit long contexts on one card.",
+      "gold": ["techniques"]
+    },
+    {
+      "id": "I-tp-multi",
+      "intent": "tp_multi",
+      "title": "KV cache: what it is and why it dominates GPU memory",
+      "snippet": "An introduction to the key-value cache mechanism and its linear memory growth with context length during inference.",
+      "gold": ["definition", "cost"]
+    },
+    {
+      "id": "J-fp-definition-bait",
+      "intent": "fp_lexical_bait",
+      "title": "Cache basics: CPU caches and in-memory key-value stores",
+      "snippet": "What is a cache? Key value stores, in-memory caching patterns for web applications, and cache invalidation strategies.",
+      "gold": []
+    },
+    {
+      "id": "K-tp-techniques-quant",
+      "intent": "tp_baseline",
+      "title": "8-bit quantization of cached states in inference",
+      "snippet": "Quantizing the KV cache to int8 roughly halves its memory footprint with minor accuracy loss, a common serving optimization.",
+      "gold": ["techniques"]
+    },
+    {
+      "id": "L-noise",
+      "intent": "noise",
+      "title": "2024 Nobel Prize in Physics: Hopfield and Hinton",
+      "snippet": "The prize was awarded for foundational discoveries about artificial neural networks and machine learning.",
+      "gold": []
+    }
+  ]
+}

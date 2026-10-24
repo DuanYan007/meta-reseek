@@ -1,0 +1,540 @@
+{
+ "experiment": "p1a-lexical-failure-modes",
+ "date": "2026-10-24",
+ "task": "examples/tasks/kv_cache_llm.yaml",
+ "n_cases": 12,
+ "n_pairs": 36,
+ "lexical_confusion": {
+  "TP": 4,
+  "FP": 4,
+  "FN": 5,
+  "TN": 23
+ },
+ "lexical_errors": [
+  {
+   "case": "B-fn-definition-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "definition",
+   "error": "FN",
+   "lexical_score": 0.125,
+   "semantic_sim": 0.3909,
+   "title": "Memoizing past attention states in decoder-only models"
+  },
+  {
+   "case": "C-fp-cost-topic-overlap",
+   "intent": "fp_topic_overlap",
+   "subq": "cost",
+   "error": "FP",
+   "lexical_score": 0.231,
+   "semantic_sim": 0.4806,
+   "title": "Best gaming GPUs by memory size: the 2024 VRAM tier list"
+  },
+  {
+   "case": "E-fn-cost-jargon",
+   "intent": "fn_jargon",
+   "subq": "cost",
+   "error": "FN",
+   "lexical_score": 0.026,
+   "semantic_sim": 0.3895,
+   "title": "The hidden memory wall of autoregressive serving"
+  },
+  {
+   "case": "G-tp-techniques",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "error": "FP",
+   "lexical_score": 0.562,
+   "semantic_sim": 0.3352,
+   "title": "Grouped-Query Attention and PagedAttention explained"
+  },
+  {
+   "case": "H-fn-techniques-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "techniques",
+   "error": "FN",
+   "lexical_score": 0.021,
+   "semantic_sim": 0.4319,
+   "title": "Cutting the memory bill of large-model serving"
+  },
+  {
+   "case": "I-tp-multi",
+   "intent": "tp_multi",
+   "subq": "cost",
+   "error": "FN",
+   "lexical_score": 0.179,
+   "semantic_sim": 0.7789,
+   "title": "KV cache: what it is and why it dominates GPU memory"
+  },
+  {
+   "case": "J-fp-definition-bait",
+   "intent": "fp_lexical_bait",
+   "subq": "definition",
+   "error": "FP",
+   "lexical_score": 0.25,
+   "semantic_sim": 0.3663,
+   "title": "Cache basics: CPU caches and in-memory key-value stores"
+  },
+  {
+   "case": "K-tp-techniques-quant",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "error": "FP",
+   "lexical_score": 0.312,
+   "semantic_sim": 0.5985,
+   "title": "8-bit quantization of cached states in inference"
+  },
+  {
+   "case": "K-tp-techniques-quant",
+   "intent": "tp_baseline",
+   "subq": "techniques",
+   "error": "FN",
+   "lexical_score": 0.149,
+   "semantic_sim": 0.4996,
+   "title": "8-bit quantization of cached states in inference"
+  }
+ ],
+ "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+ "semantic_separation": -0.3628,
+ "semantic_separation_detail": {
+  "min_positive_sim": 0.31,
+  "max_negative_sim": 0.6728
+ },
+ "semantic_exploratory_thresholds": {
+  "0.4": {
+   "TP": 6,
+   "FP": 9,
+   "FN": 3,
+   "TN": 18
+  },
+  "0.5": {
+   "TP": 4,
+   "FP": 5,
+   "FN": 5,
+   "TN": 22
+  },
+  "0.6": {
+   "TP": 3,
+   "FP": 2,
+   "FN": 6,
+   "TN": 25
+  }
+ },
+ "semantic_rescue_of_lexical_errors": [
+  {
+   "case": "B-fn-definition-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "definition",
+   "error": "FN",
+   "lexical_score": 0.125,
+   "semantic_sim": 0.3909,
+   "title": "Memoizing past attention states in decoder-only models",
+   "semantic_verdict_at_0.5": "negative"
+  },
+  {
+   "case": "C-fp-cost-topic-overlap",
+   "intent": "fp_topic_overlap",
+   "subq": "cost",
+   "error": "FP",
+   "lexical_score": 0.231,
+   "semantic_sim": 0.4806,
+   "title": "Best gaming GPUs by memory size: the 2024 VRAM tier list",
+   "semantic_verdict_at_0.5": "negative"
+  },
+  {
+   "case": "E-fn-cost-jargon",
+   "intent": "fn_jargon",
+   "subq": "cost",
+   "error": "FN",
+   "lexical_score": 0.026,
+   "semantic_sim": 0.3895,
+   "title": "The hidden memory wall of autoregressive serving",
+   "semantic_verdict_at_0.5": "negative"
+  },
+  {
+   "case": "G-tp-techniques",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "error": "FP",
+   "lexical_score": 0.562,
+   "semantic_sim": 0.3352,
+   "title": "Grouped-Query Attention and PagedAttention explained",
+   "semantic_verdict_at_0.5": "negative"
+  },
+  {
+   "case": "H-fn-techniques-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "techniques",
+   "error": "FN",
+   "lexical_score": 0.021,
+   "semantic_sim": 0.4319,
+   "title": "Cutting the memory bill of large-model serving",
+   "semantic_verdict_at_0.5": "negative"
+  },
+  {
+   "case": "I-tp-multi",
+   "intent": "tp_multi",
+   "subq": "cost",
+   "error": "FN",
+   "lexical_score": 0.179,
+   "semantic_sim": 0.7789,
+   "title": "KV cache: what it is and why it dominates GPU memory",
+   "semantic_verdict_at_0.5": "positive"
+  },
+  {
+   "case": "J-fp-definition-bait",
+   "intent": "fp_lexical_bait",
+   "subq": "definition",
+   "error": "FP",
+   "lexical_score": 0.25,
+   "semantic_sim": 0.3663,
+   "title": "Cache basics: CPU caches and in-memory key-value stores",
+   "semantic_verdict_at_0.5": "negative"
+  },
+  {
+   "case": "K-tp-techniques-quant",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "error": "FP",
+   "lexical_score": 0.312,
+   "semantic_sim": 0.5985,
+   "title": "8-bit quantization of cached states in inference",
+   "semantic_verdict_at_0.5": "positive"
+  },
+  {
+   "case": "K-tp-techniques-quant",
+   "intent": "tp_baseline",
+   "subq": "techniques",
+   "error": "FN",
+   "lexical_score": 0.149,
+   "semantic_sim": 0.4996,
+   "title": "8-bit quantization of cached states in inference",
+   "semantic_verdict_at_0.5": "negative"
+  }
+ ],
+ "pairs": [
+  {
+   "case": "A-tp-definition",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "gold": true,
+   "lexical_score": 0.875,
+   "lexical_accepted": true,
+   "semantic_sim": 0.6033
+  },
+  {
+   "case": "A-tp-definition",
+   "intent": "tp_baseline",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.154,
+   "lexical_accepted": false,
+   "semantic_sim": 0.4989
+  },
+  {
+   "case": "A-tp-definition",
+   "intent": "tp_baseline",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.043,
+   "lexical_accepted": false,
+   "semantic_sim": 0.5249
+  },
+  {
+   "case": "B-fn-definition-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "definition",
+   "gold": true,
+   "lexical_score": 0.125,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3909
+  },
+  {
+   "case": "B-fn-definition-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.026,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3597
+  },
+  {
+   "case": "B-fn-definition-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.021,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3616
+  },
+  {
+   "case": "C-fp-cost-topic-overlap",
+   "intent": "fp_topic_overlap",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.0,
+   "lexical_accepted": false,
+   "semantic_sim": 0.1762
+  },
+  {
+   "case": "C-fp-cost-topic-overlap",
+   "intent": "fp_topic_overlap",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.231,
+   "lexical_accepted": true,
+   "semantic_sim": 0.4806
+  },
+  {
+   "case": "C-fp-cost-topic-overlap",
+   "intent": "fp_topic_overlap",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.021,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3214
+  },
+  {
+   "case": "D-tp-cost",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.188,
+   "lexical_accepted": false,
+   "semantic_sim": 0.5165
+  },
+  {
+   "case": "D-tp-cost",
+   "intent": "tp_baseline",
+   "subq": "cost",
+   "gold": true,
+   "lexical_score": 0.59,
+   "lexical_accepted": true,
+   "semantic_sim": 0.7656
+  },
+  {
+   "case": "D-tp-cost",
+   "intent": "tp_baseline",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.064,
+   "lexical_accepted": false,
+   "semantic_sim": 0.6728
+  },
+  {
+   "case": "E-fn-cost-jargon",
+   "intent": "fn_jargon",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.0,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3219
+  },
+  {
+   "case": "E-fn-cost-jargon",
+   "intent": "fn_jargon",
+   "subq": "cost",
+   "gold": true,
+   "lexical_score": 0.026,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3895
+  },
+  {
+   "case": "E-fn-cost-jargon",
+   "intent": "fn_jargon",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.021,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3918
+  },
+  {
+   "case": "F-fp-techniques-acronym",
+   "intent": "fp_acronym_collision",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.0,
+   "lexical_accepted": false,
+   "semantic_sim": 0.1504
+  },
+  {
+   "case": "F-fp-techniques-acronym",
+   "intent": "fp_acronym_collision",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.0,
+   "lexical_accepted": false,
+   "semantic_sim": 0.1474
+  },
+  {
+   "case": "F-fp-techniques-acronym",
+   "intent": "fp_acronym_collision",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.085,
+   "lexical_accepted": false,
+   "semantic_sim": 0.265
+  },
+  {
+   "case": "G-tp-techniques",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.562,
+   "lexical_accepted": true,
+   "semantic_sim": 0.3352
+  },
+  {
+   "case": "G-tp-techniques",
+   "intent": "tp_baseline",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.077,
+   "lexical_accepted": false,
+   "semantic_sim": 0.2568
+  },
+  {
+   "case": "G-tp-techniques",
+   "intent": "tp_baseline",
+   "subq": "techniques",
+   "gold": true,
+   "lexical_score": 0.489,
+   "lexical_accepted": true,
+   "semantic_sim": 0.31
+  },
+  {
+   "case": "H-fn-techniques-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.125,
+   "lexical_accepted": false,
+   "semantic_sim": 0.2725
+  },
+  {
+   "case": "H-fn-techniques-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.026,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3516
+  },
+  {
+   "case": "H-fn-techniques-paraphrase",
+   "intent": "fn_paraphrase",
+   "subq": "techniques",
+   "gold": true,
+   "lexical_score": 0.021,
+   "lexical_accepted": false,
+   "semantic_sim": 0.4319
+  },
+  {
+   "case": "I-tp-multi",
+   "intent": "tp_multi",
+   "subq": "definition",
+   "gold": true,
+   "lexical_score": 0.562,
+   "lexical_accepted": true,
+   "semantic_sim": 0.5957
+  },
+  {
+   "case": "I-tp-multi",
+   "intent": "tp_multi",
+   "subq": "cost",
+   "gold": true,
+   "lexical_score": 0.179,
+   "lexical_accepted": false,
+   "semantic_sim": 0.7789
+  },
+  {
+   "case": "I-tp-multi",
+   "intent": "tp_multi",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.064,
+   "lexical_accepted": false,
+   "semantic_sim": 0.6462
+  },
+  {
+   "case": "J-fp-definition-bait",
+   "intent": "fp_lexical_bait",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.25,
+   "lexical_accepted": true,
+   "semantic_sim": 0.3663
+  },
+  {
+   "case": "J-fp-definition-bait",
+   "intent": "fp_lexical_bait",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.051,
+   "lexical_accepted": false,
+   "semantic_sim": 0.3387
+  },
+  {
+   "case": "J-fp-definition-bait",
+   "intent": "fp_lexical_bait",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.043,
+   "lexical_accepted": false,
+   "semantic_sim": 0.4141
+  },
+  {
+   "case": "K-tp-techniques-quant",
+   "intent": "tp_baseline",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.312,
+   "lexical_accepted": true,
+   "semantic_sim": 0.5985
+  },
+  {
+   "case": "K-tp-techniques-quant",
+   "intent": "tp_baseline",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.077,
+   "lexical_accepted": false,
+   "semantic_sim": 0.4525
+  },
+  {
+   "case": "K-tp-techniques-quant",
+   "intent": "tp_baseline",
+   "subq": "techniques",
+   "gold": true,
+   "lexical_score": 0.149,
+   "lexical_accepted": false,
+   "semantic_sim": 0.4996
+  },
+  {
+   "case": "L-noise",
+   "intent": "noise",
+   "subq": "definition",
+   "gold": false,
+   "lexical_score": 0.0,
+   "lexical_accepted": false,
+   "semantic_sim": 0.1486
+  },
+  {
+   "case": "L-noise",
+   "intent": "noise",
+   "subq": "cost",
+   "gold": false,
+   "lexical_score": 0.0,
+   "lexical_accepted": false,
+   "semantic_sim": 0.0465
+  },
+  {
+   "case": "L-noise",
+   "intent": "noise",
+   "subq": "techniques",
+   "gold": false,
+   "lexical_score": 0.0,
+   "lexical_accepted": false,
+   "semantic_sim": 0.009
+  }
+ ]
+}
