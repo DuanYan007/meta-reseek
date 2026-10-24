@@ -1,0 +1,3 @@
+episodes file merges across runs (cross-run retention + idempotent re-save, tested)
+real-vs-replay latest run identical after stripping run_id: True
+memory-off run decision sequence identical to committed demo trace: True

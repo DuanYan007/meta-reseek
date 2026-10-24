@@ -32,6 +32,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--out", default="artifacts/runs", help="trace output directory")
     parser.add_argument("--quiet", action="store_true")
+    parser.add_argument(
+        "--save-episodes", default=None, metavar="PATH",
+        help="P1-b: 把本次运行投影为经历记录并保存为 JSONL（默认关闭，行为与 P0 完全一致）",
+    )
+    parser.add_argument(
+        "--show-working-memory", action="store_true",
+        help="P1-b: 运行后打印 WorkingMemory 任务上下文视图（只读，不影响运行）",
+    )
     args = parser.parse_args(argv)
 
     task = TaskSpec.from_yaml(args.task)
@@ -56,6 +64,20 @@ def main(argv: list[str] | None = None) -> int:
         f"停止决策: {summary['stop_decision']} | 最终 score {summary['final_score']}"
     )
     emit(f"效果反馈分布: {summary['effect_counts']}")
+
+    if args.show_working_memory:
+        from .memory import WorkingMemory
+
+        emit("--- WorkingMemory（只读视图） ---")
+        emit(WorkingMemory(task, log).context_summary())
+
+    if args.save_episodes:
+        from .memory import EpisodicMemory
+
+        mem = EpisodicMemory()
+        n = mem.extend_from_log(log)
+        path = mem.save(args.save_episodes)
+        emit(f"EpisodicMemory: 已保存 {n} 条经历 -> {path}")
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)

@@ -66,6 +66,13 @@ meta_reseek/
 
 评价与调整策略均为**规则基线**（确定性、可解释、可替换），接口留给 P1 的语义/模型化策略。
 
+## 记忆能力（P1-b 第一轮，2026-10-24）
+
+- **WorkingMemory**（`meta_reseek/memory/working.py`）：任务内工作记忆——P0 决策日志的**只读视图**（覆盖状态/最近策略与理由/已试查询/证据缺口/最近反馈与通道状态），不建第二状态源、不参与决策；
+- **EpisodicMemory**（`meta_reseek/memory/episodic.py`）：版本化 JSONL 经历库（schema `meta-reseek/episodic` v1），每条完整经历保留「调整前状态 → 调整动作 → 调整理由 → 检索反馈 → 实际结果」，支持按任务/子问题/策略查询与去重加载；
+- CLI 可选开启（默认关闭，行为与 P0 完全一致）：`--save-episodes PATH`、`--show-working-memory`；
+- 边界：不含跨任务策略学习 / 参数自动更新 / 元元认知校准 / RSI。
+
 ## 测试与演示
 
 ```bash
