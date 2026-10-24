@@ -99,3 +99,7 @@ GPT 验收结论"有条件通过"，反馈四项：
 
 - ① reconcile 四层核对（数值/来源 ID/归属/全局一致；伪造与篡改检出测试）；② missing_sources+unverifiable_cells 语义（来源不全不误报，完整来源仍检出真篡改）；③ --save-longterm 单独启用自动持久化来源 episodes + CLI 级测试（保存/重载/fully_verified 核对/决策不变）。
 - 87 passed（+4）；演示以自动持久化链路重刷（全量核对 fully_verified=True）。合并后见增量报告。版本 v0.1。
+
+## 2026-10-24 — P1-c 第一轮：多任务评测集
+
+- 分支 `feature/p1c-eval-suite`（基于 main `79043a1`）→ PR #11（待评审，未合并）。冻结 spec 先行提交，结果二次提交；12 场景（9 mock + 3 replay），八类条件全覆盖；停止路径触发 sufficient 9 / diminishing 2 / forced 1；停止一致 12/12、查询全唯一、记忆溯源 12/12、M5/M6 通道区分正确、M7 关键缺口暴露；M8 去重阈值局限如实记录为不一致项。93 passed（+6）。版本 v0.1，P0 未改，P1-a 判据未接入生产。

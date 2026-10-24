@@ -1,0 +1,49 @@
+{
+ "actual_stop": "stop_sufficient",
+ "attribution_mentions_channel": false,
+ "channel_error_rounds": 0,
+ "channel_errors_consistent": true,
+ "class": "mock",
+ "conditions": [
+  "duplicate_and_pseudo_evidence"
+ ],
+ "duplicates_consistent": false,
+ "duplicates_rejected": 1,
+ "evidence_total": 5,
+ "expected_stop": "stop_sufficient",
+ "final_coverage": {
+  "a": 3,
+  "b": 2
+ },
+ "id": "M8-duplicates-same-source",
+ "irrelevant_rejected": 0,
+ "memory_trace": {
+  "episodes": 3,
+  "ltm_cells": 2,
+  "ltm_reconcile_fully_verified": true,
+  "ltm_reconcile_ok": true,
+  "working_memory_fields": [
+   "channel_state",
+   "coverage",
+   "gaps",
+   "last_feedback",
+   "recent_strategies",
+   "rounds_so_far",
+   "task",
+   "tried_queries"
+  ]
+ },
+ "memory_traceable": true,
+ "purpose": "URL 变体与近似标题的同源重复须被去重，覆盖只计唯一来源",
+ "queries": [
+  "seed query eight",
+  "beta topic question about gadgets"
+ ],
+ "queries_unique": true,
+ "retries_consistent": true,
+ "retries_total": 0,
+ "rounds_consistent": true,
+ "rounds_searched": 2,
+ "status": "ok",
+ "stop_consistent": true
+}

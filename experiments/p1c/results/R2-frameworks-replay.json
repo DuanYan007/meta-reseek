@@ -1,0 +1,49 @@
+{
+ "actual_stop": "stop_sufficient",
+ "attribution_mentions_channel": false,
+ "channel_error_rounds": 0,
+ "class": "cache-replay",
+ "conditions": [
+  "sufficient_evidence",
+  "strategy_adjustment"
+ ],
+ "duplicates_rejected": 0,
+ "evidence_total": 11,
+ "expected_stop": "stop_sufficient",
+ "final_coverage": {
+  "ecosystem": 2,
+  "performance": 5,
+  "use_cases": 6
+ },
+ "id": "R2-frameworks-replay",
+ "irrelevant_rejected": 4,
+ "memory_trace": {
+  "episodes": 4,
+  "ltm_cells": 2,
+  "ltm_reconcile_fully_verified": true,
+  "ltm_reconcile_ok": true,
+  "working_memory_fields": [
+   "channel_state",
+   "coverage",
+   "gaps",
+   "last_feedback",
+   "recent_strategies",
+   "rounds_so_far",
+   "task",
+   "tried_queries"
+  ]
+ },
+ "memory_traceable": true,
+ "purpose": "真实搜索任务离线回放（python_web_frameworks），既往记录 stop_sufficient",
+ "queries": [
+  "Flask FastAPI Django comparison REST API",
+  "Which framework fits which use case microservices vs full website",
+  "How do their ecosystems and extensions compare"
+ ],
+ "queries_unique": true,
+ "retries_total": 1,
+ "rounds_consistent": true,
+ "rounds_searched": 3,
+ "status": "ok",
+ "stop_consistent": true
+}

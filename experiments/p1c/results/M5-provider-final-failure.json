@@ -1,0 +1,51 @@
+{
+ "actual_stop": "stop_diminishing",
+ "attribution_consistent": true,
+ "attribution_mentions_channel": true,
+ "channel_error_rounds": 2,
+ "channel_errors_consistent": true,
+ "class": "mock",
+ "conditions": [
+  "diminishing_returns",
+  "provider_final_failure"
+ ],
+ "duplicates_rejected": 0,
+ "evidence_total": 2,
+ "expected_stop": "stop_diminishing",
+ "final_coverage": {
+  "a": 2,
+  "b": 0
+ },
+ "id": "M5-provider-final-failure",
+ "irrelevant_rejected": 0,
+ "memory_trace": {
+  "episodes": 4,
+  "ltm_cells": 2,
+  "ltm_reconcile_fully_verified": true,
+  "ltm_reconcile_ok": true,
+  "working_memory_fields": [
+   "channel_state",
+   "coverage",
+   "gaps",
+   "last_feedback",
+   "recent_strategies",
+   "rounds_so_far",
+   "task",
+   "tried_queries"
+  ]
+ },
+ "memory_traceable": true,
+ "purpose": "首轮成功后通道持续最终失败（重试耗尽），停止理由须归因为通道故障而非策略收益递减",
+ "queries": [
+  "seed query five",
+  "beta topic question about gadgets",
+  "beta gadgets variant"
+ ],
+ "queries_unique": true,
+ "retries_consistent": true,
+ "retries_total": 0,
+ "rounds_consistent": true,
+ "rounds_searched": 3,
+ "status": "ok",
+ "stop_consistent": true
+}
