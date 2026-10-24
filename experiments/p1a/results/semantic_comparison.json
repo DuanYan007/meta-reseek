@@ -1,10 +1,7 @@
 {
- "experiment": "p1a-node2-semantic-comparison",
- "date": "2026-10-24",
  "model": "sentence-transformers/all-MiniLM-L6-v2",
  "primary_threshold": 0.5,
- "threshold_note": "固定阈值均为探索性；仅用于同口径比较，不构成生产建议",
- "annotation_status": "CANDIDATE（GLM 起草，待核查）",
+ "threshold_note": "固定阈值均为探索性；仅用于同口径比较",
  "semantic_sims": {
   "e001": {
    "definition": 0.7299,
@@ -115,7 +112,12 @@
     "FN": 3,
     "TN": 8
    },
-   "n_errors": 28
+   "n_errors": 28,
+   "accepted_gold_level_distribution": {
+    "sufficient_support": 14,
+    "topic_only": 25,
+    "partial": 7
+   }
   },
   "0.5": {
    "confusion": {
@@ -124,7 +126,12 @@
     "FN": 6,
     "TN": 13
    },
-   "n_errors": 26
+   "n_errors": 26,
+   "accepted_gold_level_distribution": {
+    "sufficient_support": 13,
+    "topic_only": 20,
+    "partial": 5
+   }
   },
   "0.6": {
    "confusion": {
@@ -133,7 +140,12 @@
     "FN": 8,
     "TN": 28
    },
-   "n_errors": 13
+   "n_errors": 13,
+   "accepted_gold_level_distribution": {
+    "sufficient_support": 12,
+    "partial": 4,
+    "topic_only": 5
+   }
   }
  },
  "lex_confusion": {
@@ -141,12 +153,6 @@
   "FP": 8,
   "FN": 7,
   "TN": 25
- },
- "sem_confusion_primary": {
-  "TP": 18,
-  "FP": 20,
-  "FN": 6,
-  "TN": 13
  },
  "fixed_by_semantic": [
   [
@@ -227,168 +233,6 @@
    "e015",
    "definition"
   ]
- ],
- "snapshots": [
-  {
-   "snapshot": "S1-homogeneous-definition",
-   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
-   "arm_verdict": "insufficient",
-   "arm_score": 0.808,
-   "arm_stop_suggestion": "continue",
-   "annotation_stop_should_be": "continue",
-   "stop_decision_correct": true,
-   "per_subq": {
-    "definition": {
-     "accepted_count": 3,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
-    },
-    "cost": {
-     "accepted_count": 1,
-     "arm_says_covered": false,
-     "annotation_sufficient": false,
-     "match": true,
-     "annotation_basis": "集合内无 cost 相关文档"
-    },
-    "techniques": {
-     "accepted_count": 3,
-     "arm_says_covered": true,
-     "annotation_sufficient": false,
-     "match": false,
-     "annotation_basis": "集合内无 techniques 相关文档"
-    }
-   }
-  },
-  {
-   "snapshot": "S2-pseudo-coverage-wrong-stop",
-   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
-   "arm_verdict": "sufficient",
-   "arm_score": 1.0,
-   "arm_stop_suggestion": "stop",
-   "annotation_stop_should_be": "continue",
-   "stop_decision_correct": false,
-   "per_subq": {
-    "definition": {
-     "accepted_count": 5,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e001/e005 充分支持"
-    },
-    "cost": {
-     "accepted_count": 4,
-     "arm_says_covered": true,
-     "annotation_sufficient": false,
-     "match": false,
-     "annotation_basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
-    },
-    "techniques": {
-     "accepted_count": 5,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e013/e015 充分支持"
-    }
-   }
-  },
-  {
-   "snapshot": "S3-real-after-round2",
-   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
-   "arm_verdict": "sufficient",
-   "arm_score": 1.0,
-   "arm_stop_suggestion": "stop",
-   "annotation_stop_should_be": "continue",
-   "stop_decision_correct": false,
-   "per_subq": {
-    "definition": {
-     "accepted_count": 8,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "多条充分支持级（含冗余）"
-    },
-    "cost": {
-     "accepted_count": 6,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
-    },
-    "techniques": {
-     "accepted_count": 9,
-     "arm_says_covered": true,
-     "annotation_sufficient": false,
-     "match": false,
-     "annotation_basis": "仅 e003 一条充分支持级，缺第二条"
-    }
-   }
-  },
-  {
-   "snapshot": "S5-missing-condition",
-   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
-   "arm_verdict": "sufficient",
-   "arm_score": 1.0,
-   "arm_stop_suggestion": "stop",
-   "annotation_stop_should_be": "continue",
-   "stop_decision_correct": false,
-   "per_subq": {
-    "definition": {
-     "accepted_count": 5,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e001/e002/e005 充分支持"
-    },
-    "cost": {
-     "accepted_count": 2,
-     "arm_says_covered": true,
-     "annotation_sufficient": false,
-     "match": false,
-     "annotation_basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
-    },
-    "techniques": {
-     "accepted_count": 4,
-     "arm_says_covered": true,
-     "annotation_sufficient": false,
-     "match": false,
-     "annotation_basis": "仅 e003 一条充分支持级"
-    }
-   }
-  },
-  {
-   "snapshot": "S6-real-final-state",
-   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
-   "arm_verdict": "sufficient",
-   "arm_score": 1.0,
-   "arm_stop_suggestion": "stop",
-   "annotation_stop_should_be": "stop",
-   "stop_decision_correct": true,
-   "per_subq": {
-    "definition": {
-     "accepted_count": 12,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "多条充分支持级（冗余偏高）"
-    },
-    "cost": {
-     "accepted_count": 10,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e006-e010 多条充分/部分支持"
-    },
-    "techniques": {
-     "accepted_count": 13,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e011/e013/e014/e015 充分支持"
-    }
-   }
-  }
  ],
  "snapshots_by_threshold": {
   "0.4": [
@@ -877,5 +721,170 @@
     }
    }
   ]
- }
+ },
+ "snapshots": [
+  {
+   "snapshot": "S1-homogeneous-definition",
+   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
+   "arm_verdict": "insufficient",
+   "arm_score": 0.808,
+   "arm_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "accepted_count": 3,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
+    },
+    "cost": {
+     "accepted_count": 1,
+     "arm_says_covered": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "annotation_basis": "集合内无 cost 相关文档"
+    },
+    "techniques": {
+     "accepted_count": 3,
+     "arm_says_covered": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "annotation_basis": "集合内无 techniques 相关文档"
+    }
+   }
+  },
+  {
+   "snapshot": "S2-pseudo-coverage-wrong-stop",
+   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
+   "arm_verdict": "sufficient",
+   "arm_score": 1.0,
+   "arm_stop_suggestion": "stop",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": false,
+   "per_subq": {
+    "definition": {
+     "accepted_count": 5,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e001/e005 充分支持"
+    },
+    "cost": {
+     "accepted_count": 4,
+     "arm_says_covered": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "annotation_basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
+    },
+    "techniques": {
+     "accepted_count": 5,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e013/e015 充分支持"
+    }
+   }
+  },
+  {
+   "snapshot": "S3-real-after-round2",
+   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
+   "arm_verdict": "sufficient",
+   "arm_score": 1.0,
+   "arm_stop_suggestion": "stop",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": false,
+   "per_subq": {
+    "definition": {
+     "accepted_count": 8,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "多条充分支持级（含冗余）"
+    },
+    "cost": {
+     "accepted_count": 6,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
+    },
+    "techniques": {
+     "accepted_count": 9,
+     "arm_says_covered": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "annotation_basis": "仅 e003 一条充分支持级，缺第二条"
+    }
+   }
+  },
+  {
+   "snapshot": "S5-missing-condition",
+   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
+   "arm_verdict": "sufficient",
+   "arm_score": 1.0,
+   "arm_stop_suggestion": "stop",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": false,
+   "per_subq": {
+    "definition": {
+     "accepted_count": 5,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e001/e002/e005 充分支持"
+    },
+    "cost": {
+     "accepted_count": 2,
+     "arm_says_covered": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "annotation_basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
+    },
+    "techniques": {
+     "accepted_count": 4,
+     "arm_says_covered": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "annotation_basis": "仅 e003 一条充分支持级"
+    }
+   }
+  },
+  {
+   "snapshot": "S6-real-final-state",
+   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
+   "arm_verdict": "sufficient",
+   "arm_score": 1.0,
+   "arm_stop_suggestion": "stop",
+   "annotation_stop_should_be": "stop",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "accepted_count": 12,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "多条充分支持级（冗余偏高）"
+    },
+    "cost": {
+     "accepted_count": 10,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e006-e010 多条充分/部分支持"
+    },
+    "techniques": {
+     "accepted_count": 13,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e011/e013/e014/e015 充分支持"
+    }
+   }
+  }
+ ],
+ "experiment": "p1a-node2-semantic-comparison",
+ "date": "2026-10-24",
+ "annotation_status": "CANDIDATE（GLM 起草，待核查）"
 }

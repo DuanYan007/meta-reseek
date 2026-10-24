@@ -71,7 +71,9 @@
     },
     "cost": {
      "level": "partial",
-     "basis": "含 memory math 要点，提供部分量化信息，未给增长机制"
+     "basis": "含 memory math 要点，提供部分量化信息，未给增长机制",
+     "uncertain": true,
+     "uncertainty": "不确定：摘要仅列要点名（memory math）而无展开，partial 与 topic_only 边界依赖全文，人工核查优先"
     },
     "techniques": {
      "level": "sufficient_support",
@@ -389,7 +391,9 @@
    "doc_annotation": {
     "definition": {
      "level": "partial",
-     "basis": "构造：以行话描述逐 token 状态累积现象，隐含机制但未命名 KV cache"
+     "basis": "构造：以行话描述逐 token 状态累积现象，隐含机制但未命名 KV cache",
+     "uncertain": true,
+     "uncertainty": "不确定：『隐含机制』是否构成 definition 的部分回答依赖解读，人工核查优先"
     },
     "cost": {
      "level": "sufficient_support",
@@ -439,7 +443,9 @@
     },
     "cost": {
      "level": "partial",
-     "basis": "构造：给出决定因子（layers/heads/context length），提供部分回答信息，但无逐 token 累积机制——覆盖主题缺关键回答条件"
+     "basis": "构造：给出决定因子（layers/heads/context length），提供部分回答信息，但无逐 token 累积机制——覆盖主题缺关键回答条件",
+     "uncertain": true,
+     "uncertainty": "不确定：决定因子列表是否算『部分回答信息』存在解释空间（也可视作仅主题命中），人工核查优先"
     },
     "techniques": {
      "level": "topic_only",
@@ -645,6 +651,11 @@
    "item": "e011->cost",
    "change": "维持 topic_only",
    "basis": "摘要未涉及显存增长原因"
+  },
+  {
+   "item": "争议标注不确定性记录（2026-10-24 任务 A）",
+   "change": "为 e003→cost、E→definition、CALC→cost 三条 partial 标注增加 uncertain/uncertainty 字段",
+   "basis": "任务 A 第 5 条：仍有争议的候选标注记录不确定性；标签本身维持复核后的判定，重跑实验验证统计不变"
   }
  ]
 }

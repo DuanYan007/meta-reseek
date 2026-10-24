@@ -1,20 +1,19 @@
 # P1-a 最小实验报告（固定案例集：词法基线 vs 语义模块）
 
-- 案例集：19 案例（15 真实 + 5 构造）×3 子问题；标注状态：CANDIDATE（GLM 起草，未经核查，非金标准）
-- 词法臂（现行生产逻辑，阈值 0.15/边际 0.6）：{'TP': 17, 'FP': 8, 'FN': 7, 'TN': 25}
-- 语义臂（sentence-transformers/all-MiniLM-L6-v2，主阈值 0.5，同一接受规则形状）：{'TP': 18, 'FP': 20, 'FN': 6, 'TN': 13}
+- 案例集：19 案例（14 条真实搜索结果标题与摘要 + 5 构造）× 3 子问题；快照 5 个；标注状态：CANDIDATE（GLM 起草，未经核查，非金标准）
+- 词法臂（现行生产逻辑，阈值 0.15/边际 0.6）：{'TP': 17, 'FP': 8, 'FN': 7, 'TN': 25}（接受 25 对，成色 {'sufficient_support': 11, 'partial': 6, 'topic_only': 8}）
+- 语义臂（sentence-transformers/all-MiniLM-L6-v2，主阈值 0.5，同一接受规则形状）：{'TP': 18, 'FP': 20, 'FN': 6, 'TN': 13}（接受 38 对，成色 {'sufficient_support': 13, 'topic_only': 20, 'partial': 5}）
 - 免阈值分离度：min 正对 0.3219 − max 负对 0.6995 = -0.3776
-- 探索性阈值对照：{'0.4': {'confusion': {'TP': 21, 'FP': 25, 'FN': 3, 'TN': 8}, 'n_errors': 28}, '0.5': {'confusion': {'TP': 18, 'FP': 20, 'FN': 6, 'TN': 13}, 'n_errors': 26}, '0.6': {'confusion': {'TP': 16, 'FP': 5, 'FN': 8, 'TN': 28}, 'n_errors': 13}}
+- 探索性阈值对照：@0.4 接受 46（{'sufficient_support': 14, 'topic_only': 25, 'partial': 7}，错 28）；@0.5 接受 38（{'sufficient_support': 13, 'topic_only': 20, 'partial': 5}，错 26）；@0.6 接受 21（{'sufficient_support': 12, 'partial': 4, 'topic_only': 5}，错 13）
 
-## 一、词法基线的具体误判（第一交付节点）
+## 一、词法基线的具体误判（第一交付节点，数据驱动重述）
 
-共 15 处（FN 7 / FP 8），按模式归纳：
+词法臂共 15 处误判（FN 7 / FP 8），逐条明细见 `report_node1.md`（由 run_baseline.py 同口径生成）。
 
-1. **系统性跨子问题误归属（真实数据新发现，11 处 FP/FN）**：7 条真实证据（e008–e014）被误判为 definition 相关；其中 e011/e012（技术综述）同时漏判 techniques——definition 子问题词表最宽（kv cache/attention/inference 等），任何提及这些词的文档都能通过相对边际规则被归给 definition。
-2. **同义改写/行话漏检（B/E/H 构造复现 + 真实 e014）**：compression/sharing heads/memoize 等表述与关键词无词面重叠，词法分 0.02–0.15。
-3. **主题词重叠伪相关（C 构造复现 + 真实）**：游戏显卡 VRAM 页被判为 cost 相关（0.231）。
-4. **错误停止建议（快照 S2 复现）**：伪相关文档把 cost 覆盖推过 K=2，评价器输出 sufficient/stop，而候选标注为 cost 关键信息不足——即词法误判会传导为元认知层的错误停止。
-5. **覆盖计数无法区分冗余（快照 S1）**：5 篇同质入门文与同一论文 html/pdf 双版本均被计入覆盖。
+标注不确定性记录（3 条，人工核查优先项）：
+- e003→cost（partial）：不确定：摘要仅列要点名（memory math）而无展开，partial 与 topic_only 边界依赖全文，人工核查优先
+- E-jargon-cost→definition（partial）：不确定：『隐含机制』是否构成 definition 的部分回答依赖解读，人工核查优先
+- CALC-missing-why→cost（partial）：不确定：决定因子列表是否算『部分回答信息』存在解释空间（也可视作仅主题命中），人工核查优先
 
 ## 二、语义模块修正了哪些误判（第二交付节点）
 
@@ -45,22 +44,22 @@
 
 | 快照 | 词法 | 语义@0.4 | 语义@0.5 | 语义@0.6 | 标注应为 |
 |---|---|---|---|---|---|
-| S1-homogeneous-definition | continue(✓) | stop(✗) | continue(✓) | continue(✓) | continue |
-| S2-pseudo-coverage-wrong-stop | stop(✗) | stop(✗) | stop(✗) | stop(✗) | continue |
-| S3-real-after-round2 | continue(✓) | stop(✗) | stop(✗) | stop(✗) | continue |
-| S5-missing-condition | continue(✓) | stop(✗) | stop(✗) | continue(✓) | continue |
-| S6-real-final-state | stop(✓) | stop(✓) | stop(✓) | stop(✓) | stop |
+| S1-homogeneous-definition | continue(✓) stop(✗) | continue(✓) | continue(✓) | continue |
+| S2-pseudo-coverage-wrong-stop | stop(✗) stop(✗) | stop(✗) | stop(✗) | continue |
+| S3-real-after-round2 | continue(✓) stop(✗) | stop(✗) | stop(✗) | continue |
+| S5-missing-condition | continue(✓) stop(✗) | stop(✗) | continue(✓) | continue |
+| S6-real-final-state | stop(✓) stop(✓) | stop(✓) | stop(✓) | stop |
 
-停止建议正确率：词法 4/5；语义@0.4 1/5、语义@0.5 2/5、语义@0.6 3/5。结论：在本案例集与全部测试阈值下，朴素语义臂的停止建议均不优于词法基线；S2（伪相关覆盖）与 S3（真实运行第 2 轮状态）在所有阈值下均被错误判为可停止。
+停止建议正确率：词法 4/5；语义@0.4 1/5、语义@0.5 2/5、语义@0.6 3/5。
 
 ## 五、仅靠语义相关性仍无法解决的充分性问题
 
-1. **冗余≠覆盖（S1）**：同质文档与正确文档的相似度同样高，语义覆盖计数同样被冗余推高；集合层面的边际信息量不是成对相似度能表达的。
-2. **主题相似≠回答条件满足（S5/CALC）**：用量计算器与 cost 子问题主题高度相似，但『为何增长』的机制信息缺失——语义相关性无法检验集合是否包含关键回答条件。
-3. **相似度不构成充分性证明**：按任务规范，任何基于相似度/更高 score 的充分性宣称均不成立；充分性判断仍需结构性证据（覆盖、多样性、关键条件清单）。
+1. **冗余≠覆盖**：同质文档相似度同样高，成对相似度表达不了集合的边际信息量；
+2. **主题相似≠回答条件满足**：主题高度相似的文档可能不含子问题的关键回答要点；
+3. **相似度不构成充分性证明**：充分性仍需结构性证据（覆盖、多样性、关键条件）。
 
 ## 口径与限定
 
-- 全部比较基于固定证据快照（静态），未做动态检索实验；动态实验是否进行由 GPT 决定。
-- 案例集由 GLM 设计与标注（候选），未经人工核查，结论用于定位问题而非性能宣称。
-- 语义阈值为探索性；模型为通用小型嵌入模型，未针对本域微调。
+- 全部比较基于固定证据快照（静态，证据=标题与摘要），未做动态检索实验；
+- 案例集由 GLM 设计与候选标注（未经核查），结论用于定位问题而非性能宣称；
+- 语义阈值为探索性；模型为通用小型嵌入模型，未微调。

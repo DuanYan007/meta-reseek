@@ -35,7 +35,8 @@ DOC = {
              "cost": ("topic_only", "摘要无显存内容"),
              "techniques": ("topic_only", "无")},
     "e003": {"definition": ("partial", "解释 KV cache 使推理加速，但页面主题宽泛"),
-             "cost": ("partial", "含 memory math 要点，提供部分量化信息，未给增长机制"),
+             "cost": ("partial", "含 memory math 要点，提供部分量化信息，未给增长机制",
+                      "不确定：摘要仅列要点名（memory math）而无展开，partial 与 topic_only 边界依赖全文，人工核查优先"),
              "techniques": ("sufficient_support", "明确点名 GQA/MQA/PagedAttention")},
     "e004": {"definition": ("sufficient_support", "plain words 解释 KV caching 含义"),
              "cost": ("topic_only", "无"), "techniques": ("topic_only", "无")},
@@ -73,14 +74,16 @@ DOC = {
     "C-topic-cost": {"definition": ("irrelevant", "游戏显卡内容，非 KV cache 域"),
                      "cost": ("topic_only", "构造：GPU memory 主题词重叠，但对『KV cache 为何耗显存』无任何回答信息"),
                      "techniques": ("irrelevant", "非同域")},
-    "E-jargon-cost": {"definition": ("partial", "构造：以行话描述逐 token 状态累积现象，隐含机制但未命名 KV cache"),
+    "E-jargon-cost": {"definition": ("partial", "构造：以行话描述逐 token 状态累积现象，隐含机制但未命名 KV cache",
+                                     "不确定：『隐含机制』是否构成 definition 的部分回答依赖解读，人工核查优先"),
                       "cost": ("sufficient_support", "构造：HBM 耗尽 + 随上下文累积的机制表述，真实相关但词法难命中"),
                       "techniques": ("topic_only", "无具体技术")},
     "H-syn-tech": {"definition": ("topic_only", "同域主题"),
                    "cost": ("topic_only", "无增长机制"),
                    "techniques": ("sufficient_support", "构造：同义表述（sharing heads / compressing cached states）概括两类缩减手段")},
     "CALC-missing-why": {"definition": ("topic_only", "同域主题，无定义"),
-                         "cost": ("partial", "构造：给出决定因子（layers/heads/context length），提供部分回答信息，但无逐 token 累积机制——覆盖主题缺关键回答条件"),
+                         "cost": ("partial", "构造：给出决定因子（layers/heads/context length），提供部分回答信息，但无逐 token 累积机制——覆盖主题缺关键回答条件",
+                                  "不确定：决定因子列表是否算『部分回答信息』存在解释空间（也可视作仅主题命中），人工核查优先"),
                          "techniques": ("topic_only", "计算器非缩减技术")},
 }
 
@@ -172,7 +175,19 @@ REVISION_LOG = [
     {"item": "e009->techniques", "change": "维持最低档（topic_only）",
      "basis": "争议复核：仅提『存在 practical techniques』未点名任何技术，不构成部分回答信息"},
     {"item": "e011->cost", "change": "维持 topic_only", "basis": "摘要未涉及显存增长原因"},
+    {"item": "争议标注不确定性记录（2026-10-24 任务 A）",
+     "change": "为 e003→cost、E→definition、CALC→cost 三条 partial 标注增加 uncertain/uncertainty 字段",
+     "basis": "任务 A 第 5 条：仍有争议的候选标注记录不确定性；标签本身维持复核后的判定，重跑实验验证统计不变"},
 ]
+
+
+def _ann_dict(ann):
+    """(level, basis[, uncertainty]) -> JSON annotation dict."""
+    out = {"level": ann[0], "basis": ann[1]}
+    if len(ann) > 2:
+        out["uncertain"] = True
+        out["uncertainty"] = ann[2]
+    return out
 
 
 def main() -> int:
@@ -198,7 +213,7 @@ def main() -> int:
             "title": h["title"],
             "snippet": h["snippet"],
             "intent": "real",
-            "doc_annotation": {k: {"level": v[0], "basis": v[1]} for k, v in ann.items()},
+            "doc_annotation": {k: _ann_dict(v) for k, v in ann.items()},
         })
     for c in CONSTRUCTED:
         ann = DOC[c["id"]]
@@ -210,7 +225,7 @@ def main() -> int:
             "title": c["title"],
             "snippet": c["snippet"],
             "intent": c["intent"],
-            "doc_annotation": {k: {"level": v[0], "basis": v[1]} for k, v in ann.items()},
+            "doc_annotation": {k: _ann_dict(v) for k, v in ann.items()},
         })
 
     out = {
