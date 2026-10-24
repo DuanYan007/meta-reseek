@@ -124,3 +124,23 @@ P0 核心代码零变更。新增离线测试含：四级标注 schema 与同源
 **6. 三层评价分离**：文档层要点命中 / 子问题层充分性 / 任务层停止决策分别报告，各层错误可独立归因（文档层误命中可被子问题层要点把关拦截；子问题层误判可被任务层其他缺口掩盖）。
 
 **总体结论（如实）**：判据在两种标注变体下都消除了词法基线的 S2 型错误停止（本轮唯一可复现的词法错误停止）；但其模式在新表述与新任务上有实测退化（动词覆盖缺口、跨域裸词碰撞），通用性未证立。**冻结模块未接入 P0 控制器。**
+
+## 十一、P1-b 第一轮：Working Memory + Episodic Memory（2026-10-24，PR #9）
+
+**设计**：记忆 = P0 轨迹的只读视图 + 持久化投影，零控制器改动、零决策影响。
+- `WorkingMemory(task, log)`：派生任务书第二节全部五项（覆盖状态 / 最近 N 轮策略与理由 / 已试查询 / 缺口 / 最近反馈含通道状态），`context_summary()` 人类可读；
+- `EpisodicMemory`：`episodes_from_log()` 把 RoundRecord 投影为经历 v1（schema `meta-reseek/episodic`，字段含义见模块 docstring：调整前状态→动作→理由→检索反馈→实际结果；停止记录 kind=stop），JSONL 追加保存、去重加载（键 task+run_id+round）、按任务/子问题/策略 AND 查询、版本校验拒绝未知 schema；
+- CLI：`--save-episodes` / `--show-working-memory` 默认关闭，关闭时运行行为与 P0 逐字节一致。
+
+**验收（任务书第五节五项，全部通过，演示产物 `artifacts/demo/memory/`）**：
+1. WorkingMemory 正确呈现任务上下文（kv 任务 3 轮后：覆盖 14/6/3、缺口无、3 条查询与逐轮策略理由、最近反馈含重试 1 次通道状态）；
+2. 经历保存（4 条：3 search + 1 stop）与重新加载成功；
+3. 重载后完整追溯 cost 经历：前状态（cost 0 证据/insufficient）→ broaden 查询 → 理由 → 反馈（5/5 采纳）→ 结果（helpful，counts_after）；
+4. 真实运行与离线回放的记忆内容**一致**（剔除运行时间戳后逐条相等）；
+5. 记忆关闭运行与既有演示轨迹决策序列**一致**。
+
+**一致性检查**：经历记录与 P0 JSON 轨迹逐字段一致（`tests/test_p1b_memory.py::test_episodes_match_trace_records`）；记忆接线与否轨迹不变（`test_memory_wiring_does_not_change_retrieval_behaviour`）。
+
+**测试**：71 passed（63 既有全部保持 + 8 新增离线记忆测试：视图字段/缺口/链路完整性/存取往返/去重/查询/版本校验/轨迹一致性/开关等价）。P0 零变更；无新依赖；离线回放不破坏；版本 v0.1。
+
+**已知局限**：经历为运行后投影（非逐轮实时写盘）；run_id 含运行时间戳，跨运行比较需剔除（一致性脚本已处理）；查询接口为最小 AND 过滤，无索引；长期记忆（Long-term）未实现（任务书边界）。按协作约定未附下一步建议章节。
