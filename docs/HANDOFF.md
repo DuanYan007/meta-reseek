@@ -160,6 +160,8 @@ P0 核心代码零变更。新增离线测试含：四级标注 schema 与同源
 
 **验收（任务书第三节，全部通过）**：单任务与多任务汇总（kv + frameworks 双任务演示：5 个统计格，含 target_weakest attempts=2 聚合两轮）；同一经历重复导入零计数且文件字节不变；原始记录↔统计双向核对（全量 reconcile ok=True；篡改统计可检出；部分来源明确报缺）；保存/重载/离线回放确定一致；既有 75 个测试全部保持；P0 决策与停止逻辑零改动。
 
-**测试**：**83 passed**（75 既有 + 8 新增：聚合计数/多任务/通道错误与代理口径/幂等/双向核对三情形/存取确定往返/版本拒绝/P0 不受影响）。CLI `--save-longterm PATH` 默认关闭。演示产物：`artifacts/demo/memory/longterm.json`（多任务统计样本）+ `ltm_demo_kv.jsonl`/`ltm_demo_fw.jsonl`（来源经历）。
+**测试**：**87 passed**（75 既有 + 12 新增：聚合计数/多任务/通道错误与代理口径/幂等/存取确定往返/版本拒绝/P0 不受影响 + 整改①②③测试：来源 ID 篡改/归属挪动检出/全局↔统计格不一致检出/部分来源不误报/CLI 单独启用自动持久化与全量核对）。
+
+**PR #10 整改（2026-10-24，三项）**：① `reconcile()` 升级为四层核对——统计数值、每格 `source_episode_ids`（换 ID/删空/伪造 ID 检出）、episode 归属（task/strategy 挪动检出）、全局已导入集合↔统计格来源并集一致性（孤儿/幽灵 ID 检出）；② 缺失来源语义修正——`missing_sources` + `unverifiable_cells` 明确标注不可核验范围，来源不全**不再误报为数据损坏**（`ok=True, fully_verified=False`），完整来源下真实篡改（数值/来源/归属/结构）仍全部可检出；③ `--save-longterm` 单独启用时自动持久化来源经历至 `<任务名>_episodes.jsonl`（统计可追溯的闭合链路），CLI 级测试验证保存/重载/全量核对/检索决策不变。CLI `--save-longterm PATH` 默认关闭。演示产物：`artifacts/demo/memory/longterm.json`（多任务统计样本）+ `ltm_demo_kv.jsonl`/`ltm_demo_fw.jsonl`（来源经历）。
 
 **已知局限**：统计仅为 P0 反馈代理口径（非答案质量）；只读聚合不参与策略选择（任务书边界）；无索引/并发保护（单进程 JSON）；跨任务同名策略直接合并（任务维度区分，不做语义归并）。按协作约定未附下一步建议章节。

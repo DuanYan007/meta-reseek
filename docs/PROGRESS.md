@@ -94,3 +94,8 @@ GPT 验收结论"有条件通过"，反馈四项：
 
 - 分支 `feature/p1b-longterm-memory`（基于 main `5294d0a`）→ PR #10（待评审）。任务×策略聚合 + episode ID 溯源 + 幂等导入 + 确定性持久化 + reconcile 双向核对（含 missing_sources 区分来源不全）；版本拒绝；helpful 代理口径声明入持久化 note。
 - 验收六项全过（多任务 kv+frameworks 演示、重复导入字节不变、全量核对 ok）；83 passed（+8）；P0 零改动；`--save-longterm` 默认关。版本 v0.1，不做策略学习/参数自更新/元元认知/RSI。
+
+## 2026-10-24 — PR #10 最终整改
+
+- ① reconcile 四层核对（数值/来源 ID/归属/全局一致；伪造与篡改检出测试）；② missing_sources+unverifiable_cells 语义（来源不全不误报，完整来源仍检出真篡改）；③ --save-longterm 单独启用自动持久化来源 episodes + CLI 级测试（保存/重载/fully_verified 核对/决策不变）。
+- 87 passed（+4）；演示以自动持久化链路重刷（全量核对 fully_verified=True）。合并后见增量报告。版本 v0.1。

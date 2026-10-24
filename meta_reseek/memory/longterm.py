@@ -96,38 +96,96 @@ class LongTermMemory:
         return rows
 
     def reconcile(self, episodes) -> dict:
-        """双向核对：用原始经历重算统计，与当前状态逐项比对。
+        """双向核对（PR #10 整改①②版）。
 
-        返回 {ok, mismatches, missing_sources}。提供的经历清单必须覆盖全部
-        已导入 episode ID，缺失的列入 missing_sources（此时 ok=False 但原因
-        明确为来源不全，而非计数不符）。
+        除统计数值外还核对：每个统计格的 source_episode_ids、episode ID 的
+        任务/策略归属、全局已导入 ID 与各统计格来源 ID 的一致性。
+
+        返回 {ok, fully_verified, mismatches, missing_sources, unverifiable_cells}：
+        - ok                无真实不一致（统计数据损坏/归属错误/伪造 ID/结构不一致）
+        - fully_verified    ok 且无缺失来源且无不可核验统计格
+        - missing_sources   已导入但未提供的 episode ID（输入不全，非数据损坏）
+        - unverifiable_cells 因来源缺失而跳过数值核对的统计格
         """
         records = episodes.records if isinstance(episodes, EpisodicMemory) else list(episodes)
-        provided_ids = {_episode_id(r) for r in records}
-        missing_sources = sorted(self.ingested - provided_ids)
-        relevant = [r for r in records if _episode_id(r) in self.ingested]
-        fresh = LongTermMemory()
-        fresh.ingest(relevant)
-        mismatches = []
-        if missing_sources:
-            mismatches.append(
-                f"来源清单缺少 {len(missing_sources)} 条已导入经历（missing_sources 字段），无法完整复现"
-            )
-        own_keys = {(r["task"], r["strategy"]) for r in self.query()}
-        fresh_rows = {(r["task"], r["strategy"]): r for r in fresh.query()}
+        by_id = {_episode_id(r): r for r in records}
+        provided = set(by_id)
+        missing_sources = sorted(self.ingested - provided)
+        missing_set = set(missing_sources)
+        mismatches: list[str] = []
+        unverifiable: list[dict] = []
+
+        # C. 结构一致：统计格来源 ID 的并集 == 全局已导入集合
+        cell_ids_union: set[str] = set()
+        for row in self.query():
+            cell_ids_union.update(row["source_episode_ids"])
+        orphan = cell_ids_union - self.ingested
+        ghost = self.ingested - cell_ids_union
+        if orphan:
+            mismatches.append(f"统计格来源 ID 未出现在全局已导入集合（疑似篡改）：{sorted(orphan)[:3]}")
+        if ghost:
+            mismatches.append(f"全局已导入 ID 未归属任何统计格（疑似篡改）：{sorted(ghost)[:3]}")
+
+        # A/B. 逐统计格：ID 可解析性、归属、数值与来源 ID 复现
         for row in self.query():
             key = (row["task"], row["strategy"])
-            other = fresh_rows.get(key)
-            if other is None:
-                if not missing_sources:
-                    mismatches.append(f"{key}: 统计中存在但来源无法复现")
+            ids = list(row["source_episode_ids"])
+
+            unresolved = [e for e in ids if e not in provided and e not in missing_set]
+            if unresolved:
+                mismatches.append(
+                    f"{key}: 来源 ID 无法解析（既不在提供的经历也不在 missing_sources，疑似伪造）：{unresolved[:3]}"
+                )
+
+            for eid in ids:  # B. 归属核对
+                rec = by_id.get(eid)
+                if rec is None:
+                    continue
+                action = rec.get("action") or {}
+                if (rec["task"] != row["task"]
+                        or (action.get("strategy") or "unknown") != row["strategy"]):
+                    mismatches.append(
+                        f"{key}: 来源 {eid} 归属不符（实际 task={rec['task']!r}, "
+                        f"strategy={action.get('strategy')!r}）"
+                    )
+                    break
+
+            absent = [e for e in ids if e in missing_set]
+            if absent:
+                # 来源不全：该格无法完整核验，跳过数值比较（不误报为损坏）
+                unverifiable.append({"cell": key, "missing": absent})
+                continue
+
+            resolvable = [e for e in ids if e in by_id]
+            if len(resolvable) < len(ids):
+                # 含不可解析 ID 的格：已上报伪造，数值复现仅用可解析部分，
+                # source_episode_ids 的差异同样会被比对捕获
+                mismatches.append(f"{key}: 跳过含伪造来源 ID 的数值复现")
+                continue
+
+            expected = LongTermMemory()
+            expected.ingest([by_id[e] for e in ids])
+            erow = {(r["task"], r["strategy"]): r for r in expected.query()}.get(key)
+            if erow is None:
+                mismatches.append(f"{key}: 来源经历无法复现该统计格（归属被挪动？）")
                 continue
             for field in ("attempts", "effect_counts", "helpful_proxy_count",
                           "channel_errors", "channel_retries_total"):
-                if row[field] != other[field]:
-                    mismatches.append(f"{key}.{field}: {row[field]} != {other[field]}")
-        return {"ok": not mismatches, "mismatches": mismatches,
-                "missing_sources": missing_sources}
+                if row[field] != erow[field]:
+                    mismatches.append(f"{key}.{field}: {row[field]} != {erow[field]}")
+            if sorted(ids) != sorted(erow["source_episode_ids"]):
+                mismatches.append(
+                    f"{key}.source_episode_ids: {sorted(ids)} != {sorted(erow['source_episode_ids'])}"
+                )
+
+        ok = not mismatches
+        return {
+            "ok": ok,
+            "fully_verified": ok and not missing_sources and not unverifiable,
+            "mismatches": mismatches,
+            "missing_sources": missing_sources,
+            "unverifiable_cells": unverifiable,
+        }
 
     # -- 持久化 ---------------------------------------------------------------
 

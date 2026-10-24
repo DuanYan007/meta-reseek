@@ -1,11 +1,11 @@
 {
  "ingested_episode_ids": [
-  "kv_cache_llm@2026-10-24T11:01:33+00:00#9a8e6dfa#R1",
-  "kv_cache_llm@2026-10-24T11:01:33+00:00#9a8e6dfa#R2",
-  "kv_cache_llm@2026-10-24T11:01:33+00:00#9a8e6dfa#R3",
-  "python_web_frameworks@2026-10-24T11:01:34+00:00#f840a3d2#R1",
-  "python_web_frameworks@2026-10-24T11:01:34+00:00#f840a3d2#R2",
-  "python_web_frameworks@2026-10-24T11:01:34+00:00#f840a3d2#R3"
+  "kv_cache_llm@2026-10-24T11:13:31+00:00#9a8e6dfa#R1",
+  "kv_cache_llm@2026-10-24T11:13:31+00:00#9a8e6dfa#R2",
+  "kv_cache_llm@2026-10-24T11:13:31+00:00#9a8e6dfa#R3",
+  "python_web_frameworks@2026-10-24T11:13:32+00:00#f840a3d2#R1",
+  "python_web_frameworks@2026-10-24T11:13:32+00:00#f840a3d2#R2",
+  "python_web_frameworks@2026-10-24T11:13:32+00:00#f840a3d2#R3"
  ],
  "note": "effect=helpful 只是 P0 反馈代理（本轮新增相关匹配/文档采纳），不等于真实答案质量提高；本统计仅此口径",
  "schema": "meta-reseek/longterm",
@@ -20,7 +20,7 @@
     },
     "helpful_proxy_count": 1,
     "source_episode_ids": [
-     "kv_cache_llm@2026-10-24T11:01:33+00:00#9a8e6dfa#R2"
+     "kv_cache_llm@2026-10-24T11:13:31+00:00#9a8e6dfa#R2"
     ]
    },
    "initial": {
@@ -32,7 +32,7 @@
     },
     "helpful_proxy_count": 1,
     "source_episode_ids": [
-     "kv_cache_llm@2026-10-24T11:01:33+00:00#9a8e6dfa#R1"
+     "kv_cache_llm@2026-10-24T11:13:31+00:00#9a8e6dfa#R1"
     ]
    },
    "target_weakest": {
@@ -44,7 +44,7 @@
     },
     "helpful_proxy_count": 1,
     "source_episode_ids": [
-     "kv_cache_llm@2026-10-24T11:01:33+00:00#9a8e6dfa#R3"
+     "kv_cache_llm@2026-10-24T11:13:31+00:00#9a8e6dfa#R3"
     ]
    }
   },
@@ -58,7 +58,7 @@
     },
     "helpful_proxy_count": 1,
     "source_episode_ids": [
-     "python_web_frameworks@2026-10-24T11:01:34+00:00#f840a3d2#R1"
+     "python_web_frameworks@2026-10-24T11:13:32+00:00#f840a3d2#R1"
     ]
    },
    "target_weakest": {
@@ -70,8 +70,8 @@
     },
     "helpful_proxy_count": 2,
     "source_episode_ids": [
-     "python_web_frameworks@2026-10-24T11:01:34+00:00#f840a3d2#R2",
-     "python_web_frameworks@2026-10-24T11:01:34+00:00#f840a3d2#R3"
+     "python_web_frameworks@2026-10-24T11:13:32+00:00#f840a3d2#R2",
+     "python_web_frameworks@2026-10-24T11:13:32+00:00#f840a3d2#R3"
     ]
    }
   }

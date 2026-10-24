@@ -123,24 +123,86 @@ def test_reconcile_against_source_episodes():
     ltm = LongTermMemory()
     ltm.ingest(eps)
     report = ltm.reconcile(eps)
-    assert report["ok"], report["mismatches"]
-    assert report["missing_sources"] == []
+    assert report["ok"] and report["fully_verified"], report["mismatches"]
+    assert report["missing_sources"] == [] and report["unverifiable_cells"] == []
 
-    # 部分来源清单：明确报告缺失而非误判计数不符（用多轮世界，search 经历 ≥2）
+    # 部分来源（多轮世界，search 经历 >=2）：报告缺失与不可核验格，不误报损坏
     _, _, eps2 = _episodes(effect_world=2)
     n_search = sum(1 for e in eps2 if e["kind"] == "search")
     assert n_search >= 2
     ltm2 = LongTermMemory()
     ltm2.ingest(eps2)
     partial = ltm2.reconcile(eps2[:1])
-    assert not partial["ok"]
+    assert partial["ok"]                      # 来源不全 ≠ 数据损坏
+    assert not partial["fully_verified"]
     assert len(partial["missing_sources"]) == n_search - 1
-    assert any("来源清单缺少" in m for m in partial["mismatches"])
+    assert partial["unverifiable_cells"]      # 受影响统计格被明确标注
 
-    # 篡改统计后核对必须失败（双向核对可发现不一致）
+    # 完整来源下真实篡改必须检出（数值）
     ltm.stats["unit_task"]["initial"]["attempts"] += 1
     bad = ltm.reconcile(eps)
     assert not bad["ok"] and bad["mismatches"]
+
+
+def test_reconcile_detects_tampered_source_ids():
+    """整改①：source_episode_ids 被篡改（换 ID / 重复 / 删空）必须检出。"""
+    _, _, eps = _episodes()
+    other_id = "unit_task@1970-01-01T00:00:00+00:00#deadbeef#R9"
+    ltm = LongTermMemory()
+    ltm.ingest(eps)
+
+    cell = ltm.stats["unit_task"]["initial"]
+    real_id = cell["source_episode_ids"][0]
+    cell["source_episode_ids"] = [other_id]        # 换成不存在且非缺失的 ID
+    r1 = ltm.reconcile(eps)
+    assert not r1["ok"] and any("无法解析" in m or "伪造" in m for m in r1["mismatches"])
+
+    ltm2 = LongTermMemory()
+    ltm2.ingest(eps)
+    ltm2.stats["unit_task"]["initial"]["source_episode_ids"] = []  # 删空来源
+    r2 = ltm2.reconcile(eps)
+    assert not r2["ok"] and any("source_episode_ids" in m or "全局" in m for m in r2["mismatches"])
+
+
+def test_reconcile_detects_wrong_attribution():
+    """整改①：把经历从正确统计格挪到错误统计格必须检出。"""
+    task = make_task(max_rounds=8)
+    provider = MockProvider([
+        ("2024 nobel prize in physics", WINNERS_HITS),
+        ("what specific work", WORK_HITS),
+        ("*", WINNERS_HITS + WORK_HITS),
+    ])
+    log = MetacognitiveController(task, provider).run()
+    eps = episodes_from_log(log)
+    ltm = LongTermMemory()
+    ltm.ingest(eps)
+    assert any(r["strategy"] == "broaden" for r in ltm.query())
+
+    # 把 broaden 格的来源 ID 挪到 initial 格（归属篡改）
+    broaden_ids = ltm.stats[task.name]["broaden"]["source_episode_ids"]
+    ltm.stats[task.name]["broaden"]["source_episode_ids"] = []
+    ltm.stats[task.name]["initial"]["source_episode_ids"].extend(broaden_ids)
+    ltm.stats[task.name]["initial"]["attempts"] += len(broaden_ids)
+    r = ltm.reconcile(eps)
+    assert not r["ok"]
+    assert any("归属不符" in m for m in r["mismatches"])
+
+
+def test_reconcile_detects_global_vs_cells_inconsistency():
+    """整改①：全局已导入集合与统计格来源 ID 不一致必须检出。"""
+    _, _, eps = _episodes()
+    ltm = LongTermMemory()
+    ltm.ingest(eps)
+    eid = ltm.stats["unit_task"]["initial"]["source_episode_ids"][0]
+
+    ltm.ingested.discard(eid)                 # 全局少了统计格里仍在的 ID
+    r = ltm.reconcile(eps)
+    assert not r["ok"] and any("全局已导入集合" in m or "未出现在全局" in m for m in r["mismatches"])
+
+    ltm.ingested.add(eid)
+    ltm.ingested.add("forged#R1")             # 全局多了伪造 ID（无统计格归属）
+    r2 = ltm.reconcile(eps)
+    assert not r2["ok"] and any("未归属任何统计格" in m for m in r2["mismatches"])
 
 
 # ------------------------------------------------------------- 持久化/版本 --
@@ -183,3 +245,37 @@ def test_p0_unaffected_and_flag_optional():
     _, log_a, _ = _episodes()
     _, log_b, _ = _episodes()
     assert log_a.as_dict()["rounds"] == log_b.as_dict()["rounds"]
+
+
+def test_cli_longterm_alone_persists_sources_and_reconciles(tmp_path):
+    """整改③：--save-longterm 单独启用自动持久化来源经历；保存/重载/核对/决策不变。"""
+    import json
+
+    import meta_reseek.run as runner
+
+    task_yaml = "examples/tasks/kv_cache_llm.yaml"
+    out_a, out_b = tmp_path / "plain", tmp_path / "withltm"
+    ltm_path = tmp_path / "ltm" / "longterm.json"
+
+    assert runner.main([task_yaml, "--cache", "offline", "--out", str(out_a), "--quiet"]) == 0
+    assert runner.main([task_yaml, "--cache", "offline", "--out", str(out_b),
+                        "--quiet", "--save-longterm", str(ltm_path)]) == 0
+
+    # 决策不变
+    ta = json.loads((out_a / "kv_cache_llm.json").read_text(encoding="utf-8"))
+    tb = json.loads((out_b / "kv_cache_llm.json").read_text(encoding="utf-8"))
+    assert ta["rounds"] == tb["rounds"]
+
+    # 统计与来源经历均已持久化，重载后可完整核对
+    assert ltm_path.exists()
+    episodes_path = ltm_path.parent / "kv_cache_llm_episodes.jsonl"
+    assert episodes_path.exists(), "单独启用 --save-longterm 必须自动持久化来源经历"
+
+    ltm = LongTermMemory.load(ltm_path)
+    src = EpisodicMemory.load(episodes_path)
+    report = ltm.reconcile(src.records)
+    assert report["ok"] and report["fully_verified"], report["mismatches"]
+
+    # 重载统计可查询且带溯源
+    rows = ltm.query(task="kv_cache_llm")
+    assert rows and all(r["source_episode_ids"] for r in rows)
