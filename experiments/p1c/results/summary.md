@@ -1,5 +1,7 @@
 # P1-c 评测汇总（冻结任务集，预期 CANDIDATE）
 
+**口径**：下述全部『一致性』指**模拟场景/冻结预期与控制器规则行为的一致**，**不等于真实回答充分性**；mock 类关键条件分析借用 KV 领域冻结模式，属跨领域候选诊断。
+
 - 场景 12 个（mock 9 + cache-replay 3）
 - 实际停止路径触发记录：{'stop_diminishing': 2, 'stop_forced': 1, 'stop_sufficient': 9}
 - 回放缺缓存跳过：无
@@ -16,11 +18,11 @@
 | M4-forced | stop_forced/stop_forced | 3 | ✓ | 0/0/3 | 0/0 | 否 | — | ✓ |
 | M5-provider-final-failure | stop_diminishing/stop_diminishing | 3 | ✓ | 2/0/0 | 2/0 | 是 | — | ✓ |
 | M6-retry-recovered | stop_sufficient/stop_sufficient | 1 | ✓ | 4/0/0 | 0/1 | 否 | — | ✓ |
-| M7-pseudo-high-coverage | stop_sufficient/stop_sufficient | 1 | ✓ | 4/0/0 | 0/0 | 否 | 有 | ✓ |
+| M7-pseudo-high-coverage | stop_sufficient/stop_sufficient | 1 | ✓ | 4/0/0 | 0/0 | 否 | — | ✓ |
 | M8-duplicates-same-source | stop_sufficient/stop_sufficient | 2 | ✓ | 5/1/0 | 0/0 | 否 | — | ✓ |
 | M9-cross-domain-collision | stop_sufficient/stop_sufficient | 1 | ✓ | 3/0/0 | 0/0 | 否 | — | ✓ |
 
-- 停止一致性：9/9；轮数一致：9/9；查询全唯一：9/9；记忆溯源：9/9
+- 停止一致性：9/9；轮数一致：9/9；查询全唯一：9/9；记忆溯源：9/9；去重下限达成：0/1（M8 未达成即去重阈值局限，保留为发现）
 - 通道错误轮一致：9/9；重试一致：9/9；归因一致：2/2
 
 ### cache-replay（3 个）
@@ -31,7 +33,7 @@
 | R2-frameworks-replay | stop_sufficient/stop_sufficient | 3 | ✓ | 11/0/4 | 0/1 | 否 | — | ✓ |
 | R3-nobel-replay | stop_sufficient/stop_sufficient | 1 | ✓ | 5/0/0 | 0/0 | 否 | — | ✓ |
 
-- 停止一致性：3/3；轮数一致：3/3；查询全唯一：3/3；记忆溯源：3/3
+- 停止一致性：3/3；轮数一致：3/3；查询全唯一：3/3；记忆溯源：3/3；去重下限达成：0/0（M8 未达成即去重阈值局限，保留为发现）
 - 通道错误轮一致：0/0；重试一致：0/0；归因一致：0/0
 
 ## 不一致项记录（冻结预期 vs 实际，如实呈现）

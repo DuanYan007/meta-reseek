@@ -48,19 +48,32 @@ def test_eval_deterministic_for_mock_class():
     assert ra == rb  # mock 类完全确定性
 
 
+def _cache_present() -> bool:
+    cache = REPO / "artifacts/cache"
+    return cache.exists() and bool(list(cache.glob("*.json")))
+
+
 def test_committed_summary_matches_recompute():
+    """已提交的 12 场景结果作为历史评测产物保留；mock 类在任意环境可精确
+    重算一致；replay 类在有缓存环境可复算一致，无缓存环境标记 skipped
+    （不与历史产物冲突，也不把跳过统计为成功）。"""
     committed = json.loads((RESULTS / "summary.json").read_text(encoding="utf-8"))
     fresh = run_eval.run_all()
-    # 结构性指标必须可离线重算一致（mock 全量；replay 在本机有缓存时同样一致）
-    assert committed["stop_path_triggers"] == fresh["stop_path_triggers"]
     assert [r["id"] for r in committed["results"]] == [r["id"] for r in fresh["results"]]
     for c, f in zip(committed["results"], fresh["results"]):
-        if c.get("class") != "mock":
-            continue
-        for key in ("stop_consistent", "actual_stop", "rounds_searched",
-                    "queries_unique", "evidence_total", "duplicates_rejected",
-                    "channel_error_rounds", "retries_total", "memory_traceable"):
-            assert c[key] == f[key], (c["id"], key)
+        if c.get("class") == "mock":
+            for key in ("stop_consistent", "actual_stop", "rounds_searched",
+                        "queries_unique", "evidence_total", "duplicates_rejected",
+                        "channel_error_rounds", "retries_total", "memory_traceable"):
+                assert c[key] == f[key], (c["id"], key)
+            # 仅声明 key_conditions 的场景携带跨领域诊断标记
+            assert c.get("key_condition_cross_domain") == f.get("key_condition_cross_domain"), c["id"]
+        else:
+            if _cache_present():
+                assert f["status"] == "ok"
+                assert c["actual_stop"] == f["actual_stop"]
+            else:
+                assert f["status"] == "skipped-no-cache"
 
 
 def test_summary_report_regenerates_byte_identical():
@@ -69,25 +82,34 @@ def test_summary_report_regenerates_byte_identical():
 
 
 def test_pinned_overall_outcomes():
+    """钉死的是**已提交的历史评测产物**（有缓存环境生成：12 场景全部 ok）；
+    无缓存环境的当前行为（9 ok + 3 skipped、触发 6/2/1）由
+    test_replay_scenarios_skip_gracefully_without_cache 与 recompute 测试覆盖。"""
     summary = json.loads((RESULTS / "summary.json").read_text(encoding="utf-8"))
     ok = [r for r in summary["results"] if r["status"] == "ok"]
-    assert len(ok) == 12  # 本机含缓存：9 mock + 3 replay
+    mock_ok = [r for r in ok if r["class"] == "mock"]
+    replay_ok = [r for r in ok if r["class"] == "cache-replay"]
+    assert len(mock_ok) == 9 and len(replay_ok) == 3  # 历史产物：9 mock + 3 replay 全 ok
     assert summary["stop_path_triggers"] == {
         "stop_sufficient": 9, "stop_diminishing": 2, "stop_forced": 1,
     }
-    assert all(r["stop_consistent"] for r in ok)      # 停止决策与冻结预期全部一致
-    assert all(r["queries_unique"] for r in ok)       # 查询去重全程成立
-    assert all(r["memory_traceable"] for r in ok)     # 三层记忆溯源全程成立
+    assert all(r["stop_consistent"] for r in ok)
+    assert all(r["queries_unique"] for r in ok)
+    assert all(r["memory_traceable"] for r in ok)
     # M5/M6：通道最终失败 vs 重试恢复的区分
-    m5 = next(r for r in ok if r["id"] == "M5-provider-final-failure")
-    m6 = next(r for r in ok if r["id"] == "M6-retry-recovered")
+    m5 = next(r for r in mock_ok if r["id"] == "M5-provider-final-failure")
+    m6 = next(r for r in mock_ok if r["id"] == "M6-retry-recovered")
     assert m5["channel_error_rounds"] == 2 and m5["attribution_mentions_channel"]
     assert m6["channel_error_rounds"] == 0 and m6["retries_total"] == 1
-    # M7：伪覆盖下关键条件缺口被指标暴露
-    m7 = next(r for r in ok if r["id"] == "M7-pseudo-high-coverage")
+    # M4：离题拒绝 = 3（1 条离题命中 × 3 轮）
+    m4 = next(r for r in mock_ok if r["id"] == "M4-forced")
+    assert m4["irrelevant_rejected"] == 3
+    # M7：伪覆盖下关键条件缺口被指标暴露，且明确标注为跨领域候选诊断
+    m7 = next(r for r in mock_ok if r["id"] == "M7-pseudo-high-coverage")
     assert m7["key_condition_gap_found"] and m7["key_condition_gaps"]["b"]
+    assert m7["key_condition_cross_domain"] is True
     # M8：冻结预期未达成的诊断如实记录（去重阈值局限）
-    m8 = next(r for r in ok if r["id"] == "M8-duplicates-same-source")
+    m8 = next(r for r in mock_ok if r["id"] == "M8-duplicates-same-source")
     assert m8["duplicates_consistent"] is False
 
 

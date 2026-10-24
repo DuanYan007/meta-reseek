@@ -146,6 +146,8 @@ def _evaluate(spec: dict, task: TaskSpec, log) -> dict:
             gaps[subq] = sorted(missing)
         m["key_condition_gaps"] = gaps
         m["key_condition_gap_found"] = any(gaps.values())
+        # mock 类借用 KV 领域要点模式：跨领域候选诊断，非实际回答充分性结论
+        m["key_condition_cross_domain"] = spec["class"] == "mock"
 
     # 6. 三层 Memory 溯源
     eps = episodes_from_log(log)
@@ -202,6 +204,9 @@ def build_report(summary: dict) -> str:
     lines = [
         "# P1-c 评测汇总（冻结任务集，预期 CANDIDATE）",
         "",
+        "**口径**：下述全部『一致性』指**模拟场景/冻结预期与控制器规则行为的一致**，"
+        "**不等于真实回答充分性**；mock 类关键条件分析借用 KV 领域冻结模式，属跨领域候选诊断。",
+        "",
         f"- 场景 {len(summary['results'])} 个（mock {sum(1 for r in summary['results'] if r.get('class') == 'mock')}"
         f" + cache-replay {sum(1 for r in summary['results'] if r.get('class') == 'cache-replay')}）",
         f"- 实际停止路径触发记录：{dict(sorted(summary['stop_path_triggers'].items()))}",
@@ -220,8 +225,12 @@ def build_report(summary: dict) -> str:
         for r in rows:
             stop = f"{r['expected_stop']}/{r['actual_stop']}{'' if r['stop_consistent'] else ' ✗'}"
             rounds = f"{r['rounds_searched']}{'' if r['rounds_consistent'] is not False else ' ✗'}"
-            gap = ("有" if r.get("key_condition_gap_found") else
-                   "无" if "key_conditions" in r else "—")
+            if "key_conditions" not in r:
+                gap = "—"
+            elif r.get("key_condition_cross_domain"):
+                gap = "有（跨领域候选诊断）" if r["key_condition_gap_found"] else "无（跨领域候选诊断）"
+            else:
+                gap = "有" if r["key_condition_gap_found"] else "无"
             lines.append(
                 f"| {r['id']} | {stop} | {rounds} | {'✓' if r['queries_unique'] else '✗'} "
                 f"| {r['evidence_total']}/{r['duplicates_rejected']}/{r['irrelevant_rejected']} "
@@ -234,7 +243,8 @@ def build_report(summary: dict) -> str:
         lines += [
             "",
             f"- 停止一致性：{acc('stop_consistent')}/{n}；轮数一致：{acc('rounds_consistent')}/{sum(1 for r in rows if r['rounds_consistent'] is not None)}；"
-            f"查询全唯一：{acc('queries_unique')}/{n}；记忆溯源：{acc('memory_traceable')}/{n}",
+            f"查询全唯一：{acc('queries_unique')}/{n}；记忆溯源：{acc('memory_traceable')}/{n}；"
+            f"去重下限达成：{acc('duplicates_consistent')}/{sum(1 for r in rows if 'duplicates_consistent' in r)}（M8 未达成即去重阈值局限，保留为发现）",
             f"- 通道错误轮一致：{acc('channel_errors_consistent')}/{sum(1 for r in rows if 'channel_errors_consistent' in r)}；"
             f"重试一致：{acc('retries_consistent')}/{sum(1 for r in rows if 'retries_consistent' in r)}；"
             f"归因一致：{acc('attribution_consistent')}/{sum(1 for r in rows if 'attribution_consistent' in r)}",

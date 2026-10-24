@@ -315,6 +315,7 @@
    },
    "id": "M7-pseudo-high-coverage",
    "irrelevant_rejected": 0,
+   "key_condition_cross_domain": true,
    "key_condition_gap_found": true,
    "key_condition_gaps": {
     "b": [

@@ -19,7 +19,16 @@ from meta_reseek.memory.episodic import episodes_from_log
 from meta_reseek.memory.longterm import NOTE, SCHEMA, SCHEMA_VERSION
 from meta_reseek.metacog.controller import MetacognitiveController
 
+from pathlib import Path as _P
+
+import pytest
+
 from conftest import MockProvider, WINNERS_HITS, WORK_HITS, make_task
+
+_CACHE = _P(__file__).resolve().parents[1] / "artifacts/cache"
+_needs_cache = pytest.mark.skipif(
+    not (_CACHE.exists() and bool(list(_CACHE.glob("*.json")))),
+    reason="本机无检索缓存：离线回放类 CLI 测试需要 artifacts/cache")
 
 
 def _episodes(effect_world=1):
@@ -247,6 +256,7 @@ def test_p0_unaffected_and_flag_optional():
     assert log_a.as_dict()["rounds"] == log_b.as_dict()["rounds"]
 
 
+@_needs_cache
 def test_cli_longterm_alone_persists_sources_and_reconciles(tmp_path):
     """整改③：--save-longterm 单独启用自动持久化来源经历；保存/重载/核对/决策不变。"""
     import json
