@@ -45,12 +45,24 @@ def _fw_point_check(text, subq):
 
 # ------------------------------------------------------- 3.5 fresh validation --
 def validate_fresh_kv():
-    rows, agree_rel, agree_met = [], {"ok": 0, "bad": 0}, {"ok": 0, "bad": 0}
+    """Independent fresh docs only: same-source items (vs old cases or within
+    the fresh set) are excluded from statistics but kept as provenance records."""
+    rows, excluded = [], []
+    agree_rel, agree_met = {"ok": 0, "bad": 0}, {"ok": 0, "bad": 0}
     for d in audit.FRESH_KV:
-        if d["same_source"] or not d["annotation"]:
-            continue  # dedup: same paper counted once
+        reason = None
+        if d.get("same_source_with_old"):
+            reason = f"与旧案例同源：{d['same_source_with_old']}"
+        elif d.get("same_source"):
+            reason = f"与新鲜集内条目同源：{d['same_source']}"
+        if reason or not d["annotation"]:
+            excluded.append({"doc": d["id"], "url": d.get("url"),
+                             "title": d["title"], "reason": reason or "无标注"})
+            continue
         text = _text(d)
-        for subq, (level, basis) in d["annotation"].items():
+        for subq, ann in d["annotation"].items():
+            level, basis = ann[0], ann[1]
+            uncertain = ann[2] if len(ann) > 2 else None
             res = sc.doc_level(text, subq)
             gold_rel = level in RELEVANT_LEVELS
             pred_rel = res["class"] in {"partial_points", "condition_met"}
@@ -59,32 +71,34 @@ def validate_fresh_kv():
             agree_rel["ok" if gold_rel == pred_rel else "bad"] += 1
             agree_met["ok" if gold_met == pred_met else "bad"] += 1
             rows.append({
-                "doc": d["id"], "subq": subq, "gold_level": level, "basis": basis,
+                "doc": d["id"], "url": d["url"], "subq": subq,
+                "gold_level": level, "basis": basis, "uncertain": bool(uncertain),
                 "pred_class": res["class"], "pred_points": res["covered_points"],
                 "relevance_agree": gold_rel == pred_rel,
                 "condition_met_agree": gold_met == pred_met,
                 "evidence": res["evidence"],
             })
-    return {"rows": rows, "relevance_agreement": agree_rel,
-            "condition_met_agreement": agree_met}
+    return {"rows": rows, "excluded": excluded,
+            "relevance_agreement": agree_rel, "condition_met_agreement": agree_met}
 
 
 def validate_fresh_task():
     rows, agree_rel = [], {"ok": 0, "bad": 0}
     for d in audit.FRESH_FW:
         text = _text(d)
-        for subq, (level, basis) in d["annotation"].items():
+        for subq, ann in d["annotation"].items():
+            level, basis = ann[0], ann[1]
             covered, evidence = _fw_point_check(text, subq)
             pred_rel = any(covered.values())
             gold_rel = level in RELEVANT_LEVELS
             agree_rel["ok" if gold_rel == pred_rel else "bad"] += 1
             rows.append({
-                "doc": d["id"], "subq": subq, "gold_level": level, "basis": basis,
+                "doc": d["id"], "url": d.get("url"), "subq": subq,
+                "gold_level": level, "basis": basis,
                 "covered_points": [p for p, c in covered.items() if c],
                 "relevance_agree": gold_rel == pred_rel,
                 "evidence": evidence,
             })
-    # mini-snapshot: does the biology collision trap produce a false sufficient?
     eco_docs = [
         {"id": d["id"], "domain": f"bio-{d['id']}", "text": _text(d)}
         for d in audit.FRESH_FW if d["id"] in {"n14", "n15", "n17"}
@@ -205,29 +219,52 @@ def build_report(kv_val, fw_val, sens, layered) -> str:
     kv_rel, kv_met = kv_val["relevance_agreement"], kv_val["condition_met_agreement"]
     fw_rel = fw_val["relevance_agreement"]
     lines = [
-        "# P1-a 任务 3：充分性判据核查（冻结规则盲测 + 敏感性 + 分层审计）",
+        "# P1-a 任务 3：充分性判据核查（冻结盲测 + 敏感性 + 分层审计，PR #8 整改修订版）",
         "",
-        "**冻结协议**：`sufficiency_criteria.py` 全程零修改；新任务要点仅依据其任务文件子问题文本与 keywords 起草并先行登记（`criteria_audit.py`），之后才对新证据做候选标注。",
+        "**冻结协议**：`sufficiency_criteria.py` 全程零修改。**表述口径（整改③）**：新任务部分为**冻结方法的探索性跨任务审计**",
+        "（新任务要点虽仅依据任务文件子问题文本起草，但要点与标注同提交，无可核查的事前登记证据，不称严格预登记验证）；",
+        "本文档中所有 N/M 一致性数字均为**文档层/标注层一致性**，不是任务停止正确率。",
         "",
-        "## 1. 冻结规则 × 同任务新证据（2 个新查询、去同源后 5 篇，标注 CANDIDATE）",
+        "## 0. 新证据溯源审计（整改①）",
         "",
-        f"- 相关性层（partial 及以上算相关）一致性：{kv_rel['ok']}/{kv_rel['ok'] + kv_rel['bad']}",
-        f"- 充分支持层（condition_met）一致性：{kv_met['ok']}/{kv_met['ok'] + kv_met['bad']}",
+        "| 条目 | URL | 查询 | 可核查 | 处置 |",
+        "|---|---|---|---|---|",
+    ]
+    for d in audit.FRESH_KV:
+        excl = next((e for e in kv_val["excluded"] if e["doc"] == d["id"]), None)
+        verdict = ("**排除**：" + excl["reason"]) if excl else "计入独立新证据"
+        lines.append(
+            f"| {d['id']} | {d.get('url', '')[:60]}… | {d['query'][:26]}… | "
+            f"{'cache_key 可回放' if d.get('verifiable') else '不可核实'} | {verdict} |"
+        )
+    lines += [
+        "",
+        "专项核查结论：**f03 与旧案例 e011 为同一论文**（arXiv 2603.20397 的 pdf/html 双版本；",
+        "e012 的 pdf URL 因先前同源去重已不在案例集，URL 过滤未拦住——本轮修正）；f05 与 f04 为同一论文",
+        "ResearchGate/IEEE 双门户。二者均不计为独立新证据，仅留溯源记录。全部条目 URL/查询/缓存键已登记，可经",
+        "`artifacts/cache` 回放核查；无不可核实条目。标注口径修订（整改②）：f02→cost、f04→techniques 按",
+        "『宣称会解释 vs 实际给出解释』由 sufficient_support 下调为 partial 并附不确定说明（f01→cost 同口径补注）。",
+        "",
+        "## 1. 冻结规则 × 同任务新证据（独立新证据 4 篇 × 3 子问题 = 12 对，标注 CANDIDATE）",
+        "",
+        f"- 文档层相关性一致性：{kv_rel['ok']}/{kv_rel['ok'] + kv_rel['bad']}",
+        f"- 文档层充分支持级一致性：{kv_met['ok']}/{kv_met['ok'] + kv_met['bad']}",
         "",
         "逐条：",
         "",
     ]
     for r in kv_val["rows"]:
+        unc = "（标注不确定）" if r["uncertain"] else ""
         lines.append(
-            f"- {r['doc']}/{r['subq']}：gold={r['gold_level']}，冻结判定={r['pred_class']}"
+            f"- {r['doc']}/{r['subq']}：gold={r['gold_level']}{unc}，冻结判定={r['pred_class']}"
             f"（命中 {r['pred_points']}），相关层{'✓' if r['relevance_agree'] else '✗'}，"
             f"充分层{'✓' if r['condition_met_agree'] else '✗'}——{r['basis']}"
         )
     lines += [
         "",
-        "## 2. 冻结方法 × 新任务（python_web_frameworks，10 篇未用真实结果，含跨域陷阱）",
+        "## 2. 冻结方法 × 新任务：**探索性跨任务审计**（python_web_frameworks，10 篇未用真实结果）",
         "",
-        f"- 相关性层一致性：{fw_rel['ok']}/{fw_rel['ok'] + fw_rel['bad']}",
+        f"- 文档层相关性一致性：{fw_rel['ok']}/{fw_rel['ok'] + fw_rel['bad']}（**非任务停止正确率**）",
         "",
         "**跨域主题碰撞陷阱实测**：生物学 ecosystem 页面对 ecosystem 子问题——",
         "",
@@ -281,12 +318,14 @@ def build_report(kv_val, fw_val, sens, layered) -> str:
         "三层错误可分别发生：文档层误命中（如裸词 vram）不必然传导为子问题层误判（机制要点把关），",
         "子问题层误判（如跨域碰撞）在任务层可能被其他子问题的缺口掩盖——分层报告使各层错误可归因。",
         "",
-        "## 7. 结论与退化（如实）",
+        "## 7. 结论与退化（整改后如实修订）",
         "",
-        "1. 同任务新证据：相关性层基本保持，充分层出现退化——新增长关系动词（eats）、",
-        "   名词化表述（reduction 不含子串 reduce）未入冻结模式，f02/f06 判 partial 而候选标注为充分支持；",
-        "2. 新任务：框架对比正例可用，但**裸词 ecosystem/community 的跨域碰撞陷阱实测成立**",
-        "（生物学页面命中全部要点）——冻结协议从子问题文本起草要点时，主题词即碰撞源；",
+        "1. 同任务新证据（独立 4 篇）：文档层相关性/充分级一致性见第 1 节（数字已随标注口径修订重算）；",
+        "   实测退化点 a：名词化表述（reduction 不含子串 reduce）致 f06/techniques 充分级降判 partial；",
+        "   实测退化 b：剩余 4 处相关性不一致全部为 definition 断言级页面（裸词 P1 命中判 partial，候选标注 topic_only）；",
+        "   f02 的动词缺口（eats）在标注下调后不再计为不一致，但其标题断言是否构成充分支持属标注不确定项；",
+        "2. 新任务（探索性跨任务审计）：框架对比正例可用，**裸词 ecosystem/community 的跨域碰撞陷阱实测成立**",
+        "（生物学页面命中全部要点）——从子问题文本起草要点时，主题词即碰撞源；",
         "3. 敏感性：判据与词法的相对优劣在不同合理标注下是否翻转见第 3 节表（如实呈现，不选边）；",
         "4. 机制解释层：名称命中≠机制解释（多数 techniques 文档无机制解释），该区分已可观测（第 4 节）。",
     ]

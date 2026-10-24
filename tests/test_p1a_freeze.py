@@ -31,13 +31,32 @@ def test_fresh_kv_validation_pinned():
     task, cases, snapshots = load()
     val = run_freeze_validation.validate_fresh_kv()
     n = val["relevance_agreement"]["ok"] + val["relevance_agreement"]["bad"]
-    assert n == 15  # 5 docs (dedup) x 3 subqs
-    assert val["relevance_agreement"] == {"ok": 11, "bad": 4}
-    assert val["condition_met_agreement"] == {"ok": 12, "bad": 3}
-    # the two known degradation cases: novel relation verbs missed by frozen patterns
+    assert n == 12  # 4 independent docs (f03/f05 excluded as same-source) x 3 subqs
+    assert val["relevance_agreement"] == {"ok": 8, "bad": 4}
+    assert val["condition_met_agreement"] == {"ok": 11, "bad": 1}
+    # the remaining known degradation: nominalized "reduction" (no "reduce" substring)
     rows = {r["doc"] + "/" + r["subq"]: r for r in val["rows"]}
-    assert rows["f02/cost"]["pred_class"] != "condition_met"   # "eats" not in patterns
-    assert rows["f06/techniques"]["pred_class"] != "condition_met"  # "reduction"
+    assert rows["f06/techniques"]["pred_class"] != "condition_met"
+    # reworked annotation standard (整改②): claim-level titles downgraded to partial + uncertain
+    assert rows["f02/cost"]["gold_level"] == "partial" and rows["f02/cost"]["uncertain"]
+    assert rows["f04/techniques"]["gold_level"] == "partial" and rows["f04/techniques"]["uncertain"]
+    # all four relevance misses are claim-level definition pages (bare-word P1 hit)
+    assert {r["subq"] for r in val["rows"] if not r["relevance_agree"]} == {"definition"}
+
+
+def test_fresh_kv_provenance_and_exclusions():
+    import criteria_audit as audit
+    for d in audit.FRESH_KV:
+        assert d.get("url") and d.get("query") and d.get("cache_key")
+        assert isinstance(d.get("verifiable"), bool)
+    val = run_freeze_validation.validate_fresh_kv()
+    excluded = {e["doc"]: e["reason"] for e in val["excluded"]}
+    # 整改①: f03 is the SAME PAPER as old case e011 (arXiv 2603.20397 pdf/html),
+    # f05 is the same paper as f04 (ResearchGate/IEEE portals) — neither counts
+    # as independent new evidence
+    assert "e011" in excluded["f03"] and "arXiv 2603.20397" in excluded["f03"]
+    assert excluded["f05"].startswith("与新鲜集内条目同源")
+    assert set(excluded) == {"f03", "f05"}
 
 
 def test_fresh_task_eco_collision_trap_pinned():

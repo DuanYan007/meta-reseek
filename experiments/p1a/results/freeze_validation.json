@@ -6,9 +6,11 @@
   "rows": [
    {
     "doc": "f01",
+    "url": "https://www.narenvadapalli.com/blog/understanding-kv-cache/",
     "subq": "definition",
     "gold_level": "topic_only",
-    "basis": "未描述缓存机制本身",
+    "basis": "未描述缓存机制本身（宣称 explore the mechanics）",
+    "uncertain": false,
     "pred_class": "partial_points",
     "pred_points": [
      "P1-缓存对象",
@@ -23,9 +25,11 @@
    },
    {
     "doc": "f01",
+    "url": "https://www.narenvadapalli.com/blog/understanding-kv-cache/",
     "subq": "cost",
     "gold_level": "partial",
     "basis": "标题宣称 mechanics/calculations，摘要未见增长关系表述",
+    "uncertain": true,
     "pred_class": "partial_points",
     "pred_points": [
      "P2-量级与占用"
@@ -38,9 +42,11 @@
    },
    {
     "doc": "f01",
+    "url": "https://www.narenvadapalli.com/blog/understanding-kv-cache/",
     "subq": "techniques",
     "gold_level": "topic_only",
     "basis": "无",
+    "uncertain": false,
     "pred_class": "topic_or_less",
     "pred_points": [],
     "relevance_agree": true,
@@ -49,9 +55,11 @@
    },
    {
     "doc": "f02",
+    "url": "https://insiderllm.com/guides/kv-cache-optimization-guide/",
     "subq": "definition",
     "gold_level": "topic_only",
     "basis": "无机制描述",
+    "uncertain": false,
     "pred_class": "partial_points",
     "pred_points": [
      "P1-缓存对象"
@@ -64,78 +72,41 @@
    },
    {
     "doc": "f02",
+    "url": "https://insiderllm.com/guides/kv-cache-optimization-guide/",
     "subq": "cost",
-    "gold_level": "sufficient_support",
-    "basis": "标题即直接陈述增长关系（Context Length 吃掉 VRAM）",
+    "gold_level": "partial",
+    "basis": "标题直接陈述驱动因素（context length 吃掉 VRAM），但摘要未展开机制",
+    "uncertain": true,
     "pred_class": "partial_points",
     "pred_points": [
      "P2-量级与占用"
     ],
     "relevance_agree": true,
-    "condition_met_agree": false,
+    "condition_met_agree": true,
     "evidence": {
      "P2-量级与占用": "…KV Cache: Why Context Length Eats Your VRAM (And How to Fix It) The KV cache did. T…"
     }
    },
    {
     "doc": "f02",
+    "url": "https://insiderllm.com/guides/kv-cache-optimization-guide/",
     "subq": "techniques",
     "gold_level": "topic_only",
     "basis": "And How to Fix It 仅暗示存在手段，未点名",
+    "uncertain": false,
     "pred_class": "topic_or_less",
     "pred_points": [],
     "relevance_agree": true,
     "condition_met_agree": true,
     "evidence": {}
-   },
-   {
-    "doc": "f03",
-    "subq": "definition",
-    "gold_level": "partial",
-    "basis": "foundational optimization/eliminating redundant 隐含机制",
-    "pred_class": "partial_points",
-    "pred_points": [
-     "P1-缓存对象",
-     "P3-场景"
-    ],
-    "relevance_agree": true,
-    "condition_met_agree": true,
-    "evidence": {
-     "P1-缓存对象": "…KV Cache Optimization Strategies for Scalable an…",
-     "P3-场景": "…rategies for Scalable and Efficient LLM Inference Mar 24, 2026 · ABSTRACT The key-value (…"
-    }
-   },
-   {
-    "doc": "f03",
-    "subq": "cost",
-    "gold_level": "topic_only",
-    "basis": "无占用/增长内容",
-    "pred_class": "topic_or_less",
-    "pred_points": [],
-    "relevance_agree": true,
-    "condition_met_agree": true,
-    "evidence": {}
-   },
-   {
-    "doc": "f03",
-    "subq": "techniques",
-    "gold_level": "partial",
-    "basis": "优化策略综述，但摘要未点名具体技术",
-    "pred_class": "partial_points",
-    "pred_points": [
-     "P2-作用方式（缩减/管理）"
-    ],
-    "relevance_agree": true,
-    "condition_met_agree": true,
-    "evidence": {
-     "P2-作用方式（缩减/管理）": "…KV Cache Optimization Strategies for Scalable and Effici…"
-    }
    },
    {
     "doc": "f04",
+    "url": "https://www.researchgate.net/publication/389917099_Key_Value_Compress_A_Systematic_Exploration_",
     "subq": "definition",
     "gold_level": "topic_only",
     "basis": "无",
+    "uncertain": false,
     "pred_class": "partial_points",
     "pred_points": [
      "P1-缓存对象"
@@ -148,9 +119,11 @@
    },
    {
     "doc": "f04",
+    "url": "https://www.researchgate.net/publication/389917099_Key_Value_Compress_A_Systematic_Exploration_",
     "subq": "cost",
     "gold_level": "topic_only",
     "basis": "无",
+    "uncertain": false,
     "pred_class": "topic_or_less",
     "pred_points": [],
     "relevance_agree": true,
@@ -159,24 +132,28 @@
    },
    {
     "doc": "f04",
+    "url": "https://www.researchgate.net/publication/389917099_Key_Value_Compress_A_Systematic_Exploration_",
     "subq": "techniques",
-    "gold_level": "sufficient_support",
-    "basis": "系统化的压缩方法分类研究",
+    "gold_level": "partial",
+    "basis": "宣称系统分析/分类各种压缩策略，但摘要未点名任何具体技术",
+    "uncertain": true,
     "pred_class": "partial_points",
     "pred_points": [
      "P1-具体技术（名称或类别）"
     ],
     "relevance_agree": true,
-    "condition_met_agree": false,
+    "condition_met_agree": true,
     "evidence": {
      "P1-具体技术（名称或类别）": "…Key, Value, Compress: A Systematic Exploration of KV Cache C…"
     }
    },
    {
     "doc": "f06",
+    "url": "https://openreview.net/pdf?id=ou0AsNbXVG",
     "subq": "definition",
     "gold_level": "topic_only",
     "basis": "无",
+    "uncertain": false,
     "pred_class": "partial_points",
     "pred_points": [
      "P1-缓存对象",
@@ -191,9 +168,11 @@
    },
    {
     "doc": "f06",
+    "url": "https://openreview.net/pdf?id=ou0AsNbXVG",
     "subq": "cost",
     "gold_level": "partial",
     "basis": "占用话题（reduction of memory consumption）但无增长机制",
+    "uncertain": false,
     "pred_class": "partial_points",
     "pred_points": [
      "P2-量级与占用"
@@ -206,9 +185,11 @@
    },
    {
     "doc": "f06",
+    "url": "https://openreview.net/pdf?id=ou0AsNbXVG",
     "subq": "techniques",
     "gold_level": "sufficient_support",
-    "basis": "讨论 quantization-based 压缩方法",
+    "basis": "点名 quantization-based 方法并陈述其实际效果",
+    "uncertain": false,
     "pred_class": "partial_points",
     "pred_points": [
      "P1-具体技术（名称或类别）"
@@ -220,19 +201,34 @@
     }
    }
   ],
+  "excluded": [
+   {
+    "doc": "f03",
+    "url": "https://arxiv.org/pdf/2603.20397",
+    "title": "KV Cache Optimization Strategies for Scalable and Efficient LLM Inference",
+    "reason": "与旧案例同源：e011 (arXiv 2603.20397)"
+   },
+   {
+    "doc": "f05",
+    "url": "https://ieeexplore.ieee.org/document/10983416",
+    "title": "Key, Value, Compress: A Systematic Exploration of KV Cache Compression",
+    "reason": "与新鲜集内条目同源：f04 (IEEE 门户: ieeexplore.ieee.org/document/10983416)"
+   }
+  ],
   "relevance_agreement": {
-   "ok": 11,
+   "ok": 8,
    "bad": 4
   },
   "condition_met_agreement": {
-   "ok": 12,
-   "bad": 3
+   "ok": 11,
+   "bad": 1
   }
  },
  "fresh_task": {
   "rows": [
    {
     "doc": "n09",
+    "url": "https://www.geeksforgeeks.org/python/comparison-of-fastapi-with-django-and-flask/",
     "subq": "performance",
     "gold_level": "partial",
     "basis": "三框架对比，但摘要未见性能/异步具体内容",
@@ -246,6 +242,7 @@
    },
    {
     "doc": "n09",
+    "url": "https://www.geeksforgeeks.org/python/comparison-of-fastapi-with-django-and-flask/",
     "subq": "use_cases",
     "gold_level": "partial",
     "basis": "对比文通常含选型指引，摘要未显式",
@@ -255,6 +252,7 @@
    },
    {
     "doc": "n09",
+    "url": "https://www.geeksforgeeks.org/python/comparison-of-fastapi-with-django-and-flask/",
     "subq": "ecosystem",
     "gold_level": "topic_only",
     "basis": "无生态内容",
@@ -264,6 +262,7 @@
    },
    {
     "doc": "n10",
+    "url": "https://betterstack.com/community/guides/scaling-nodejs/fastapi-vs-django-vs-flask/",
     "subq": "performance",
     "gold_level": "partial",
     "basis": "同上",
@@ -277,6 +276,7 @@
    },
    {
     "doc": "n10",
+    "url": "https://betterstack.com/community/guides/scaling-nodejs/fastapi-vs-django-vs-flask/",
     "subq": "use_cases",
     "gold_level": "partial",
     "basis": "which is best for APIs/web apps 即选型指引",
@@ -292,6 +292,7 @@
    },
    {
     "doc": "n10",
+    "url": "https://betterstack.com/community/guides/scaling-nodejs/fastapi-vs-django-vs-flask/",
     "subq": "ecosystem",
     "gold_level": "topic_only",
     "basis": "无",
@@ -301,6 +302,7 @@
    },
    {
     "doc": "n11",
+    "url": "https://tech-insider.org/django-vs-flask-vs-fastapi-2026/",
     "subq": "performance",
     "gold_level": "sufficient_support",
     "basis": "独立基准数字（req/s）直接回答性能对比",
@@ -314,6 +316,7 @@
    },
    {
     "doc": "n11",
+    "url": "https://tech-insider.org/django-vs-flask-vs-fastapi-2026/",
     "subq": "use_cases",
     "gold_level": "topic_only",
     "basis": "基准数据非选型",
@@ -323,6 +326,7 @@
    },
    {
     "doc": "n11",
+    "url": "https://tech-insider.org/django-vs-flask-vs-fastapi-2026/",
     "subq": "ecosystem",
     "gold_level": "partial",
     "basis": "GitHub/PyPI 数据是生态规模的代理证据，非扩展组件本身",
@@ -332,6 +336,7 @@
    },
    {
     "doc": "n12",
+    "url": "https://blog.jetbrains.com/pycharm/2025/02/django-flask-fastapi/",
     "subq": "performance",
     "gold_level": "partial",
     "basis": "对比文，摘要无性能/异步 specifics",
@@ -345,6 +350,7 @@
    },
    {
     "doc": "n12",
+    "url": "https://blog.jetbrains.com/pycharm/2025/02/django-flask-fastapi/",
     "subq": "use_cases",
     "gold_level": "partial",
     "basis": "best for your project 选型导向",
@@ -354,6 +360,7 @@
    },
    {
     "doc": "n12",
+    "url": "https://blog.jetbrains.com/pycharm/2025/02/django-flask-fastapi/",
     "subq": "ecosystem",
     "gold_level": "topic_only",
     "basis": "无",
@@ -363,6 +370,7 @@
    },
    {
     "doc": "n13",
+    "url": "https://www.capitalnumbers.com/blog/django-vs-flask-vs-fastapi",
     "subq": "performance",
     "gold_level": "partial",
     "basis": "特性表对比",
@@ -376,6 +384,7 @@
    },
    {
     "doc": "n13",
+    "url": "https://www.capitalnumbers.com/blog/django-vs-flask-vs-fastapi",
     "subq": "use_cases",
     "gold_level": "partial",
     "basis": "特性对比含适用场景",
@@ -385,6 +394,7 @@
    },
    {
     "doc": "n13",
+    "url": "https://www.capitalnumbers.com/blog/django-vs-flask-vs-fastapi",
     "subq": "ecosystem",
     "gold_level": "partial",
     "basis": "标题含 Django REST（具体组件），正文未见",
@@ -394,6 +404,7 @@
    },
    {
     "doc": "n01",
+    "url": "https://www.agilesoftlabs.com/blog/2026/02/monolith-vs-microservices-decision",
     "subq": "performance",
     "gold_level": "topic_only",
     "basis": "架构决策文，非三框架",
@@ -403,6 +414,7 @@
    },
    {
     "doc": "n01",
+    "url": "https://www.agilesoftlabs.com/blog/2026/02/monolith-vs-microservices-decision",
     "subq": "use_cases",
     "gold_level": "topic_only",
     "basis": "microservices 主题相邻但不含三框架选型信息",
@@ -416,6 +428,7 @@
    },
    {
     "doc": "n01",
+    "url": "https://www.agilesoftlabs.com/blog/2026/02/monolith-vs-microservices-decision",
     "subq": "ecosystem",
     "gold_level": "irrelevant",
     "basis": "非同域",
@@ -425,6 +438,7 @@
    },
    {
     "doc": "n02",
+    "url": "https://outplane.com/blog/microservices-vs-monolith",
     "subq": "performance",
     "gold_level": "topic_only",
     "basis": "同 n01",
@@ -434,6 +448,7 @@
    },
    {
     "doc": "n02",
+    "url": "https://outplane.com/blog/microservices-vs-monolith",
     "subq": "use_cases",
     "gold_level": "topic_only",
     "basis": "通用架构决策，无框架特定信息",
@@ -447,6 +462,7 @@
    },
    {
     "doc": "n02",
+    "url": "https://outplane.com/blog/microservices-vs-monolith",
     "subq": "ecosystem",
     "gold_level": "irrelevant",
     "basis": "非同域",
@@ -456,6 +472,7 @@
    },
    {
     "doc": "n14",
+    "url": "https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/",
     "subq": "performance",
     "gold_level": "irrelevant",
     "basis": "生物学",
@@ -465,6 +482,7 @@
    },
    {
     "doc": "n14",
+    "url": "https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/",
     "subq": "use_cases",
     "gold_level": "irrelevant",
     "basis": "生物学",
@@ -474,6 +492,7 @@
    },
    {
     "doc": "n14",
+    "url": "https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/",
     "subq": "ecosystem",
     "gold_level": "irrelevant",
     "basis": "生物学 ecosystem——跨域主题碰撞，与框架生态无关",
@@ -489,6 +508,7 @@
    },
    {
     "doc": "n15",
+    "url": "https://keep.konza.k-state.edu/education/Tallgrass+Prairie+Storyline-Lesson3-OutlineB.pdf",
     "subq": "performance",
     "gold_level": "irrelevant",
     "basis": "生物学",
@@ -498,6 +518,7 @@
    },
    {
     "doc": "n15",
+    "url": "https://keep.konza.k-state.edu/education/Tallgrass+Prairie+Storyline-Lesson3-OutlineB.pdf",
     "subq": "use_cases",
     "gold_level": "irrelevant",
     "basis": "生物学",
@@ -507,6 +528,7 @@
    },
    {
     "doc": "n15",
+    "url": "https://keep.konza.k-state.edu/education/Tallgrass+Prairie+Storyline-Lesson3-OutlineB.pdf",
     "subq": "ecosystem",
     "gold_level": "irrelevant",
     "basis": "跨域主题碰撞",
@@ -520,6 +542,7 @@
    },
    {
     "doc": "n17",
+    "url": "https://www.greenlivinganswers.com/ecosystem/biome-ecosystem-relationship",
     "subq": "performance",
     "gold_level": "irrelevant",
     "basis": "生物学",
@@ -529,6 +552,7 @@
    },
    {
     "doc": "n17",
+    "url": "https://www.greenlivinganswers.com/ecosystem/biome-ecosystem-relationship",
     "subq": "use_cases",
     "gold_level": "irrelevant",
     "basis": "生物学",
@@ -538,6 +562,7 @@
    },
    {
     "doc": "n17",
+    "url": "https://www.greenlivinganswers.com/ecosystem/biome-ecosystem-relationship",
     "subq": "ecosystem",
     "gold_level": "irrelevant",
     "basis": "跨域主题碰撞",

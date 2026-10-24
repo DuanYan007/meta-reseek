@@ -108,9 +108,9 @@ P0 核心代码零变更。新增离线测试含：四级标注 schema 与同源
 
 **冻结协议**：`sufficiency_criteria.py` 零修改；新任务要点仅依据任务文件子问题文本起草并先行登记，之后才标注新证据。产出：`criteria_audit.py`、`run_freeze_validation.py`、`results/freeze_validation.md`（自动生成）+ 6 个钉死测试。
 
-**1. 冻结规则 × 同任务新证据**（2 个新查询、去同源后 5 篇真实结果，标注 CANDIDATE）：相关性层 11/15、充分层 12/15——**退化实测**：新增长关系动词（"eats"）与名词化表述（"reduction" 不含子串 "reduce"）未入冻结模式，f02/f06 充分级被降为 partial。
+**1. 冻结规则 × 同任务新证据**（2 个新查询；**溯源审计后独立新证据 4 篇**——f03 经专项核查与旧案例 e011 为**同一篇论文**（arXiv 2603.20397 pdf/html 双版本，e012 的 pdf URL 因先前去重不在案例集致 URL 过滤未拦住），与 f05（f04 的 IEEE 双门户版本）一并排除，仅留溯源记录；全部条目 URL/查询/缓存键登记可回放，无不可核实条目）：文档层相关性 8/12、充分级 11/12（标注口径修订后数字）——退化 a："reduction" 名词化致 f06 充分级降判；退化 b：剩余 4 处不一致全部为 definition 断言级页面（裸词 P1 命中误判 partial）。标注口径修订：f02→cost、f04→techniques 按『宣称会解释 vs 实际给出解释』由 sufficient_support 下调为 partial 并附不确定说明（f01→cost 同口径补注）。
 
-**2. 冻结方法 × 新任务**（python_web_frameworks，10 篇未用真实结果）：相关性层 20/30；**跨域碰撞陷阱实测成立**——生物学页面 n14（"community ecology"+"ecosystem"）命中新任务 ecosystem 子问题的全部预登记要点（子问题文本本身含 ecosystem/community 词，按协议起草的裸词模式即碰撞源）；架构决策文因 "microservic" 场景词产生主题级误命中。
+**2. 冻结方法 × 新任务**（**口径：探索性跨任务审计，非严格预登记验证**——新任务要点虽仅依据任务文件子问题文本起草，但要点与标注落于同一提交，无可核查的事前登记证据；10 篇未用真实结果，URL 经标题反查恢复可回放）：**文档层**相关性一致性 20/30（非任务停止正确率）；**跨域碰撞陷阱实测成立**——生物学页面 n14（"community ecology"+"ecosystem"）命中 ecosystem 子问题全部要点（子问题文本本身含 ecosystem/community 词，从其起草的裸词模式即碰撞源）；架构决策文因 "microservic" 场景词产生主题级误命中。
 
 **3. 敏感性分析**（S1/S3/S5 techniques 标注争议，两种合理标注）：
 - A 原标注（techniques 不充分）：词法 4/5、语义 2/5、判据 4/5（判据=词法）
