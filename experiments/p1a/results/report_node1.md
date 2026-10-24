@@ -15,9 +15,9 @@
   - 标注依据：未解释定义
 - [real] e010 → definition：gold=topic_only pred=True，词法分 0.188；命中词条 ['kv cache']；缺失 ['key', 'value', 'attention', 'self attention', 'inference', 'transformer']
   - 标注依据：无定义内容
-- [real] e011 → definition：gold=topic_only pred=True，词法分 0.312；命中词条 ['kv cache', 'attention']；缺失 ['key', 'value', 'self attention', 'inference', 'transformer']
+- [real] e011 → definition：gold=topic_only pred=True，词法分 0.188；命中词条 ['kv cache']；缺失 ['key', 'value', 'attention', 'self attention', 'inference', 'transformer']
   - 标注依据：综述不提供入门定义
-- [real] e011 → techniques：gold=sufficient_support pred=False，词法分 0.149；命中词条 ['techniques', 'kv', 'cache', 'memory']；缺失 ['mqa', 'gqa', 'grouped query attention', 'multi query attention', 'pagedattention', 'quantization']
+- [real] e011 → techniques：gold=sufficient_support pred=False，词法分 0.064；命中词条 ['kv', 'cache', 'memory']；缺失 ['mqa', 'gqa', 'grouped query attention', 'multi query attention', 'pagedattention', 'quantization']
   - 标注依据：系统综述各类 KV cache 管理技术；注：同一论文的 html/pdf 双版本曾被系统同时接受（去重未命中），案例集按单一来源计
 - [real] e013 → definition：gold=topic_only pred=True，词法分 0.312；命中词条 ['kv cache', 'inference']；缺失 ['key', 'value', 'attention', 'self attention', 'transformer']
   - 标注依据：无定义解释

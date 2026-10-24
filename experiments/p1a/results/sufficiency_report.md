@@ -30,16 +30,18 @@ v1 失误假设与核查：S3 起初疑似『跨文档要点拼接』（不同�
 
 ## 一之三、判据发现的标注疑点（交人工核查，本轮不擅改标注）
 
-- **S1-homogeneous-definition/techniques**：判据=充分，标注=不充分（标注未标记不确定——需补记）
+- **S1-homogeneous-definition/techniques**：判据=充分，标注=不充分（标注已带 uncertain 标记）
   - 判据理由：全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']
   - 完整覆盖文档：['e001']
+  - 标注不确定性记录：任务 3 核查发现 e001 完整摘要含 vLLM/PagedAttention/GQA 技术名（起草时基于截断视图未计入）；techniques 是否应为充分存争议，见 freeze_validation 敏感性分析（2026-10-24）
 - **S3-real-after-round2/techniques**：判据=充分，标注=不充分（标注已带 uncertain 标记）
   - 判据理由：全部要点已覆盖，独立来源域 6 个，完整覆盖文档 ['e001']
   - 完整覆盖文档：['e001']
   - 标注不确定性记录：判据复核发现：e001 完整摘要（标题与摘要全文）含『systems like vLLM, PagedAttention, and GQA manage it at scale』，自身即覆盖技术名与管理作用两要点——本标注起草于截断视图，techniques 是否应为『充分』待人工核查（2026-10-24 任务 B 发现）
-- **S5-missing-condition/techniques**：判据=充分，标注=不充分（标注未标记不确定——需补记）
+- **S5-missing-condition/techniques**：判据=充分，标注=不充分（标注已带 uncertain 标记）
   - 判据理由：全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']
   - 完整覆盖文档：['e001']
+  - 标注不确定性记录：同 S1/S3：e001 完整摘要含技术名，替代合理标注下结论变化见 freeze_validation 敏感性分析
 
 ## 二、案例级判据分析（证据 / 缺口 / 理由，v2）
 
@@ -55,7 +57,7 @@ v1 失误假设与核查：S3 起初疑似『跨文档要点拼接』（不同�
   - 证据 P3-场景：e004（inference.net）「…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac」
 - ✓ **cost**：判据=不充分，标注=不充分——要点未覆盖：['P1-增长关系（机制）', 'P2-量级与占用']
   - 缺口：['P1-增长关系（机制）', 'P2-量级与占用']
-- ✗ **techniques**：判据=充分，标注=不充分——全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']
+- ✗ **techniques**：判据=充分，标注=不充分⚠️标注存疑——全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']
   - 证据 P1-具体技术（名称或类别）：e001（krunalkanojiya.com）「… systems like vLLM, PagedAttention, and GQA manage it at scale.…」
   - 证据 P2-作用方式（缩减/管理）：e001（krunalkanojiya.com）「…tems like vLLM, PagedAttention, and GQA manage it at scale.…」
   - 证据 P2-作用方式（缩减/管理）：e004（inference.net）「…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…」
@@ -149,7 +151,7 @@ v1 失误假设与核查：S3 起初疑似『跨文档要点拼接』（不同�
   - 证据 P2-量级与占用：CALC-missing-why（constructed.example）「… context length to compute KV cache GPU memory usage for popular models. Numbers update i」
   - 证据 P2-量级与占用：C-topic-cost（constructed.example）「…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …」
   - 同域冗余：{'P2-量级与占用': 1}（重复覆盖只计一次独立贡献）
-- ✗ **techniques**：判据=充分，标注=不充分——全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']
+- ✗ **techniques**：判据=充分，标注=不充分⚠️标注存疑——全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']
   - 证据 P1-具体技术（名称或类别）：e001（krunalkanojiya.com）「… systems like vLLM, PagedAttention, and GQA manage it at scale.…」
   - 证据 P1-具体技术（名称或类别）：e003（tensortonic.com）「…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …」
   - 证据 P2-作用方式（缩减/管理）：e001（krunalkanojiya.com）「…tems like vLLM, PagedAttention, and GQA manage it at scale.…」
@@ -166,7 +168,7 @@ v1 失误假设与核查：S3 起初疑似『跨文档要点拼接』（不同�
   - 证据 P1-缓存对象：e008（unanswered.io）「…KV Cache Memory Usage in LLMs – Formulas & Examp…」
   - 证据 P1-缓存对象：e009（gigagpu.com）「…KV Cache Explained: Why It Eats Your VRAM GIGAGP…」
   - 证据 P1-缓存对象：e010（spheron.network）「…KV Cache Optimization: Serve 10x More Users per …」
-  - 证据 P1-缓存对象：e011（arxiv.org）「…KV Cache Optimization Strategies for Scalable - …」
+  - 证据 P1-缓存对象：e011（arxiv.org）「…KV Cache Optimization Strategies for Scalableand…」
   - 证据 P1-缓存对象：e013（gpuyard.com）「…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…」
   - 证据 P1-缓存对象：e014（metaailabs.com）「…Top 10 KV Cache Compression Techniques for LLM Inferenc…」
   - 证据 P1-缓存对象：e015（emergentmind.com）「…KV-Cache Compression Techniques - emergentmind.c…」
@@ -181,7 +183,6 @@ v1 失误假设与核查：S3 起初疑似『跨文档要点拼接』（不同�
   - 证据 P3-场景：e006（hivenet.com）「… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo」
   - 证据 P3-场景：e008（unanswered.io）「…y the KV cache really consumes in large language models. Includes per-token estimates, ex」
   - 证据 P3-场景：e009（gigagpu.com）「…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac」
-  - 证据 P3-场景：e011（arxiv.org）「…me a first-order challenge for scalable LLM deployment. This paper provides a syste…」
   - 证据 P3-场景：e013（gpuyard.com）「… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f」
   - 证据 P3-场景：e014（metaailabs.com）「…KV Cache Compression Techniques for LLM Inference: Reducing ... For reference, a 7-billio」
   - 证据 P3-场景：e015（emergentmind.com）「…educe memory and compute bottlenecks in autoregressive models by applying quantization, l」
@@ -200,7 +201,7 @@ v1 失误假设与核查：S3 起初疑似『跨文档要点拼接』（不同�
 - ✓ **techniques**：判据=充分，标注=充分——全部要点已覆盖，独立来源域 10 个，完整覆盖文档 ['e001', 'e011', 'e013', 'e014', 'e015']
   - 证据 P1-具体技术（名称或类别）：e001（krunalkanojiya.com）「… systems like vLLM, PagedAttention, and GQA manage it at scale.…」
   - 证据 P1-具体技术（名称或类别）：e003（tensortonic.com）「…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …」
-  - 证据 P1-具体技术（名称或类别）：e011（arxiv.org）「…cipal directions: cache eviction, cache compression, hybrid memory solutions, novel atte…」
+  - 证据 P1-具体技术（名称或类别）：e011（arxiv.org）「… five major directions: cache eviction, compression and reconstruction, hybrid memory ..…」
   - 证据 P1-具体技术（名称或类别）：e013（gpuyard.com）「…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce 」
   - 证据 P1-具体技术（名称或类别）：e014（metaailabs.com）「…Top 10 KV Cache Compression Techniques for LLM Inference: Reduci…」
   - 证据 P1-具体技术（名称或类别）：e015（emergentmind.com）「…ks in autoregressive models by applying quantization, low-rank factorization, token pru…」
@@ -209,7 +210,7 @@ v1 失误假设与核查：S3 起初疑似『跨文档要点拼接』（不同�
   - 证据 P2-作用方式（缩减/管理）：e008（unanswered.io）「…mulas, real-world examples, and ways to manage massive long-context requirements.…」
   - 证据 P2-作用方式（缩减/管理）：e009（gigagpu.com）「… much VRAM, and practical techniques to manage it on dedicated GPU servers.…」
   - 证据 P2-作用方式（缩减/管理）：e010（spheron.network）「…KV Cache Optimization: Serve 10x More Users per GPU (202…」
-  - 证据 P2-作用方式（缩减/管理）：e011（arxiv.org）「…Scalable - arXiv.org Efficient KV cache management has thus become a first-order chal…」
+  - 证据 P2-作用方式（缩减/管理）：e011（arxiv.org）「…KV Cache Optimization Strategies for Scalableand Efficie…」
   - 证据 P2-作用方式（缩减/管理）：e013（gpuyard.com）「…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…」
   - 证据 P2-作用方式（缩减/管理）：e014（metaailabs.com）「… around 72 GB. Compressing the KV cache reduces memory pressure, increases batch sizes…」
   - 证据 P2-作用方式（缩减/管理）：e015（emergentmind.com）「…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…」

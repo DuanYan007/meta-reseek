@@ -54,9 +54,9 @@
    "techniques": 0.5726
   },
   "e011": {
-   "definition": 0.532,
-   "cost": 0.573,
-   "techniques": 0.7257
+   "definition": 0.604,
+   "cost": 0.5928,
+   "techniques": 0.726
   },
   "e013": {
    "definition": 0.5733,
@@ -136,15 +136,15 @@
   "0.6": {
    "confusion": {
     "TP": 16,
-    "FP": 5,
+    "FP": 6,
     "FN": 8,
-    "TN": 28
+    "TN": 27
    },
-   "n_errors": 13,
+   "n_errors": 14,
    "accepted_gold_level_distribution": {
     "sufficient_support": 12,
     "partial": 4,
-    "topic_only": 5
+    "topic_only": 6
    }
   }
  },
@@ -698,7 +698,7 @@
     "stop_decision_correct": true,
     "per_subq": {
      "definition": {
-      "accepted_count": 6,
+      "accepted_count": 7,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,

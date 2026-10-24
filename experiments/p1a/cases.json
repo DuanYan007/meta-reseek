@@ -247,8 +247,8 @@
    "source": "demo-trace:kv_cache_llm:e011 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://arxiv.org/html/2603.20397v1",
    "domain": "arxiv.org",
-   "title": "KV Cache Optimization Strategies for Scalable - arXiv.org",
-   "snippet": "Efficient KV cache management has thus become a first-order challenge for scalable LLM deployment. This paper provides a systematic review of recent KV cache optimization techniques, organizing them into five principal directions: cache eviction, cache compression, hybrid memory solutions, novel attention mechanisms, and combination strategies.",
+   "title": "KV Cache Optimization Strategies for Scalableand Efficient ...",
+   "snippet": "Unlike individual research papers that typically focus on one KV - cache optimization method in isolation, or prior surveys that provide broad but shallow coverage, this survey offers a middle-ground perspective. Our work systematically reviews and categorizes recent strategies for KV cache optimization into five major directions: cache eviction, compression and reconstruction, hybrid memory ...",
    "intent": "real",
    "doc_annotation": {
     "definition": {
@@ -474,7 +474,9 @@
     },
     "techniques": {
      "sufficient": false,
-     "basis": "集合内无 techniques 相关文档"
+     "basis": "集合内无 techniques 相关文档",
+     "uncertain": true,
+     "uncertainty": "任务 3 核查发现 e001 完整摘要含 vLLM/PagedAttention/GQA 技术名（起草时基于截断视图未计入）；techniques 是否应为充分存争议，见 freeze_validation 敏感性分析（2026-10-24）"
     }
    }
   },
@@ -559,7 +561,9 @@
     },
     "techniques": {
      "sufficient": false,
-     "basis": "仅 e003 一条充分支持级"
+     "basis": "仅 e003 一条充分支持级",
+     "uncertain": true,
+     "uncertainty": "同 S1/S3：e001 完整摘要含技术名，替代合理标注下结论变化见 freeze_validation 敏感性分析"
     }
    }
   },
@@ -658,6 +662,11 @@
    "item": "争议标注不确定性记录（2026-10-24 任务 A）",
    "change": "为 e003→cost、E→definition、CALC→cost 三条 partial 标注增加 uncertain/uncertainty 字段",
    "basis": "任务 A 第 5 条：仍有争议的候选标注记录不确定性；标签本身维持复核后的判定，重跑实验验证统计不变"
+  },
+  {
+   "item": "S1/S5/techniques 充分性标注（2026-10-24 任务 3 核查）",
+   "change": "增加 uncertain 标记（判定暂维持『不充分』）",
+   "basis": "与 S3 同源：e001 完整摘要含技术名而起草基于截断视图；两种合理标注下的停止结论变化见 freeze_validation.md 第 3 节"
   },
   {
    "item": "S3/techniques 充分性标注（2026-10-24 任务 B 发现）",
