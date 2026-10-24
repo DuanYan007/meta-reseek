@@ -1,0 +1,255 @@
+{
+  "schema": "meta-reseek/p1c-eval",
+  "version": 1,
+  "frozen_at": "2026-10-24",
+  "protocol": "冻结协议：本文件先行声明任务、脚本与预期停止条件并提交，评测脚本只读取本文件；预期为 CANDIDATE（对 mock 类按 P0 规则确定性推演，对回放类基于既往运行记录），不得由运行结果回填。",
+  "classes": {
+    "mock": "构造的确定性场景（脚本化 Provider，离线可精确重算）",
+    "cache-replay": "真实搜索任务的离线缓存回放（依赖本机 artifacts/cache，缺失时该任务标记 skipped-no-cache，不参与汇总）"
+  },
+  "conditions_covered": [
+    "sufficient_evidence", "strategy_adjustment", "diminishing_returns",
+    "forced_max_rounds", "provider_final_failure", "provider_retry_recovered",
+    "duplicate_and_pseudo_evidence", "key_condition_missing_high_coverage",
+    "cross_domain_collision"
+  ],
+  "scenarios": [
+    {
+      "id": "M1-sufficient-easy",
+      "class": "mock", "conditions": ["sufficient_evidence"],
+      "purpose": "证据充分，首轮命中后正常停止",
+      "task": {
+        "name": "M1", "question": "Q?", "seed_query": "seed query one",
+        "min_relevant_per_subq": 2, "max_rounds": 5,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": []},
+          {"id": "b", "text": "beta topic question about gadgets", "keywords": ["gadgets", "beta"], "alt_queries": []}
+        ]
+      },
+      "script": [
+        {"match": "*", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts in depth."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference with details."},
+          {"title": "Gadgets beta overview", "url": "https://b1.example.com/g", "snippet": "Gadgets and beta overview in depth."},
+          {"title": "Beta gadgets handbook", "url": "https://b2.example.com/g", "snippet": "Beta gadgets handbook covering everything."}
+        ], "final_error": false, "retries": 0}
+      ],
+      "expected_stop": "stop_sufficient", "expected_rounds": 1,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 0
+    },
+    {
+      "id": "M2-adjust-broaden",
+      "class": "mock", "conditions": ["sufficient_evidence", "strategy_adjustment"],
+      "purpose": "首轮仅覆盖 a 子问题，需 broaden 补齐 b 后停止",
+      "task": {
+        "name": "M2", "question": "Q?", "seed_query": "seed query two",
+        "min_relevant_per_subq": 2, "max_rounds": 5,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": []},
+          {"id": "b", "text": "beta topic question about gadgets", "keywords": ["gadgets", "beta"], "alt_queries": ["beta gadgets alternative phrasing"]}
+        ]
+      },
+      "script": [
+        {"match": "seed query two", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference."}
+        ], "final_error": false, "retries": 0},
+        {"match": "*", "hits": [
+          {"title": "Gadgets beta overview", "url": "https://b1.example.com/g", "snippet": "Gadgets and beta overview."},
+          {"title": "Beta gadgets handbook", "url": "https://b2.example.com/g", "snippet": "Beta gadgets handbook."}
+        ], "final_error": false, "retries": 0}
+      ],
+      "expected_stop": "stop_sufficient", "expected_rounds": 2,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 0
+    },
+    {
+      "id": "M3-diminishing",
+      "class": "mock", "conditions": ["diminishing_returns"],
+      "purpose": "首轮有效，后续仅返回重复结果，触发 stop_diminishing",
+      "task": {
+        "name": "M3", "question": "Q?", "seed_query": "seed query three",
+        "min_relevant_per_subq": 2, "max_rounds": 8,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": ["alpha widgets variant"]},
+          {"id": "b", "text": "beta topic question about gadgets", "keywords": ["gadgets", "beta"], "alt_queries": ["beta gadgets variant"]}
+        ]
+      },
+      "script": [
+        {"match": "seed query three", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference."}
+        ], "final_error": false, "retries": 0},
+        {"match": "*", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference."}
+        ], "final_error": false, "retries": 0}
+      ],
+      "expected_stop": "stop_diminishing", "expected_rounds": 3,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 0
+    },
+    {
+      "id": "M4-forced",
+      "class": "mock", "conditions": ["forced_max_rounds"],
+      "purpose": "证据持续不足至最大轮数，触发 stop_forced",
+      "task": {
+        "name": "M4", "question": "Q?", "seed_query": "seed query four",
+        "min_relevant_per_subq": 2, "max_rounds": 3,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": []},
+          {"id": "b", "text": "beta topic question about gadgets", "keywords": ["gadgets", "beta"], "alt_queries": []}
+        ]
+      },
+      "script": [
+        {"match": "*", "hits": [
+          {"title": "Cooking pasta at home", "url": "https://food.example.com/pasta", "snippet": "Boil water, add salt, cook pasta until soft."}
+        ], "final_error": false, "retries": 0}
+      ],
+      "expected_stop": "stop_forced", "expected_rounds": 3,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 0
+    },
+    {
+      "id": "M5-provider-final-failure",
+      "class": "mock", "conditions": ["diminishing_returns", "provider_final_failure"],
+      "purpose": "首轮成功后通道持续最终失败（重试耗尽），停止理由须归因为通道故障而非策略收益递减",
+      "task": {
+        "name": "M5", "question": "Q?", "seed_query": "seed query five",
+        "min_relevant_per_subq": 2, "max_rounds": 8,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": ["alpha widgets variant"]},
+          {"id": "b", "text": "beta topic question about gadgets", "keywords": ["gadgets", "beta"], "alt_queries": ["beta gadgets variant"]}
+        ]
+      },
+      "script": [
+        {"match": "seed query five", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference."}
+        ], "final_error": false, "retries": 0},
+        {"match": "*", "hits": [], "final_error": true, "retries": 0}
+      ],
+      "expected_stop": "stop_diminishing", "expected_rounds": 3,
+      "expected_channel_error_rounds": 2, "expected_retries_total": 0,
+      "expected_attribution_mentions_channel": true
+    },
+    {
+      "id": "M6-retry-recovered",
+      "class": "mock", "conditions": ["sufficient_evidence", "provider_retry_recovered"],
+      "purpose": "每轮经重试后成功（retries>0 但 error=false），不得误标通道故障",
+      "task": {
+        "name": "M6", "question": "Q?", "seed_query": "seed query six",
+        "min_relevant_per_subq": 2, "max_rounds": 5,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": []},
+          {"id": "b", "text": "beta topic question about gadgets", "keywords": ["gadgets", "beta"], "alt_queries": []}
+        ]
+      },
+      "script": [
+        {"match": "*", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference."},
+          {"title": "Gadgets beta overview", "url": "https://b1.example.com/g", "snippet": "Gadgets and beta overview."},
+          {"title": "Beta gadgets handbook", "url": "https://b2.example.com/g", "snippet": "Beta gadgets handbook."}
+        ], "final_error": false, "retries": 1}
+      ],
+      "expected_stop": "stop_sufficient", "expected_rounds": 1,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 1,
+      "expected_attribution_mentions_channel": false
+    },
+    {
+      "id": "M7-pseudo-high-coverage",
+      "class": "mock", "conditions": ["duplicate_and_pseudo_evidence", "key_condition_missing_high_coverage"],
+      "purpose": "主题词重叠伪相关把 b 覆盖推过阈值而关键回答条件缺失——诊断场景：按现行规则将 stop_sufficient（已知局限），缺口由关键条件指标暴露",
+      "task": {
+        "name": "M7", "question": "Q?", "seed_query": "seed query seven",
+        "min_relevant_per_subq": 2, "max_rounds": 5,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": []},
+          {"id": "b", "text": "why do beta gadgets consume so much power", "keywords": ["power", "beta", "gadgets"], "alt_queries": []}
+        ]
+      },
+      "script": [
+        {"match": "*", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference."},
+          {"title": "Best power tools for home use 2026", "url": "https://shop.example.com/power-tools", "snippet": "Why power matters when choosing power tools for your gadgets and projects."},
+          {"title": "Power meters buying guide for gadget lovers", "url": "https://shop2.example.com/power", "snippet": "Gadgets need power: how much power to buy, explained for shoppers."}
+        ], "final_error": false, "retries": 0}
+      ],
+      "expected_stop": "stop_sufficient", "expected_rounds": 1,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 0,
+      "key_conditions": {"b": {"criteria_subq": "cost",
+                                "required_points": ["P1-增长关系（机制）"]}}
+    },
+    {
+      "id": "M8-duplicates-same-source",
+      "class": "mock", "conditions": ["duplicate_and_pseudo_evidence"],
+      "purpose": "URL 变体与近似标题的同源重复须被去重，覆盖只计唯一来源",
+      "task": {
+        "name": "M8", "question": "Q?", "seed_query": "seed query eight",
+        "min_relevant_per_subq": 2, "max_rounds": 5,
+        "sub_questions": [
+          {"id": "a", "text": "alpha topic question about widgets", "keywords": ["widgets", "alpha"], "alt_queries": []},
+          {"id": "b", "text": "beta topic question about gadgets", "keywords": ["gadgets", "beta"], "alt_queries": ["beta gadgets variant"]}
+        ]
+      },
+      "script": [
+        {"match": "seed query eight", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w", "snippet": "All about widgets and alpha facts."},
+          {"title": "Alpha widgets guide", "url": "https://a2.example.com/w", "snippet": "Widgets alpha reference."},
+          {"title": "Gadgets beta overview", "url": "https://b1.example.com/g", "snippet": "Gadgets and beta overview."}
+        ], "final_error": false, "retries": 0},
+        {"match": "*", "hits": [
+          {"title": "Widgets alpha explained", "url": "https://a1.example.com/w?utm_source=x", "snippet": "All about widgets and alpha facts again."},
+          {"title": "Alpha widgets guide - a2 example", "url": "https://a2.example.com/w/near-dup", "snippet": "Widgets alpha reference duplicate content."},
+          {"title": "Beta gadgets handbook", "url": "https://b2.example.com/g", "snippet": "Beta gadgets handbook."}
+        ], "final_error": false, "retries": 0}
+      ],
+      "expected_stop": "stop_sufficient", "expected_rounds": 2,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 0,
+      "expected_duplicates_rejected_min": 2
+    },
+    {
+      "id": "M9-cross-domain-collision",
+      "class": "mock", "conditions": ["cross_domain_collision"],
+      "purpose": "子问题关键词与生物学域碰撞：按现行词法规则将被接受并 stop_sufficient（已知碰撞盲区，诊断记录）",
+      "task": {
+        "name": "M9", "question": "How do framework ecosystems compare?",
+        "seed_query": "framework ecosystems and community comparison",
+        "min_relevant_per_subq": 2, "max_rounds": 4,
+        "sub_questions": [
+          {"id": "ecosystem", "text": "How do framework ecosystems and communities compare", "keywords": ["ecosystem", "community", "extensions"], "alt_queries": []}
+        ]
+      },
+      "script": [
+        {"match": "*", "hits": [
+          {"title": "Community Ecology and Ecosystem Ecology - Biology", "url": "https://bio1.example.org/eco", "snippet": "Ecosystem ecology extends community ecology to all biotic components."},
+          {"title": "Lesson 3: Comparing Ecosystems", "url": "https://bio2.example.org/lesson", "snippet": "An ecosystem is composed of community and environment factors."},
+          {"title": "Ecosystems Extension Workbook", "url": "https://bio3.example.org/ext", "snippet": "Community extensions of the ecosystem concept for students."}
+        ], "final_error": false, "retries": 0}
+      ],
+      "expected_stop": "stop_sufficient", "expected_rounds": 1,
+      "expected_channel_error_rounds": 0, "expected_retries_total": 0,
+      "collision_diagnostic": "accepted_domains_expected_all_biology"
+    },
+    {
+      "id": "R1-kv-cache-replay",
+      "class": "cache-replay", "conditions": ["sufficient_evidence"],
+      "purpose": "真实搜索任务离线回放（kv_cache_llm），既往记录 stop_sufficient",
+      "task_file": "examples/tasks/kv_cache_llm.yaml",
+      "expected_stop": "stop_sufficient", "expected_rounds": 3
+    },
+    {
+      "id": "R2-frameworks-replay",
+      "class": "cache-replay", "conditions": ["sufficient_evidence", "strategy_adjustment"],
+      "purpose": "真实搜索任务离线回放（python_web_frameworks），既往记录 stop_sufficient",
+      "task_file": "examples/tasks/python_web_frameworks.yaml",
+      "expected_stop": "stop_sufficient", "expected_rounds": 3
+    },
+    {
+      "id": "R3-nobel-replay",
+      "class": "cache-replay", "conditions": ["sufficient_evidence"],
+      "purpose": "真实搜索任务离线回放（nobel_physics_2024），既往记录首轮即停",
+      "task_file": "examples/tasks/nobel_physics_2024.yaml",
+      "expected_stop": "stop_sufficient", "expected_rounds": 1
+    }
+  ]
+}
