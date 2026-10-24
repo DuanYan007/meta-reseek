@@ -1,72 +1,88 @@
-# HANDOFF — 验收交付报告（节点 B，含验收反馈处理）
+# MetaReSeek v0.1 — 交付文档（单页完整版）
 
-- **项目**：MetaReSeek v0.1（P0 元认知闭环）
-- **首轮交付**：2026-10-23（节点 B）｜ **验收**：有条件通过 ｜ **反馈收尾**：2026-10-23 完成
-- **交付分支**：`feature/p0-metacog-loop` → Pull Request [#1](https://github.com/DuanYan007/meta-reseek/pull/1)（指向 `main`，描述含功能清单/测试/演示/局限）
+更新：2026-10-24（含 PR #2 评审意见修订）。本文档自包含全部交接信息，传递本文档即可，无需查阅其他文件。
 
-## 〇、验收反馈处理结果（2026-10-23）
+## 1. 状态总览
 
-| GPT 反馈项 | 处理 | 查证 |
-|---|---|---|
-| 1. 修复错误状态记录：成功返回但 `provider_error=true`；区分"曾重试"与"最终失败" | ✅ 已修复并加测试。根因：重试成功路径不清除 `last_error`，且该标志曾随缓存持久化。现：成功即清除；`provider_retries` 记录恢复次数（不算失败）；两者均随缓存持久化、回放还原 | `tests/test_ddg_retry.py`（+9 用例）；重跑真实运行（冷缓存）后演示轨迹已无该情况，且 kv R3、frameworks R1 真实出现"重试 1 次后成功"（`retries=1, error=false`） |
-| 2. 澄清指标含义 | ✅ README 新增"指标口径"表；代码与演示摘要均注明 `score` 为词法充分性**代理分数**；区分 `new_items`（唯一文档数）与 `new_relevant_total`（子问题匹配增量） | README"指标口径"节；`scripts/make_digest.py`；`artifacts/demo/*_digest.md` |
-| 3. 完成 GitHub 交付流程 | ✅ 修复在功能分支完成；PR [#1](https://github.com/DuanYan007/meta-reseek/pull/1) 已补全描述（功能清单/测试/演示/局限）；版本保持 v0.1；未动 Python/PyTorch/CUDA 环境 | PR 链接 |
-| 4. 保留研究边界 | ✅ 未新增算法/语义融合/记忆/元元认知，仅修复与文档澄清 | 本 PR diff |
+- **P0（元认知检索闭环）**：已实现 → 节点 B 验收**通过** → PR #1 已合并 `main`（`17fca05`）
+- **PR #2**（验收记录 + GitHub 操作规范 + P1 简报）：GPT 评审**小幅修改后通过**（2026-10-24），已按四条意见修订，授权 squash 合并 → https://github.com/DuanYan007/meta-reseek/pull/2
+- 版本：v0.1（未升级）；下一轮仅启动 P1-a 最小实验，不同时启动全部 P1
 
-## 一、本轮已实现（对照 P0 验收要求）
+## 2. PR #1 合并记录（事实）
 
-| P0 要求 | 状态 | 查证方式 |
-|---|---|---|
-| 真实外部资源检索 | ✅ | `meta_reseek/search/ddg.py`；演示轨迹 `provider: ddg`，真实网络调用 1–3 次/任务，含真实 URL |
-| 单任务内多轮搜索 | ✅ | kv / frameworks 任务各 3 轮检索，查询互不重复 |
-| 当前检索状态感知 | ✅ | `metacog/perception.py`；每轮轨迹 `perception` 字段（覆盖/来源域/新增） |
-| 基本证据充分性评价 | ✅ | `metacog/evaluation.py`；代理 score=0.7×覆盖+0.3×多样性（词法口径），判定附数量化理由 |
-| 动态调整或停止搜索 | ✅ | `metacog/adjustment.py` + 三种显式停止决策 |
-| 记录决策理由及效果反馈 | ✅ | 每轮 `decision_reason` + `feedback.effect`（helpful/neutral/stalled）+ 检索通道状态（error/retries） |
-| 可复现的示例任务 | ✅ | `examples/tasks/` ×3；离线回放决策序列 100% 一致、0 网络调用 |
+- 合并前复测：`feature/p0-metacog-loop` @ `b1f946a`，工作区干净，`pytest` **43 passed**，PR head SHA 与本地一致且 mergeable
+- 合并操作：REST API squash 合并，锁定 `sha=b1f946a`，返回 `merged=true`（2026-10-23T09:20:23Z）；无强制推送，未绕过测试
+- 合并提交：`17fca05905b804a63daadfa7ec1e453f83f42728`（现为 `main` HEAD）
+- 合并后验证：main 合并树 `7e33053` 与被测 feature HEAD 树**逐字节一致**（树 SHA 等价证明）
 
-未实现（属 P1，未冒充完成）：语义证据融合、Working/Episodic/Long-term Memory 接口。
+## 3. P0 已实现功能（全部已在 `main`）
 
-## 二、如何复现（真实环境，约 1 分钟）
+1. 真实外部检索：DuckDuckGo（`ddgs`，无 API Key），Provider 可插拔，瞬断重试 + 失败降级
+2. 单任务多轮搜索：查询永不重复；initial / broaden / specialize / target_weakest / diversify 策略
+3. 检索状态感知：子问题覆盖度、来源域名数、上轮新增
+4. 充分性评价：确定性词法**代理** score = 0.7×关键词覆盖 + 0.3×来源域多样性，判定附数量化理由
+5. 三种显式停止：`stop_sufficient` / `stop_diminishing`（区分策略收益递减与检索通道故障）/ `stop_forced`（如实报告缺口）
+6. 决策理由与效果反馈全量 JSON 轨迹，含最终证据清单（URL 可核对）
+7. 可复现：磁盘缓存 + `--cache offline` 离线精确回放
 
-```bash
-pip install -r requirements.txt          # 注意：ddgs 需 -i https://pypi.org/simple
-python -m pytest tests/ -q               # 43 passed（离线）
-python -m meta_reseek.run examples/tasks/kv_cache_llm.yaml        # 真实检索
-python -m meta_reseek.run examples/tasks/kv_cache_llm.yaml --cache offline   # 离线回放
-python scripts/make_digest.py artifacts/runs/kv_cache_llm.json    # 重新生成可读摘要
-```
+## 4. 测试
 
-控制台逐轮打印 感知→评价→决策→执行→反馈；完整轨迹（含最终证据清单，URL 可点击核对）写入 `artifacts/runs/<task>.json`。精选演示：`artifacts/demo/`（三任务 JSON + `_digest.md` 可读摘要）。
+`python -m pytest tests/ -q` → **43 passed**（离线、确定性、无网络依赖）。覆盖：三种停止路径、重试状态语义（重试后成功≠最终失败）、通道故障归因、缓存三模式、URL/近似标题去重、查询不重复、轨迹结构完整性。PR #2 修订未改任何 P0 代码。
 
-## 三、真实运行结果摘要（2026-10-23，反馈修复后冷缓存重跑）
+## 5. 真实运行演示（2026-10-23，冷缓存真实网络）
 
-| 任务 | 子问题数 | 检索轮 | 真实网络调用 | 停止决策 | 代理 score | 通道状态 |
-|---|---|---|---|---|---|---|
-| nobel_physics_2024 | 2 | 1 | 1 | stop_sufficient | 0.925 | 全部一次成功 |
-| kv_cache_llm | 3 | 3 | 3 | stop_sufficient | 1.0 | R3 重试 1 次后成功（非失败） |
-| python_web_frameworks | 3 | 3 | 3 | stop_sufficient | 1.0 | R1 重试 1 次后成功（非失败） |
+| 任务 | 检索轮 | 网络调用 | 停止决策 | 代理 score |
+|---|---|---|---|---|
+| nobel_physics_2024 | 1 | 1 | stop_sufficient | 0.925 |
+| kv_cache_llm | 3 | 3 | stop_sufficient | 1.0 |
+| python_web_frameworks | 3 | 3 | stop_sufficient | 1.0 |
 
-离线回放三任务决策/查询序列与在线完全一致（0 网络调用）。评价指标口径：score 为词法代理分数；"匹配增量"按子问题计，可大于唯一文档数（详见 README"指标口径"）。
+三任务离线回放决策序列 100% 一致（0 网络调用）。轨迹与可读摘要在 `main` 的 `artifacts/demo/`。
 
-## 四、测试情况
+## 6. 指标口径
 
-- `python -m pytest tests/ -q` → **43 passed**（离线、确定性、无网络依赖）。
-- 覆盖：三种停止路径；**重试状态语义**（成功后清除 error / 重试计数 / 全失败才标 error / 缓存回放还原两者）；通道故障归因（区分基础设施失效与策略收益递减）；缓存三模式（含空结果与错误标记的回放）；URL/近似标题去重；多词加权相关性；调整策略与查询不重复；轨迹 JSON 结构完整性。
+- `score`：词法充分性**代理分数**，非语义充分性判断
+- `new_items`：本轮新采纳的唯一文档数；`new_relevant_total`：子问题匹配对增量（一篇文档支撑多个子问题时计多次，可大于文档数）
+- `provider_retries`：检索经 N 次重试后**成功**（不算失败）；`provider_error`：检索**最终失败**（重试全部耗尽）
 
-## 五、当前局限与已知问题（如实）
+## 7. 剩余局限与未解决事项（如实）
 
-1. **评价器是词法规则基线**：score 为代理分数，无语义理解，依赖任务文件提供的关键词/查询变体；同义改写文档可能被低估。这是 P1 语义融合的明确动机，而非隐藏缺陷。
-2. **停止路径的真实覆盖不均**：本轮真实运行均为 sufficient 停止；diminishing 有单测覆盖且此前真实触发过一次（根因通道故障，归因逻辑已修正并有测试）；forced 停止仅单测覆盖。
-3. **DDG 后端不稳**：偶发限流/tls 错误。已重试+降级+状态区分；连续故障时任务诚实提前终止。
-4. 当前原型是**元认知资源检索控制器**，不是完整长程任务 Agent——不含语义融合、记忆体系、元元认知（P1+/远期范围）。
+1. 评价器为词法规则基线（代理分数），无语义理解
+2. 真实运行均走 sufficient 路径；diminishing / forced 停止由单元测试覆盖
+3. DDG 后端偶发限流/tls 故障：已重试 + 降级 + 归因，连续故障时诚实提前终止
+4. 本机 `github.com:443` git 传输间歇阻断（API 正常）：PR #2 分支经 Git Data API 服务端创建与更新（树 SHA 与本地构建一致已验证，快进更新无强推）；本地 `main` 例行 `git pull` 同步待网络恢复后补做，不影响仓库状态
+5. 原型边界：元认知资源检索控制器，非完整长程任务 Agent；无语义融合 / 记忆体系 / 元元认知
 
-## 六、与最初计划的差异
+## 8. PR #2 修订内容（仅文档，无代码变更；变更统计以 PR 页面为准）
 
-无范围缩减。实现期由真实运行驱动的小改进：相关性共享词降权与相对边际、检索错误降级与归因、缓存空结果/错误标记语义、重试状态区分（验收反馈项 1）。
+| 文件 | 内容 |
+|---|---|
+| `AGENTS.md` | 永久加入 GitHub 命令行操作规范 6 条 |
+| `docs/PROGRESS.md` | P0 正式验收与 PR #1 合并记录 |
+| `docs/HANDOFF.md` | 本文档（单页完整版，已按评审意见修正过时统计与状态描述） |
+| `docs/ROADMAP.md` | P0 完成（合并 `17fca05`）；测试数修正为 43；P1 仍属 v0.1 |
+| `docs/P1_BRIEF.md` | P1 实施简报，已按评审意见修订（见第 9 节） |
 
-## 七、建议下一步（供 GPT 规划参考，未获验收不启动）
+评审意见落实：① ROADMAP 测试数 34→43；② HANDOFF 过时统计与评审状态修正；③ P1_BRIEF 明确嵌入相似度≠证据充分性、P1-a 以人工核对案例评估缺口识别为先；④ Episodic Memory 保存完整「调整前状态→调整动作→反馈结果」经历，长期记忆作为元元认知的工作材料。
 
-1. **P1-a 语义证据融合**：本地嵌入替换/增强词法相关性，对比两种评价器在相同任务上的停止点与证据质量；
-2. **P1-b Memory 三层接口**（Working/Episodic/Long-term）最小实现；
-3. **评测集扩展**：10+ 任务含不可满足任务（真实触发 diminishing/forced）+ 自动评分脚本。
+## 9. P1 实施简报（已按 2026-10-24 评审意见修订）
+
+**P1-a 语义证据整理、融合与充分性评价（最小实验先行）**：
+- 复用已装 transformers 4.57.6 + CPU torch；候选本地嵌入模型 all-MiniLM-L6-v2（~90MB，镜像/预置缓存下载，权重不入库）
+- **关键限定**：嵌入相似度只是相关性的代理，**不能直接证明证据充分性**；充分性判断仍需覆盖度/多样性等结构性证据支撑
+- 实验顺序（按评审要求）：**先构建少量人工核对案例**，验证现有词法评价器在哪些情况下判断失误（同义改写漏检、主题词重叠伪相关等），再检验语义模块能否改善这些**具体的证据缺口识别**问题——而非只比较 score 数值
+- 之后：`RelevanceScorer` 接口化词法/语义双轨；语义相关性用于子问题打分、语义去重、证据分组；融合边界=排序+去冗余+分组，不做生成式摘要；嵌入结果缓存保证离线回放
+
+**P1-b 三层 Memory 渐进实现**：
+- WorkingMemory：任务内证据滑动窗口 + 决策上下文（进程内对象，接口固定）
+- EpisodicMemory：JSONL 轨迹库，保存**完整经历**——「调整前状态（感知/评价）→ 调整动作（策略/查询/理由）→ 反馈结果（增益/效果/通道状态）」，与现有 RoundRecord 字段直接对应；按任务/子问题检索的最小接口
+- LongTermMemory：JSON KV 存策略参数与跨任务统计，仅存取不做学习算法；其中**评价器判断与实际结果的对账记录构成元元认知的后续工作材料**（本版本只保存，不做校准）
+- 预留元元认知接口：Evaluator 可插拔注册 + trace 记录评价器自报置信度字段
+
+**P1-c 评测集扩展**：10+ 任务含故意不可满足任务（真实触发 diminishing/forced），自动评分脚本（停止正确率/轮数/证据命中）
+
+**环境与风险**：不动 Python/torch/CUDA；CPU 嵌入吞吐可满足演示规模；HF 下载经镜像，失败提交阻塞报告。**版本保持 v0.1；不同时启动全部 P1 功能。**
+
+---
+
+*复现命令：`pip install -r requirements.txt`（ddgs 需 `-i https://pypi.org/simple`）→ `python -m pytest tests/ -q` → `python -m meta_reseek.run examples/tasks/kv_cache_llm.yaml`（真实检索）/ 同命令加 `--cache offline`（离线回放）。*
