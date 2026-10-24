@@ -173,3 +173,93 @@ def test_memory_wiring_does_not_change_retrieval_behaviour():
     # 投影经历也不改变轨迹本身（只读）
     episodes_from_log(log_a)
     assert log_a.as_dict()["rounds"] == log_b.as_dict()["rounds"]
+
+
+# ----------------------------------------------- PR #9 rework boundary tests --
+def test_save_merges_across_runs_and_is_idempotent(tmp_path):
+    """整改①：同路径多次运行保存——已有经历保留、重复保存幂等。"""
+    task_a, log_a = _run()                                    # 充分停止路径
+    task_b = make_task(max_rounds=8)                          # broaden 路径（内容不同）
+    provider_b = MockProvider([
+        ("2024 nobel prize in physics", WINNERS_HITS),
+        ("what specific work", WORK_HITS),
+        ("*", WINNERS_HITS),
+    ])
+    log_b = MetacognitiveController(task_b, provider_b).run()
+
+    path = tmp_path / "shared.jsonl"
+    mem_a = EpisodicMemory()
+    mem_a.extend_from_log(log_a)
+    mem_a.save(path)
+    first_bytes = path.read_bytes()
+    n_a = len(EpisodicMemory.load(path).records)
+
+    mem_b = EpisodicMemory()
+    mem_b.extend_from_log(log_b)
+    mem_b.save(path)                                          # 第二次运行，同路径
+    reloaded = EpisodicMemory.load(path)
+    assert len(reloaded.records) == n_a + len(log_b.records)  # 旧经历保留
+    assert {r["run_id"] for r in reloaded.records} >= {r["run_id"] for r in episodes_from_log(log_a)}
+
+    before = path.read_bytes()
+    mem_b2 = EpisodicMemory()
+    mem_b2.extend_from_log(log_b)
+    mem_b2.save(path)                                         # 同内容重复保存
+    assert path.read_bytes() == before                        # 幂等：字节不变
+    assert path.read_bytes() != first_bytes or n_a == len(reloaded.records)
+
+
+def test_init_with_records_validates_and_copies(tmp_path):
+    """整改②：records= 初始化语义——逐条校验并拷贝，非法记录拒绝。"""
+    import pytest
+
+    task, log = _run()
+    eps = episodes_from_log(log)[:2]
+    mem = EpisodicMemory(records=eps)
+    assert [r["round_idx"] for r in mem.records] == [e["round_idx"] for e in eps]
+    mem.records[0]["task"] = "mutated"
+    assert eps[0]["task"] != "mutated"          # 拷贝而非引用（改副本不污染入参列表内对象?）
+    with pytest.raises(ValueError):
+        EpisodicMemory(records=[{"schema": "bad"}])
+
+
+def test_run_id_content_fingerprint_avoids_same_second_collision():
+    """整改③：同秒同任务的不同运行内容指纹不同；同内容则同 id（幂等去重）。"""
+    task = make_task(max_rounds=8)
+    log_a = MetacognitiveController(
+        task, MockProvider([("*", WINNERS_HITS + WORK_HITS)])).run()
+    log_b = MetacognitiveController(
+        task, MockProvider([("*", WINNERS_HITS)])).run()      # 不同内容（永不充分）
+    # 模拟“同一秒”：强行对齐时间戳
+    log_b.started_at = log_a.started_at
+    id_a = {e["run_id"] for e in episodes_from_log(log_a)}
+    id_b = {e["run_id"] for e in episodes_from_log(log_b)}
+    assert len(id_a) == 1 and len(id_b) == 1 and id_a != id_b  # 内容不同 → 不碰撞
+
+    # 同一 log 重复投影 → 同 id；同秒同内容双跑 → 合并去重为一份
+    assert {e["run_id"] for e in episodes_from_log(log_a)} == id_a
+    mem = EpisodicMemory()
+    mem.extend_from_log(log_a)
+    mem.extend_from_log(log_a)
+    assert len(mem.records) == len(log_a.records)
+
+
+def test_save_episodes_flag_does_not_affect_decisions(tmp_path):
+    """整改④：--save-episodes 开关不影响检索决策（离线回放口径下轨迹一致）。"""
+    import shutil
+
+    import meta_reseek.run as runner
+
+    task_yaml = "examples/tasks/kv_cache_llm.yaml"
+
+    out_plain = tmp_path / "plain"
+    rc1 = runner.main([task_yaml, "--cache", "offline", "--out", str(out_plain), "--quiet"])
+    trace_plain = json.loads((out_plain / "kv_cache_llm.json").read_text(encoding="utf-8"))
+
+    out_mem = tmp_path / "withmem"
+    rc2 = runner.main([task_yaml, "--cache", "offline", "--out", str(out_mem),
+                       "--quiet", "--save-episodes", str(tmp_path / "flag" / "mem.jsonl")])
+    trace_mem = json.loads((out_mem / "kv_cache_llm.json").read_text(encoding="utf-8"))
+    assert rc1 == rc2 == 0
+    assert trace_plain["rounds"] == trace_mem["rounds"]       # 决策序列一致
+    assert (tmp_path / "flag" / "mem.jsonl").exists()         # 记忆确已保存

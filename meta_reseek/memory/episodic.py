@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -30,9 +31,23 @@ SCHEMA = "meta-reseek/episodic"
 SCHEMA_VERSION = 1
 
 
+def _run_id(log: DecisionLog) -> str:
+    """task@started_at#内容指纹。
+
+    started_at 仅秒级精度，同一任务同秒多次运行会碰撞——追加决策序列的
+    sha1 前 8 位作为内容指纹：不同内容必不同 id；同内容（如同一运行的
+    离线回放）得到相同 id，重复保存时按去重键幂等合并。
+    """
+    digest = hashlib.sha1(
+        json.dumps([r.as_dict() for r in log.records], sort_keys=True,
+                   ensure_ascii=False).encode("utf-8")
+    ).hexdigest()[:8]
+    return f"{log.task_name}@{log.started_at}#{digest}"
+
+
 def episodes_from_log(log: DecisionLog) -> list[dict]:
     """把一次运行的 DecisionLog 投影为经历记录列表（不落盘）。"""
-    run_id = f"{log.task_name}@{log.started_at}"
+    run_id = _run_id(log)
     out = []
     for r in log.records:
         base = {
@@ -66,10 +81,18 @@ def episodes_from_log(log: DecisionLog) -> list[dict]:
 
 
 class EpisodicMemory:
-    """JSONL 经历库：追加保存、去重加载、最小查询。完全离线，仅标准库。"""
+    """JSONL 经历库：追加保存、去重加载、最小查询。完全离线，仅标准库。
+
+    保存语义（PR #9 整改①）：`save()` 与目标文件**合并**而非覆盖——
+    已有经历（含其他运行）全部保留，键 (task, run_id, round_idx) 相同的
+    以新记录替换；对同一内容重复 save 结果幂等（文件字节不变）。
+    """
 
     def __init__(self, records: list[dict] | None = None):
+        """records 给定时逐条校验并拷贝初始化（整改②：不再静默忽略参数）。"""
         self.records: list[dict] = []
+        for record in list(records or []):
+            self.append(record)
 
     # -- 写 ----------------------------------------------------------------
 
@@ -80,17 +103,23 @@ class EpisodicMemory:
             key = (record["task"], record["run_id"], record["round_idx"])
             self.records = [r for r in self.records
                             if (r["task"], r["run_id"], r["round_idx"]) != key]
-        self.records.append(record)
+        self.records.append(dict(record))  # 浅拷贝：库内记录与调用方对象解耦
         return True
 
     def extend_from_log(self, log: DecisionLog) -> int:
-        for record in episodes_from_log(log):
+        episodes = episodes_from_log(log)
+        for record in episodes:
             self.append(record)
-        return len(episodes_from_log(log))
+        return len(episodes)
 
     def save(self, path: str | Path) -> Path:
+        """与既有文件合并后写入：跨运行保留已有经历；重复保存幂等。"""
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
+        merged = EpisodicMemory.load(path) if path.exists() else EpisodicMemory()
+        for record in self.records:
+            merged.append(record)
+        self.records = merged.records  # 对象状态与文件保持一致
         with path.open("w", encoding="utf-8") as f:
             for record in self.records:
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
