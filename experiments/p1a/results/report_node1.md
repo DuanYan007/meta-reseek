@@ -38,6 +38,12 @@
 - [missing_condition(覆盖主题缺关键条件)] CALC-missing-why → definition：gold=topic_only pred=True，词法分 0.188；命中词条 ['kv cache']；缺失 ['key', 'value', 'attention', 'self attention', 'inference', 'transformer']
   - 标注依据：同域主题，无定义
 
+## 标注不确定性记录（3 条，人工核查优先项）
+
+- e003→cost（partial）：不确定：摘要仅列要点名（memory math）而无展开，partial 与 topic_only 边界依赖全文，人工核查优先
+- E-jargon-cost→definition（partial）：不确定：『隐含机制』是否构成 definition 的部分回答依赖解读，人工核查优先
+- CALC-missing-why→cost（partial）：不确定：决定因子列表是否算『部分回答信息』存在解释空间（也可视作仅主题命中），人工核查优先
+
 ## 快照层停止建议 vs 候选充分性标注
 
 | 快照 | 评价器判定 | 停止建议 | 标注应为 | 判定正确 |
