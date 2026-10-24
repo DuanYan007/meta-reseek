@@ -14,8 +14,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from common import (REL_MARGIN, accept_rule, compare_with_annotation,
-                    doc_level_report, load, snapshot_verdict)
+from common import (REL_MARGIN, RELEVANT_LEVELS, accept_rule,
+                    compare_with_annotation, doc_level_report, load,
+                    snapshot_verdict)
 
 HERE = Path(__file__).parent
 MODEL_ID = "sentence-transformers/all-MiniLM-L6-v2"
@@ -67,8 +68,11 @@ def main() -> int:
         accepted = {
             cid: accept_rule(per, t) for cid, per in sims.items()
         }
-        confusion, errors, _ = doc_level_report(cases, accepted)
-        by_threshold[str(t)] = {"confusion": confusion, "n_errors": len(errors), "errors": errors}
+        confusion, errors, _, accepted_levels = doc_level_report(cases, accepted)
+        by_threshold[str(t)] = {
+            "confusion": confusion, "n_errors": len(errors), "errors": errors,
+            "accepted_gold_level_distribution": accepted_levels,
+        }
         if t == PRIMARY_T:
             accepted_primary = accepted
 
@@ -77,11 +81,14 @@ def main() -> int:
     fixed = lex_errors - sem_errors
     introduced = sem_errors - lex_errors
 
-    # separation (threshold-free)
+    # separation (threshold-free), relevance cut
     pos, neg = [], []
     for case in cases:
         for sid, ann in case["doc_annotation"].items():
-            (pos if ann["relevant"] else neg).append(sims[case["id"]][sid])
+            if ann["level"] in RELEVANT_LEVELS:
+                pos.append(sims[case["id"]][sid])
+            else:
+                neg.append(sims[case["id"]][sid])
 
     # snapshot-level at every exploratory threshold (robustness of the
     # stop-suggestion conclusion across thresholds)

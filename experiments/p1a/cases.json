@@ -1,11 +1,18 @@
 {
  "task": "examples/tasks/kv_cache_llm.yaml",
  "annotation_status": "CANDIDATE — 由 GLM 起草，尚未经 GPT/研究人员核查，不得称为人工金标准",
- "n_cases": 20,
+ "annotation_scale": {
+  "irrelevant": "与子问题无主题关联",
+  "topic_only": "主题相关，但未提供回答信息",
+  "partial": "提供部分回答信息，不充分支持子问题",
+  "sufficient_support": "充分支持该子问题"
+ },
+ "evidence_scope": "全部真实案例均为搜索结果的标题与摘要（title+snippet），非页面全文；实验为静态固定快照口径",
+ "n_cases": 19,
  "cases": [
   {
    "id": "e001",
-   "source": "demo-trace:kv_cache_llm:e001 (round 1, strategy initial)",
+   "source": "demo-trace:kv_cache_llm:e001 (round 1, strategy initial) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://krunalkanojiya.com/blog/kv-cache-explained",
    "domain": "krunalkanojiya.com",
    "title": "KV Cache Explained for LLM Inference - krunalkanojiya.com",
@@ -13,22 +20,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
-     "basis": "真实检索结果；snippet 解释 KV cache 避免重算的机制"
+     "level": "sufficient_support",
+     "basis": "专门解释 KV cache 的入门文（真实搜索结果的标题与摘要）"
     },
     "cost": {
-     "relevant": false,
-     "basis": "未涉及显存占用原因"
+     "level": "topic_only",
+     "basis": "同域主题，摘要未涉及显存占用原因"
     },
     "techniques": {
-     "relevant": false,
-     "basis": "未提及任何缩减技术"
+     "level": "topic_only",
+     "basis": "同域主题，未提及缩减技术"
     }
    }
   },
   {
    "id": "e002",
-   "source": "demo-trace:kv_cache_llm:e002 (round 1, strategy initial)",
+   "source": "demo-trace:kv_cache_llm:e002 (round 1, strategy initial) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://learncodecamp.net/kv-cache-explained/",
    "domain": "learncodecamp.net",
    "title": "KV Cache Explained: Why LLMs Remember Keys and Values During Inference",
@@ -36,22 +43,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
+     "level": "sufficient_support",
      "basis": "矩阵级解释 prefill/decode 与缓存原因"
     },
     "cost": {
-     "relevant": false,
-     "basis": "无显存占用内容"
+     "level": "topic_only",
+     "basis": "摘要无显存内容"
     },
     "techniques": {
-     "relevant": false,
-     "basis": "无具体技术"
+     "level": "topic_only",
+     "basis": "无"
     }
    }
   },
   {
    "id": "e003",
-   "source": "demo-trace:kv_cache_llm:e003 (round 1, strategy initial)",
+   "source": "demo-trace:kv_cache_llm:e003 (round 1, strategy initial) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://www.tensortonic.com/llm-internals/kv-cache",
    "domain": "tensortonic.com",
    "title": "KV Cache in LLMs Explained: How Transformers Make Inference Fast",
@@ -59,22 +66,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
-     "basis": "解释 KV cache 使推理加速"
+     "level": "partial",
+     "basis": "解释 KV cache 使推理加速，但页面主题宽泛"
     },
     "cost": {
-     "relevant": true,
-     "basis": "含 memory math（显存计算）"
+     "level": "partial",
+     "basis": "含 memory math 要点，提供部分量化信息，未给增长机制"
     },
     "techniques": {
-     "relevant": true,
+     "level": "sufficient_support",
      "basis": "明确点名 GQA/MQA/PagedAttention"
     }
    }
   },
   {
    "id": "e004",
-   "source": "demo-trace:kv_cache_llm:e004 (round 1, strategy initial)",
+   "source": "demo-trace:kv_cache_llm:e004 (round 1, strategy initial) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://inference.net/content/kv-cache-explained/",
    "domain": "inference.net",
    "title": "KV Cache Explained with Examples from Real World LLMs",
@@ -82,22 +89,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
+     "level": "sufficient_support",
      "basis": "plain words 解释 KV caching 含义"
     },
     "cost": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     },
     "techniques": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     }
    }
   },
   {
    "id": "e005",
-   "source": "demo-trace:kv_cache_llm:e005 (round 1, strategy initial)",
+   "source": "demo-trace:kv_cache_llm:e005 (round 1, strategy initial) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://machinelearningmastery.com/the-complete-guide-to-inference-caching-in-llms/",
    "domain": "machinelearningmastery.com",
    "title": "The Complete Guide to Inference Caching in LLMs - Machine Learning Mastery",
@@ -105,22 +112,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
-     "basis": "解释 KV caching 工作原理"
+     "level": "sufficient_support",
+     "basis": "完整讲解 KV caching 工作原理"
     },
     "cost": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     },
     "techniques": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     }
    }
   },
   {
    "id": "e006",
-   "source": "demo-trace:kv_cache_llm:e006 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e006 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://www.hivenet.com/post/kv-cache-llm-gpu-memory-context-window",
    "domain": "hivenet.com",
    "title": "KV Cache Explained: LLM Context and GPU Memory | Hivenet",
@@ -128,22 +135,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
-     "basis": "说明 what KV cache is"
+     "level": "partial",
+     "basis": "提及 what KV cache is，但页面为多主题"
     },
     "cost": {
-     "relevant": true,
-     "basis": "如何计算 GPU 显存占用、长上下文/并发耗尽显存"
+     "level": "sufficient_support",
+     "basis": "说明如何计算 GPU 显存占用，且点名长上下文/并发两个增长驱动因素"
     },
     "techniques": {
-     "relevant": false,
-     "basis": "无具体技术名"
+     "level": "topic_only",
+     "basis": "未点名具体技术"
     }
    }
   },
   {
    "id": "e007",
-   "source": "demo-trace:kv_cache_llm:e007 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e007 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://www.sitepoint.com/kv-cache-survival-guide-local-llms/",
    "domain": "sitepoint.com",
    "title": "The KV Cache Survival Guide: Why Your GPU Runs Out of Memory ...",
@@ -151,22 +158,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
-     "basis": "以存储张量换计算解释机制"
+     "level": "partial",
+     "basis": "以存储张量换计算解释机制，未展开定义"
     },
     "cost": {
-     "relevant": true,
-     "basis": "明确给出『随上下文线性增长』这一关键机制"
+     "level": "sufficient_support",
+     "basis": "明确给出『随上下文线性增长』关键机制"
     },
     "techniques": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     }
    }
   },
   {
    "id": "e008",
-   "source": "demo-trace:kv_cache_llm:e008 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e008 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://unanswered.io/guide/kv-cache-memory-usage",
    "domain": "unanswered.io",
    "title": "KV Cache Memory Usage in LLMs – Formulas & Examples",
@@ -174,22 +181,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
-     "basis": "只讲用量，不讲定义"
+     "level": "topic_only",
+     "basis": "同域主题，摘要只讲用量不讲定义"
     },
     "cost": {
-     "relevant": true,
-     "basis": "per-token 估算与精确公式"
+     "level": "sufficient_support",
+     "basis": "per-token 估算与精确公式，量化了占用为何大"
     },
     "techniques": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     }
    }
   },
   {
    "id": "e009",
-   "source": "demo-trace:kv_cache_llm:e009 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e009 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://gigagpu.com/kv-cache-explained-vram/",
    "domain": "gigagpu.com",
    "title": "KV Cache Explained: Why It Eats Your VRAM GIGAGPU",
@@ -197,22 +204,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "未解释定义"
     },
     "cost": {
-     "relevant": true,
-     "basis": "解释为何消耗 VRAM"
+     "level": "sufficient_support",
+     "basis": "直接回答『为何消耗大量 VRAM』并给出管理手段"
     },
     "techniques": {
-     "relevant": false,
-     "basis": "仅说 practical techniques 未点名任何具体技术——缺关键回答条件"
+     "level": "topic_only",
+     "basis": "仅说 practical techniques 未点名任何技术——不构成部分回答信息"
     }
    }
   },
   {
    "id": "e010",
-   "source": "demo-trace:kv_cache_llm:e010 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e010 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://www.spheron.network/blog/kv-cache-optimization-guide/",
    "domain": "spheron.network",
    "title": "KV Cache Optimization: Serve 10x More Users per GPU (2026 ...",
@@ -220,22 +227,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "无定义内容"
     },
     "cost": {
-     "relevant": true,
-     "basis": "给出 Llama3 70B@128K 真实用量规模"
+     "level": "partial",
+     "basis": "给出 Llama3 70B@128K 真实用量量级，提供量级佐证但无增长机制"
     },
     "techniques": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     }
    }
   },
   {
    "id": "e011",
-   "source": "demo-trace:kv_cache_llm:e011 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e011 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://arxiv.org/html/2603.20397v1",
    "domain": "arxiv.org",
    "title": "KV Cache Optimization Strategies for Scalable - arXiv.org",
@@ -243,45 +250,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "综述不提供入门定义"
     },
     "cost": {
-     "relevant": false,
-     "basis": "不以显存原因为主题"
+     "level": "topic_only",
+     "basis": "摘要未涉及显存增长原因"
     },
     "techniques": {
-     "relevant": true,
-     "basis": "系统综述各类 KV cache 管理技术"
-    }
-   }
-  },
-  {
-   "id": "e012",
-   "source": "demo-trace:kv_cache_llm:e012 (round 3, strategy target_weakest)",
-   "url": "https://arxiv.org/pdf/2603.20397",
-   "domain": "arxiv.org",
-   "title": "KV Cache Optimization Strategies for Scalable and Efficient LLM Inference",
-   "snippet": "Efficient KV cache management has thus become a first-order challenge for scalable LLM deployment. This paper provides a systematic review of recent KV cache optimization techniques, organizing them into five principal directions: cache eviction, cache compression, hybrid memory solutions, novel attention mechanisms, and combination strategies.",
-   "intent": "real",
-   "doc_annotation": {
-    "definition": {
-     "relevant": false,
-     "basis": "同 e011"
-    },
-    "cost": {
-     "relevant": false,
-     "basis": "同 e011"
-    },
-    "techniques": {
-     "relevant": true,
-     "basis": "同 e011（与 e011 为同一论文 html/pdf 双版本——同质重复）"
+     "level": "sufficient_support",
+     "basis": "系统综述各类 KV cache 管理技术；注：同一论文的 html/pdf 双版本曾被系统同时接受（去重未命中），案例集按单一来源计"
     }
    }
   },
   {
    "id": "e013",
-   "source": "demo-trace:kv_cache_llm:e013 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e013 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://www.gpuyard.com/tutorials/howto/optimize-kv-cache/",
    "domain": "gpuyard.com",
    "title": "The Ultimate Guide to KV Cache Optimization for LLM Inference (2026)",
@@ -289,22 +273,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无定义解释"
     },
     "cost": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "仅提 VRAM 瓶颈现象"
     },
     "techniques": {
-     "relevant": true,
+     "level": "sufficient_support",
      "basis": "点名 PagedAttention/quantization/vLLM"
     }
    }
   },
   {
    "id": "e014",
-   "source": "demo-trace:kv_cache_llm:e014 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e014 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://metaailabs.com/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/",
    "domain": "metaailabs.com",
    "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing ...",
@@ -312,22 +296,22 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "无定义内容"
     },
     "cost": {
-     "relevant": false,
-     "basis": "只给参数/缓存用量对比数字"
+     "level": "partial",
+     "basis": "参数 14GB vs 缓存 72GB 的对比量化了占用之巨，但无增长机制"
     },
     "techniques": {
-     "relevant": true,
+     "level": "sufficient_support",
      "basis": "Top 10 压缩技术清单"
     }
    }
   },
   {
    "id": "e015",
-   "source": "demo-trace:kv_cache_llm:e015 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e015 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "url": "https://www.emergentmind.com/topics/kv-cache-compression-techniques",
    "domain": "emergentmind.com",
    "title": "KV-Cache Compression Techniques - emergentmind.com",
@@ -335,15 +319,15 @@
    "intent": "real",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     },
     "cost": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     },
     "techniques": {
-     "relevant": true,
+     "level": "sufficient_support",
      "basis": "quantization 等压缩方法"
     }
    }
@@ -358,15 +342,15 @@
    "intent": "fn_paraphrase(同义改写漏检)",
    "doc_annotation": {
     "definition": {
-     "relevant": true,
-     "basis": "构造：同义改写解释缓存机制（memoize past states），无词面重叠"
+     "level": "sufficient_support",
+     "basis": "构造：同义改写完整解释缓存机制（memoize past states）"
     },
     "cost": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "同域主题"
     },
     "techniques": {
-     "relevant": false,
+     "level": "topic_only",
      "basis": "无"
     }
    }
@@ -381,16 +365,16 @@
    "intent": "fp_topic_overlap(主题词重叠伪相关)",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
-     "basis": "无"
+     "level": "irrelevant",
+     "basis": "游戏显卡内容，非 KV cache 域"
     },
     "cost": {
-     "relevant": false,
-     "basis": "构造：游戏显卡 VRAM 选购，主题词重叠（GPU memory）但与 KV cache 增长原因无关"
+     "level": "topic_only",
+     "basis": "构造：GPU memory 主题词重叠，但对『KV cache 为何耗显存』无任何回答信息"
     },
     "techniques": {
-     "relevant": false,
-     "basis": "无"
+     "level": "irrelevant",
+     "basis": "非同域"
     }
    }
   },
@@ -404,16 +388,16 @@
    "intent": "fn_jargon(行话表述漏检)",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
-     "basis": "无"
+     "level": "partial",
+     "basis": "构造：以行话描述逐 token 状态累积现象，隐含机制但未命名 KV cache"
     },
     "cost": {
-     "relevant": true,
-     "basis": "构造：以行话（HBM/中间态累积/上下文长度）表述显存耗尽原因——真实相关但词法难命中"
+     "level": "sufficient_support",
+     "basis": "构造：HBM 耗尽 + 随上下文累积的机制表述，真实相关但词法难命中"
     },
     "techniques": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "无具体技术"
     }
    }
   },
@@ -427,16 +411,16 @@
    "intent": "fn_paraphrase(同义改写漏检)",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "同域主题"
     },
     "cost": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "无增长机制"
     },
     "techniques": {
-     "relevant": true,
-     "basis": "构造：同义表述（sharing heads / compressing cached states）概括两类缩减手段，无 MQA/GQA 等术语"
+     "level": "sufficient_support",
+     "basis": "构造：同义表述（sharing heads / compressing cached states）概括两类缩减手段"
     }
    }
   },
@@ -450,16 +434,16 @@
    "intent": "missing_condition(覆盖主题缺关键条件)",
    "doc_annotation": {
     "definition": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "同域主题，无定义"
     },
     "cost": {
-     "relevant": false,
-     "basis": "构造：用量计算器（数字/公式模板），主题高度相关但完全不含『为何增长』的机制信息——缺关键回答条件"
+     "level": "partial",
+     "basis": "构造：给出决定因子（layers/heads/context length），提供部分回答信息，但无逐 token 累积机制——覆盖主题缺关键回答条件"
     },
     "techniques": {
-     "relevant": false,
-     "basis": "无"
+     "level": "topic_only",
+     "basis": "计算器非缩减技术"
     }
    }
   }
@@ -472,19 +456,19 @@
     "e002",
     "e004"
    ],
-   "purpose": "同质冗余观察：三条入门解释内容高度重复",
+   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
    "sufficiency": {
     "definition": {
      "sufficient": true,
-     "basis": "信息上足够（一条入门解释即可），三条互为冗余"
+     "basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
     },
     "cost": {
      "sufficient": false,
-     "basis": "集合内无任何 cost 相关文档"
+     "basis": "集合内无 cost 相关文档"
     },
     "techniques": {
      "sufficient": false,
-     "basis": "集合内无任何 techniques 相关文档"
+     "basis": "集合内无 techniques 相关文档"
     }
    }
   },
@@ -493,25 +477,25 @@
    "members": [
     "e001",
     "e005",
-    "e009",
+    "e010",
     "e013",
     "e015",
     "C-topic-cost",
     "CALC-missing-why"
    ],
-   "purpose": "伪相关推高覆盖 → 构造错误停止建议场景：cost 仅有 e009 真正回答 why，C/CALC 为伪相关",
+   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
    "sufficiency": {
     "definition": {
      "sufficient": true,
-     "basis": "e001/e005 真相关"
+     "basis": "e001/e005 充分支持"
     },
     "cost": {
      "sufficient": false,
-     "basis": "仅 e009 真正解释原因；C（游戏选购）与 CALC（只有数字无机制）为伪相关，关键信息不足"
+     "basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
     },
     "techniques": {
      "sufficient": true,
-     "basis": "e013/e015 点名具体技术"
+     "basis": "e013/e015 充分支持"
     }
    }
   },
@@ -529,19 +513,19 @@
     "e009",
     "e010"
    ],
-   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（正确继续决策的对照）",
+   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
    "sufficiency": {
     "definition": {
      "sufficient": true,
-     "basis": "多条真相关（含冗余）"
+     "basis": "多条充分支持级（含冗余）"
     },
     "cost": {
      "sufficient": true,
-     "basis": "e006-e010 中至少两条真相关（e007 含线性增长机制）"
+     "basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
     },
     "techniques": {
      "sufficient": false,
-     "basis": "仅 e003 一条真相关，缺第二条"
+     "basis": "仅 e003 一条充分支持级，缺第二条"
     }
    }
   },
@@ -555,19 +539,19 @@
     "CALC-missing-why",
     "C-topic-cost"
    ],
-   "purpose": "覆盖主题但缺关键回答条件：cost 子问题主题命中但无任何机制信息",
+   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
    "sufficiency": {
     "definition": {
      "sufficient": true,
-     "basis": "e001/e002/e005 真相关"
+     "basis": "e001/e002/e005 充分支持"
     },
     "cost": {
      "sufficient": false,
-     "basis": "CALC 只有数字、C 是游戏页——无任何『为何增长』信息，主题覆盖≠回答条件满足"
+     "basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
     },
     "techniques": {
      "sufficient": false,
-     "basis": "仅 e003 一条"
+     "basis": "仅 e003 一条充分支持级"
     }
    }
   },
@@ -585,26 +569,82 @@
     "e009",
     "e010",
     "e011",
-    "e012",
     "e013",
     "e014",
     "e015"
    ],
-   "purpose": "真实最终状态（demo 运行停止时）：全子问题充分，但含同质冗余",
+   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
    "sufficiency": {
     "definition": {
      "sufficient": true,
-     "basis": "多条真相关（冗余偏高）"
+     "basis": "多条充分支持级（冗余偏高）"
     },
     "cost": {
      "sufficient": true,
-     "basis": "e006-e010 多条真相关"
+     "basis": "e006-e010 多条充分/部分支持"
     },
     "techniques": {
      "sufficient": true,
-     "basis": "e013/e014/e015 真相关（e014 词法仅 0.149 漏检）"
+     "basis": "e011/e013/e014/e015 充分支持"
     }
    }
+  }
+ ],
+ "revision_log": [
+  {
+   "item": "e012",
+   "change": "删除独立案例，与 e011 同源（同一论文 html/pdf 双版本）合并为单一来源",
+   "basis": "整改指令第 4 条（同源重复证据）；原案例集将其计为两条独立证据会重复计入覆盖"
+  },
+  {
+   "item": "e009->cost",
+   "change": "复核维持『充分支持』：摘要直接回答『为何消耗大量 VRAM』",
+   "basis": "争议标签复核；据此 S2 成员修订——原 S2 中 e009 已构成充分支持，不再是伪覆盖场景"
+  },
+  {
+   "item": "S2 members",
+   "change": "以 e010 替换 e009，维持『主题命中但无机制文档』的检验目的",
+   "basis": "e009 复核结论；不得人为保持原实验结论（整改指令第 5 条）"
+  },
+  {
+   "item": "e006->definition",
+   "change": "相关 → partial(部分回答)",
+   "basis": "四级标准落地：多主题页对 definition 只提供部分信息"
+  },
+  {
+   "item": "e010->cost",
+   "change": "相关 → partial",
+   "basis": "量级佐证但无增长机制，属部分回答而非充分支持"
+  },
+  {
+   "item": "e014->cost",
+   "change": "不相关 → partial",
+   "basis": "复核发现摘要含 14GB/72GB 对比，量化了占用之巨，属部分回答信息（原判过严）"
+  },
+  {
+   "item": "CALC->cost",
+   "change": "不相关 → partial",
+   "basis": "四级标准落地：给出决定因子（layers/heads/context）属部分回答信息；『缺关键条件』由快照层充分性标注表达，不再靠文档层二值标签表达"
+  },
+  {
+   "item": "E->definition",
+   "change": "不相关 → partial",
+   "basis": "四级标准落地：行话描述隐含机制，对 definition 提供部分信息"
+  },
+  {
+   "item": "e008~e015->definition（原判不相关）",
+   "change": "不相关 → topic_only",
+   "basis": "四级标准落地：同域主题但无定义信息，与『完全不相关』（如 C→definition=irrelevant）区分"
+  },
+  {
+   "item": "e009->techniques",
+   "change": "维持最低档（topic_only）",
+   "basis": "争议复核：仅提『存在 practical techniques』未点名任何技术，不构成部分回答信息"
+  },
+  {
+   "item": "e011->cost",
+   "change": "维持 topic_only",
+   "basis": "摘要未涉及显存增长原因"
   }
  ]
 }

@@ -1,14 +1,14 @@
 # P1-a 最小实验报告（固定案例集：词法基线 vs 语义模块）
 
-- 案例集：20 案例（15 真实 + 5 构造）×3 子问题；标注状态：CANDIDATE（GLM 起草，未经核查，非金标准）
-- 词法臂（现行生产逻辑，阈值 0.15/边际 0.6）：{'TP': 15, 'FP': 11, 'FN': 7, 'TN': 27}
-- 语义臂（sentence-transformers/all-MiniLM-L6-v2，主阈值 0.5，同一接受规则形状）：{'TP': 17, 'FP': 24, 'FN': 5, 'TN': 14}
-- 免阈值分离度：min 正对 0.3895 − max 负对 0.716 = -0.3265
-- 探索性阈值对照：{'0.4': {'confusion': {'TP': 20, 'FP': 29, 'FN': 2, 'TN': 9}, 'n_errors': 31}, '0.5': {'confusion': {'TP': 17, 'FP': 24, 'FN': 5, 'TN': 14}, 'n_errors': 29}, '0.6': {'confusion': {'TP': 15, 'FP': 8, 'FN': 7, 'TN': 30}, 'n_errors': 15}}
+- 案例集：19 案例（15 真实 + 5 构造）×3 子问题；标注状态：CANDIDATE（GLM 起草，未经核查，非金标准）
+- 词法臂（现行生产逻辑，阈值 0.15/边际 0.6）：{'TP': 17, 'FP': 8, 'FN': 7, 'TN': 25}
+- 语义臂（sentence-transformers/all-MiniLM-L6-v2，主阈值 0.5，同一接受规则形状）：{'TP': 18, 'FP': 20, 'FN': 6, 'TN': 13}
+- 免阈值分离度：min 正对 0.3219 − max 负对 0.6995 = -0.3776
+- 探索性阈值对照：{'0.4': {'confusion': {'TP': 21, 'FP': 25, 'FN': 3, 'TN': 8}, 'n_errors': 28}, '0.5': {'confusion': {'TP': 18, 'FP': 20, 'FN': 6, 'TN': 13}, 'n_errors': 26}, '0.6': {'confusion': {'TP': 16, 'FP': 5, 'FN': 8, 'TN': 28}, 'n_errors': 13}}
 
 ## 一、词法基线的具体误判（第一交付节点）
 
-共 18 处（FN 7 / FP 11），按模式归纳：
+共 15 处（FN 7 / FP 8），按模式归纳：
 
 1. **系统性跨子问题误归属（真实数据新发现，11 处 FP/FN）**：7 条真实证据（e008–e014）被误判为 definition 相关；其中 e011/e012（技术综述）同时漏判 techniques——definition 子问题词表最宽（kv cache/attention/inference 等），任何提及这些词的文档都能通过相对边际规则被归给 definition。
 2. **同义改写/行话漏检（B/E/H 构造复现 + 真实 e014）**：compression/sharing heads/memoize 等表述与关键词无词面重叠，词法分 0.02–0.15。
@@ -21,7 +21,6 @@
 - ✅ C-topic-cost/cost
 - ✅ e010/definition
 - ✅ e011/techniques
-- ✅ e012/techniques
 - ✅ e014/techniques
 
 ## 三、语义模块引入的新错误
@@ -38,7 +37,6 @@
 - ❌ e009/techniques（词法判对，语义判错；相似度 0.6237）
 - ❌ e010/techniques（词法判对，语义判错；相似度 0.5726）
 - ❌ e011/cost（词法判对，语义判错；相似度 0.573）
-- ❌ e012/cost（词法判对，语义判错；相似度 0.5648）
 - ❌ e013/cost（词法判对，语义判错；相似度 0.5294）
 - ❌ e015/cost（词法判对，语义判错；相似度 0.5102）
 - ❌ e015/definition（词法判对，语义判错；相似度 0.5178）

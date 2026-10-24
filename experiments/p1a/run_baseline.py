@@ -23,7 +23,7 @@ def main() -> int:
         cid: accept_rule({sid: v["score"] for sid, v in per.items()}, ABS_THRESHOLD)
         for cid, per in scores.items()
     }
-    confusion, errors, corrects = doc_level_report(cases, accepted)
+    confusion, errors, corrects, accepted_levels = doc_level_report(cases, accepted)
 
     cases_by_id = {c["id"]: c for c in cases}
     snap_rows = []
@@ -35,9 +35,12 @@ def main() -> int:
         "experiment": "p1a-node1-lexical-baseline",
         "date": "2026-10-24",
         "annotation_status": "CANDIDATE（GLM 起草，待核查）",
+        "annotation_scale_note": "四级标准：irrelevant/topic_only/partial/sufficient_support；二值相关性切点=partial 及以上",
+        "evidence_scope": "真实案例=搜索结果标题与摘要；静态固定快照口径",
         "n_cases": len(cases),
         "n_pairs": sum(len(c["doc_annotation"]) for c in cases),
         "confusion": confusion,
+        "accepted_gold_level_distribution": accepted_levels,
         "errors": errors,
         "scores": {
             cid: {sid: {"score": round(v["score"], 3), "matched": v["matched"], "missing_terms": v["missing"]}
@@ -53,11 +56,12 @@ def main() -> int:
     )
 
     lines = [
-        "# P1-a 第一交付节点：词法基线在固定案例集上的误判记录",
+        "# P1-a 第一交付节点：词法基线在固定案例集上的误判记录（四级标注修订版）",
         "",
-        f"- 案例集：{len(cases)} 案例（15 真实检索结果 + 5 构造），来源与候选标注见 cases.json",
-        f"- 标注状态：{results['annotation_status']}",
-        f"- 文档层混淆矩阵：{confusion}（共 {results['n_pairs']} 对）",
+        f"- 案例集：{len(cases)} 案例（14 条真实搜索结果标题与摘要 + 5 构造，同源 e012 已并入 e011），来源与候选标注见 cases.json",
+        f"- 标注状态：{results['annotation_status']}；四级标准，二值切点=partial 及以上",
+        f"- 文档层混淆矩阵（相关性切点）：{confusion}（共 {results['n_pairs']} 对）",
+        f"- 词法接受项的真实级别分布：{accepted_levels}（接受但仅 topic_only 的即伪相关）",
         "",
         "## 文档层误判明细（含词法命中/缺失词条，供误因分析）",
         "",
@@ -65,7 +69,7 @@ def main() -> int:
     for e in errors:
         detail = results["scores"][e["case"]][e["subq"]]
         lines.append(
-            f"- [{e['intent']}] {e['case']} → {e['subq']}：gold={e['gold']} pred={e['pred']}，"
+            f"- [{e['intent']}] {e['case']} → {e['subq']}：gold={e['gold_level']} pred={e['pred']}，"
             f"词法分 {detail['score']}；命中词条 {detail['matched']}；缺失 {detail['missing_terms'][:6]}"
         )
         lines.append(f"  - 标注依据：{e['annotation_basis']}")
@@ -91,9 +95,10 @@ def main() -> int:
                 )
     (out_dir / "report_node1.md").write_text("\n".join(lines), encoding="utf-8")
 
-    print("confusion:", confusion)
+    print("confusion:", confusion, "| accepted levels:", accepted_levels)
     for e in errors:
-        print(f"  [{e['intent']}:{'FN' if e['gold'] else 'FP'}] {e['case']} -> {e['subq']}")
+        kind = "FN" if e["gold_relevant"] else "FP"
+        print(f"  [{e['intent']}:{kind}] {e['case']} -> {e['subq']} (gold={e['gold_level']})")
     for r in snap_rows:
         print(f"  snapshot {r['snapshot']}: verdict={r['arm_verdict']} stop_correct={r['stop_decision_correct']}")
     print("written: results/lexical_baseline.json, results/report_node1.md")

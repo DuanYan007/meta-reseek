@@ -61,11 +61,6 @@
    "cost": 0.573,
    "techniques": 0.7257
   },
-  "e012": {
-   "definition": 0.6016,
-   "cost": 0.5648,
-   "techniques": 0.6767
-  },
   "e013": {
    "definition": 0.5733,
    "cost": 0.5294,
@@ -108,50 +103,50 @@
   }
  },
  "separation": {
-  "min_positive": 0.3895,
-  "max_negative": 0.716,
-  "gap": -0.3265
+  "min_positive": 0.3219,
+  "max_negative": 0.6995,
+  "gap": -0.3776
  },
  "by_threshold": {
   "0.4": {
    "confusion": {
-    "TP": 20,
-    "FP": 29,
-    "FN": 2,
-    "TN": 9
+    "TP": 21,
+    "FP": 25,
+    "FN": 3,
+    "TN": 8
    },
-   "n_errors": 31
+   "n_errors": 28
   },
   "0.5": {
    "confusion": {
-    "TP": 17,
-    "FP": 24,
-    "FN": 5,
-    "TN": 14
+    "TP": 18,
+    "FP": 20,
+    "FN": 6,
+    "TN": 13
    },
-   "n_errors": 29
+   "n_errors": 26
   },
   "0.6": {
    "confusion": {
-    "TP": 15,
-    "FP": 8,
-    "FN": 7,
-    "TN": 30
+    "TP": 16,
+    "FP": 5,
+    "FN": 8,
+    "TN": 28
    },
-   "n_errors": 15
+   "n_errors": 13
   }
  },
  "lex_confusion": {
-  "TP": 15,
-  "FP": 11,
+  "TP": 17,
+  "FP": 8,
   "FN": 7,
-  "TN": 27
+  "TN": 25
  },
  "sem_confusion_primary": {
-  "TP": 17,
-  "FP": 24,
-  "FN": 5,
-  "TN": 14
+  "TP": 18,
+  "FP": 20,
+  "FN": 6,
+  "TN": 13
  },
  "fixed_by_semantic": [
   [
@@ -164,10 +159,6 @@
   ],
   [
    "e011",
-   "techniques"
-  ],
-  [
-   "e012",
    "techniques"
   ],
   [
@@ -225,10 +216,6 @@
    "cost"
   ],
   [
-   "e012",
-   "cost"
-  ],
-  [
    "e013",
    "cost"
   ],
@@ -244,7 +231,7 @@
  "snapshots": [
   {
    "snapshot": "S1-homogeneous-definition",
-   "purpose": "同质冗余观察：三条入门解释内容高度重复",
+   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
    "arm_verdict": "insufficient",
    "arm_score": 0.808,
    "arm_stop_suggestion": "continue",
@@ -256,27 +243,27 @@
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "信息上足够（一条入门解释即可），三条互为冗余"
+     "annotation_basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
     },
     "cost": {
      "accepted_count": 1,
      "arm_says_covered": false,
      "annotation_sufficient": false,
      "match": true,
-     "annotation_basis": "集合内无任何 cost 相关文档"
+     "annotation_basis": "集合内无 cost 相关文档"
     },
     "techniques": {
      "accepted_count": 3,
      "arm_says_covered": true,
      "annotation_sufficient": false,
      "match": false,
-     "annotation_basis": "集合内无任何 techniques 相关文档"
+     "annotation_basis": "集合内无 techniques 相关文档"
     }
    }
   },
   {
    "snapshot": "S2-pseudo-coverage-wrong-stop",
-   "purpose": "伪相关推高覆盖 → 构造错误停止建议场景：cost 仅有 e009 真正回答 why，C/CALC 为伪相关",
+   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
    "arm_verdict": "sufficient",
    "arm_score": 1.0,
    "arm_stop_suggestion": "stop",
@@ -284,31 +271,31 @@
    "stop_decision_correct": false,
    "per_subq": {
     "definition": {
-     "accepted_count": 6,
+     "accepted_count": 5,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e001/e005 真相关"
+     "annotation_basis": "e001/e005 充分支持"
     },
     "cost": {
      "accepted_count": 4,
      "arm_says_covered": true,
      "annotation_sufficient": false,
      "match": false,
-     "annotation_basis": "仅 e009 真正解释原因；C（游戏选购）与 CALC（只有数字无机制）为伪相关，关键信息不足"
+     "annotation_basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
     },
     "techniques": {
      "accepted_count": 5,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e013/e015 点名具体技术"
+     "annotation_basis": "e013/e015 充分支持"
     }
    }
   },
   {
    "snapshot": "S3-real-after-round2",
-   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（正确继续决策的对照）",
+   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
    "arm_verdict": "sufficient",
    "arm_score": 1.0,
    "arm_stop_suggestion": "stop",
@@ -320,27 +307,27 @@
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "多条真相关（含冗余）"
+     "annotation_basis": "多条充分支持级（含冗余）"
     },
     "cost": {
      "accepted_count": 6,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e006-e010 中至少两条真相关（e007 含线性增长机制）"
+     "annotation_basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
     },
     "techniques": {
      "accepted_count": 9,
      "arm_says_covered": true,
      "annotation_sufficient": false,
      "match": false,
-     "annotation_basis": "仅 e003 一条真相关，缺第二条"
+     "annotation_basis": "仅 e003 一条充分支持级，缺第二条"
     }
    }
   },
   {
    "snapshot": "S5-missing-condition",
-   "purpose": "覆盖主题但缺关键回答条件：cost 子问题主题命中但无任何机制信息",
+   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
    "arm_verdict": "sufficient",
    "arm_score": 1.0,
    "arm_stop_suggestion": "stop",
@@ -352,27 +339,27 @@
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e001/e002/e005 真相关"
+     "annotation_basis": "e001/e002/e005 充分支持"
     },
     "cost": {
      "accepted_count": 2,
      "arm_says_covered": true,
      "annotation_sufficient": false,
      "match": false,
-     "annotation_basis": "CALC 只有数字、C 是游戏页——无任何『为何增长』信息，主题覆盖≠回答条件满足"
+     "annotation_basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
     },
     "techniques": {
      "accepted_count": 4,
      "arm_says_covered": true,
      "annotation_sufficient": false,
      "match": false,
-     "annotation_basis": "仅 e003 一条"
+     "annotation_basis": "仅 e003 一条充分支持级"
     }
    }
   },
   {
    "snapshot": "S6-real-final-state",
-   "purpose": "真实最终状态（demo 运行停止时）：全子问题充分，但含同质冗余",
+   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
    "arm_verdict": "sufficient",
    "arm_score": 1.0,
    "arm_stop_suggestion": "stop",
@@ -380,25 +367,25 @@
    "stop_decision_correct": true,
    "per_subq": {
     "definition": {
+     "accepted_count": 12,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "多条充分支持级（冗余偏高）"
+    },
+    "cost": {
+     "accepted_count": 10,
+     "arm_says_covered": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "annotation_basis": "e006-e010 多条充分/部分支持"
+    },
+    "techniques": {
      "accepted_count": 13,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "多条真相关（冗余偏高）"
-    },
-    "cost": {
-     "accepted_count": 11,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e006-e010 多条真相关"
-    },
-    "techniques": {
-     "accepted_count": 14,
-     "arm_says_covered": true,
-     "annotation_sufficient": true,
-     "match": true,
-     "annotation_basis": "e013/e014/e015 真相关（e014 词法仅 0.149 漏检）"
+     "annotation_basis": "e011/e013/e014/e015 充分支持"
     }
    }
   }
@@ -407,7 +394,7 @@
   "0.4": [
    {
     "snapshot": "S1-homogeneous-definition",
-    "purpose": "同质冗余观察：三条入门解释内容高度重复",
+    "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
     "arm_verdict": "sufficient",
     "arm_score": 0.925,
     "arm_stop_suggestion": "stop",
@@ -419,27 +406,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "信息上足够（一条入门解释即可），三条互为冗余"
+      "annotation_basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
      },
      "cost": {
       "accepted_count": 2,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "集合内无任何 cost 相关文档"
+      "annotation_basis": "集合内无 cost 相关文档"
      },
      "techniques": {
       "accepted_count": 3,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "集合内无任何 techniques 相关文档"
+      "annotation_basis": "集合内无 techniques 相关文档"
      }
     }
    },
    {
     "snapshot": "S2-pseudo-coverage-wrong-stop",
-    "purpose": "伪相关推高覆盖 → 构造错误停止建议场景：cost 仅有 e009 真正回答 why，C/CALC 为伪相关",
+    "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -451,27 +438,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e001/e005 真相关"
+      "annotation_basis": "e001/e005 充分支持"
      },
      "cost": {
       "accepted_count": 7,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e009 真正解释原因；C（游戏选购）与 CALC（只有数字无机制）为伪相关，关键信息不足"
+      "annotation_basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
      },
      "techniques": {
       "accepted_count": 6,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e013/e015 点名具体技术"
+      "annotation_basis": "e013/e015 充分支持"
      }
     }
    },
    {
     "snapshot": "S3-real-after-round2",
-    "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（正确继续决策的对照）",
+    "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -483,27 +470,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "多条真相关（含冗余）"
+      "annotation_basis": "多条充分支持级（含冗余）"
      },
      "cost": {
       "accepted_count": 9,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e006-e010 中至少两条真相关（e007 含线性增长机制）"
+      "annotation_basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
      },
      "techniques": {
       "accepted_count": 10,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e003 一条真相关，缺第二条"
+      "annotation_basis": "仅 e003 一条充分支持级，缺第二条"
      }
     }
    },
    {
     "snapshot": "S5-missing-condition",
-    "purpose": "覆盖主题但缺关键回答条件：cost 子问题主题命中但无任何机制信息",
+    "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -515,27 +502,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e001/e002/e005 真相关"
+      "annotation_basis": "e001/e002/e005 充分支持"
      },
      "cost": {
       "accepted_count": 6,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "CALC 只有数字、C 是游戏页——无任何『为何增长』信息，主题覆盖≠回答条件满足"
+      "annotation_basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
      },
      "techniques": {
       "accepted_count": 5,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e003 一条"
+      "annotation_basis": "仅 e003 一条充分支持级"
      }
     }
    },
    {
     "snapshot": "S6-real-final-state",
-    "purpose": "真实最终状态（demo 运行停止时）：全子问题充分，但含同质冗余",
+    "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -543,25 +530,25 @@
     "stop_decision_correct": true,
     "per_subq": {
      "definition": {
-      "accepted_count": 15,
-      "arm_says_covered": true,
-      "annotation_sufficient": true,
-      "match": true,
-      "annotation_basis": "多条真相关（冗余偏高）"
-     },
-     "cost": {
       "accepted_count": 14,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e006-e010 多条真相关"
+      "annotation_basis": "多条充分支持级（冗余偏高）"
      },
-     "techniques": {
-      "accepted_count": 15,
+     "cost": {
+      "accepted_count": 13,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e013/e014/e015 真相关（e014 词法仅 0.149 漏检）"
+      "annotation_basis": "e006-e010 多条充分/部分支持"
+     },
+     "techniques": {
+      "accepted_count": 14,
+      "arm_says_covered": true,
+      "annotation_sufficient": true,
+      "match": true,
+      "annotation_basis": "e011/e013/e014/e015 充分支持"
      }
     }
    }
@@ -569,7 +556,7 @@
   "0.5": [
    {
     "snapshot": "S1-homogeneous-definition",
-    "purpose": "同质冗余观察：三条入门解释内容高度重复",
+    "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
     "arm_verdict": "insufficient",
     "arm_score": 0.808,
     "arm_stop_suggestion": "continue",
@@ -581,27 +568,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "信息上足够（一条入门解释即可），三条互为冗余"
+      "annotation_basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
      },
      "cost": {
       "accepted_count": 1,
       "arm_says_covered": false,
       "annotation_sufficient": false,
       "match": true,
-      "annotation_basis": "集合内无任何 cost 相关文档"
+      "annotation_basis": "集合内无 cost 相关文档"
      },
      "techniques": {
       "accepted_count": 3,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "集合内无任何 techniques 相关文档"
+      "annotation_basis": "集合内无 techniques 相关文档"
      }
     }
    },
    {
     "snapshot": "S2-pseudo-coverage-wrong-stop",
-    "purpose": "伪相关推高覆盖 → 构造错误停止建议场景：cost 仅有 e009 真正回答 why，C/CALC 为伪相关",
+    "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -609,31 +596,31 @@
     "stop_decision_correct": false,
     "per_subq": {
      "definition": {
-      "accepted_count": 6,
+      "accepted_count": 5,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e001/e005 真相关"
+      "annotation_basis": "e001/e005 充分支持"
      },
      "cost": {
       "accepted_count": 4,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e009 真正解释原因；C（游戏选购）与 CALC（只有数字无机制）为伪相关，关键信息不足"
+      "annotation_basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
      },
      "techniques": {
       "accepted_count": 5,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e013/e015 点名具体技术"
+      "annotation_basis": "e013/e015 充分支持"
      }
     }
    },
    {
     "snapshot": "S3-real-after-round2",
-    "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（正确继续决策的对照）",
+    "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -645,27 +632,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "多条真相关（含冗余）"
+      "annotation_basis": "多条充分支持级（含冗余）"
      },
      "cost": {
       "accepted_count": 6,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e006-e010 中至少两条真相关（e007 含线性增长机制）"
+      "annotation_basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
      },
      "techniques": {
       "accepted_count": 9,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e003 一条真相关，缺第二条"
+      "annotation_basis": "仅 e003 一条充分支持级，缺第二条"
      }
     }
    },
    {
     "snapshot": "S5-missing-condition",
-    "purpose": "覆盖主题但缺关键回答条件：cost 子问题主题命中但无任何机制信息",
+    "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -677,27 +664,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e001/e002/e005 真相关"
+      "annotation_basis": "e001/e002/e005 充分支持"
      },
      "cost": {
       "accepted_count": 2,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "CALC 只有数字、C 是游戏页——无任何『为何增长』信息，主题覆盖≠回答条件满足"
+      "annotation_basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
      },
      "techniques": {
       "accepted_count": 4,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e003 一条"
+      "annotation_basis": "仅 e003 一条充分支持级"
      }
     }
    },
    {
     "snapshot": "S6-real-final-state",
-    "purpose": "真实最终状态（demo 运行停止时）：全子问题充分，但含同质冗余",
+    "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -705,25 +692,25 @@
     "stop_decision_correct": true,
     "per_subq": {
      "definition": {
+      "accepted_count": 12,
+      "arm_says_covered": true,
+      "annotation_sufficient": true,
+      "match": true,
+      "annotation_basis": "多条充分支持级（冗余偏高）"
+     },
+     "cost": {
+      "accepted_count": 10,
+      "arm_says_covered": true,
+      "annotation_sufficient": true,
+      "match": true,
+      "annotation_basis": "e006-e010 多条充分/部分支持"
+     },
+     "techniques": {
       "accepted_count": 13,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "多条真相关（冗余偏高）"
-     },
-     "cost": {
-      "accepted_count": 11,
-      "arm_says_covered": true,
-      "annotation_sufficient": true,
-      "match": true,
-      "annotation_basis": "e006-e010 多条真相关"
-     },
-     "techniques": {
-      "accepted_count": 14,
-      "arm_says_covered": true,
-      "annotation_sufficient": true,
-      "match": true,
-      "annotation_basis": "e013/e014/e015 真相关（e014 词法仅 0.149 漏检）"
+      "annotation_basis": "e011/e013/e014/e015 充分支持"
      }
     }
    }
@@ -731,7 +718,7 @@
   "0.6": [
    {
     "snapshot": "S1-homogeneous-definition",
-    "purpose": "同质冗余观察：三条入门解释内容高度重复",
+    "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
     "arm_verdict": "insufficient",
     "arm_score": 0.458,
     "arm_stop_suggestion": "continue",
@@ -743,27 +730,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "信息上足够（一条入门解释即可），三条互为冗余"
+      "annotation_basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
      },
      "cost": {
       "accepted_count": 0,
       "arm_says_covered": false,
       "annotation_sufficient": false,
       "match": true,
-      "annotation_basis": "集合内无任何 cost 相关文档"
+      "annotation_basis": "集合内无 cost 相关文档"
      },
      "techniques": {
       "accepted_count": 0,
       "arm_says_covered": false,
       "annotation_sufficient": false,
       "match": true,
-      "annotation_basis": "集合内无任何 techniques 相关文档"
+      "annotation_basis": "集合内无 techniques 相关文档"
      }
     }
    },
    {
     "snapshot": "S2-pseudo-coverage-wrong-stop",
-    "purpose": "伪相关推高覆盖 → 构造错误停止建议场景：cost 仅有 e009 真正回答 why，C/CALC 为伪相关",
+    "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -775,27 +762,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e001/e005 真相关"
+      "annotation_basis": "e001/e005 充分支持"
      },
      "cost": {
       "accepted_count": 2,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e009 真正解释原因；C（游戏选购）与 CALC（只有数字无机制）为伪相关，关键信息不足"
+      "annotation_basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
      },
      "techniques": {
-      "accepted_count": 4,
+      "accepted_count": 3,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e013/e015 点名具体技术"
+      "annotation_basis": "e013/e015 充分支持"
      }
     }
    },
    {
     "snapshot": "S3-real-after-round2",
-    "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（正确继续决策的对照）",
+    "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -807,27 +794,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "多条真相关（含冗余）"
+      "annotation_basis": "多条充分支持级（含冗余）"
      },
      "cost": {
       "accepted_count": 5,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e006-e010 中至少两条真相关（e007 含线性增长机制）"
+      "annotation_basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
      },
      "techniques": {
       "accepted_count": 3,
       "arm_says_covered": true,
       "annotation_sufficient": false,
       "match": false,
-      "annotation_basis": "仅 e003 一条真相关，缺第二条"
+      "annotation_basis": "仅 e003 一条充分支持级，缺第二条"
      }
     }
    },
    {
     "snapshot": "S5-missing-condition",
-    "purpose": "覆盖主题但缺关键回答条件：cost 子问题主题命中但无任何机制信息",
+    "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
     "arm_verdict": "insufficient",
     "arm_score": 0.767,
     "arm_stop_suggestion": "continue",
@@ -839,27 +826,27 @@
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e001/e002/e005 真相关"
+      "annotation_basis": "e001/e002/e005 充分支持"
      },
      "cost": {
       "accepted_count": 1,
       "arm_says_covered": false,
       "annotation_sufficient": false,
       "match": true,
-      "annotation_basis": "CALC 只有数字、C 是游戏页——无任何『为何增长』信息，主题覆盖≠回答条件满足"
+      "annotation_basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
      },
      "techniques": {
       "accepted_count": 1,
       "arm_says_covered": false,
       "annotation_sufficient": false,
       "match": true,
-      "annotation_basis": "仅 e003 一条"
+      "annotation_basis": "仅 e003 一条充分支持级"
      }
     }
    },
    {
     "snapshot": "S6-real-final-state",
-    "purpose": "真实最终状态（demo 运行停止时）：全子问题充分，但含同质冗余",
+    "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
     "arm_verdict": "sufficient",
     "arm_score": 1.0,
     "arm_stop_suggestion": "stop",
@@ -867,25 +854,25 @@
     "stop_decision_correct": true,
     "per_subq": {
      "definition": {
-      "accepted_count": 7,
+      "accepted_count": 6,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "多条真相关（冗余偏高）"
+      "annotation_basis": "多条充分支持级（冗余偏高）"
      },
      "cost": {
       "accepted_count": 6,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e006-e010 多条真相关"
+      "annotation_basis": "e006-e010 多条充分/部分支持"
      },
      "techniques": {
-      "accepted_count": 8,
+      "accepted_count": 7,
       "arm_says_covered": true,
       "annotation_sufficient": true,
       "match": true,
-      "annotation_basis": "e013/e014/e015 真相关（e014 词法仅 0.149 漏检）"
+      "annotation_basis": "e011/e013/e014/e015 充分支持"
      }
     }
    }

@@ -2,131 +2,117 @@
  "experiment": "p1a-node1-lexical-baseline",
  "date": "2026-10-24",
  "annotation_status": "CANDIDATE（GLM 起草，待核查）",
- "n_cases": 20,
- "n_pairs": 60,
+ "annotation_scale_note": "四级标准：irrelevant/topic_only/partial/sufficient_support；二值相关性切点=partial 及以上",
+ "evidence_scope": "真实案例=搜索结果标题与摘要；静态固定快照口径",
+ "n_cases": 19,
+ "n_pairs": 57,
  "confusion": {
-  "TP": 15,
-  "FP": 11,
+  "TP": 17,
+  "FP": 8,
   "FN": 7,
-  "TN": 27
+  "TN": 25
+ },
+ "accepted_gold_level_distribution": {
+  "sufficient_support": 11,
+  "partial": 6,
+  "topic_only": 8
  },
  "errors": [
   {
    "case": "e003",
-   "source": "demo-trace:kv_cache_llm:e003 (round 1, strategy initial)",
+   "source": "demo-trace:kv_cache_llm:e003 (round 1, strategy initial) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "cost",
-   "gold": true,
+   "gold_level": "partial",
+   "gold_relevant": true,
    "pred": false,
-   "annotation_basis": "含 memory math（显存计算）",
+   "annotation_basis": "含 memory math 要点，提供部分量化信息，未给增长机制",
    "title": "KV Cache in LLMs Explained: How Transformers Make Inference Fast"
   },
   {
    "case": "e008",
-   "source": "demo-trace:kv_cache_llm:e008 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e008 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "definition",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
-   "annotation_basis": "只讲用量，不讲定义",
+   "annotation_basis": "同域主题，摘要只讲用量不讲定义",
    "title": "KV Cache Memory Usage in LLMs – Formulas & Examples"
   },
   {
    "case": "e009",
-   "source": "demo-trace:kv_cache_llm:e009 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e009 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "definition",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
    "annotation_basis": "未解释定义",
    "title": "KV Cache Explained: Why It Eats Your VRAM GIGAGPU"
   },
   {
    "case": "e010",
-   "source": "demo-trace:kv_cache_llm:e010 (round 2, strategy broaden)",
+   "source": "demo-trace:kv_cache_llm:e010 (round 2, strategy broaden) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "definition",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
-   "annotation_basis": "无",
+   "annotation_basis": "无定义内容",
    "title": "KV Cache Optimization: Serve 10x More Users per GPU (2026 ..."
   },
   {
    "case": "e011",
-   "source": "demo-trace:kv_cache_llm:e011 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e011 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "definition",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
    "annotation_basis": "综述不提供入门定义",
    "title": "KV Cache Optimization Strategies for Scalable - arXiv.org"
   },
   {
    "case": "e011",
-   "source": "demo-trace:kv_cache_llm:e011 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e011 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "techniques",
-   "gold": true,
+   "gold_level": "sufficient_support",
+   "gold_relevant": true,
    "pred": false,
-   "annotation_basis": "系统综述各类 KV cache 管理技术",
+   "annotation_basis": "系统综述各类 KV cache 管理技术；注：同一论文的 html/pdf 双版本曾被系统同时接受（去重未命中），案例集按单一来源计",
    "title": "KV Cache Optimization Strategies for Scalable - arXiv.org"
   },
   {
-   "case": "e012",
-   "source": "demo-trace:kv_cache_llm:e012 (round 3, strategy target_weakest)",
-   "intent": "real",
-   "subq": "definition",
-   "gold": false,
-   "pred": true,
-   "annotation_basis": "同 e011",
-   "title": "KV Cache Optimization Strategies for Scalable and Efficient LLM Inference"
-  },
-  {
-   "case": "e012",
-   "source": "demo-trace:kv_cache_llm:e012 (round 3, strategy target_weakest)",
-   "intent": "real",
-   "subq": "techniques",
-   "gold": true,
-   "pred": false,
-   "annotation_basis": "同 e011（与 e011 为同一论文 html/pdf 双版本——同质重复）",
-   "title": "KV Cache Optimization Strategies for Scalable and Efficient LLM Inference"
-  },
-  {
    "case": "e013",
-   "source": "demo-trace:kv_cache_llm:e013 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e013 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "definition",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
    "annotation_basis": "无定义解释",
    "title": "The Ultimate Guide to KV Cache Optimization for LLM Inference (2026)"
   },
   {
    "case": "e014",
-   "source": "demo-trace:kv_cache_llm:e014 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e014 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "definition",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
-   "annotation_basis": "无",
+   "annotation_basis": "无定义内容",
    "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing ..."
   },
   {
    "case": "e014",
-   "source": "demo-trace:kv_cache_llm:e014 (round 3, strategy target_weakest)",
-   "intent": "real",
-   "subq": "cost",
-   "gold": false,
-   "pred": true,
-   "annotation_basis": "只给参数/缓存用量对比数字",
-   "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing ..."
-  },
-  {
-   "case": "e014",
-   "source": "demo-trace:kv_cache_llm:e014 (round 3, strategy target_weakest)",
+   "source": "demo-trace:kv_cache_llm:e014 (round 3, strategy target_weakest) — 真实搜索结果的标题与摘要（非完整文档）",
    "intent": "real",
    "subq": "techniques",
-   "gold": true,
+   "gold_level": "sufficient_support",
+   "gold_relevant": true,
    "pred": false,
    "annotation_basis": "Top 10 压缩技术清单",
    "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing ..."
@@ -136,9 +122,10 @@
    "source": "constructed (fn_paraphrase(同义改写漏检))",
    "intent": "fn_paraphrase(同义改写漏检)",
    "subq": "definition",
-   "gold": true,
+   "gold_level": "sufficient_support",
+   "gold_relevant": true,
    "pred": false,
-   "annotation_basis": "构造：同义改写解释缓存机制（memoize past states），无词面重叠",
+   "annotation_basis": "构造：同义改写完整解释缓存机制（memoize past states）",
    "title": "Memoizing past attention states in decoder-only models"
   },
   {
@@ -146,19 +133,32 @@
    "source": "constructed (fp_topic_overlap(主题词重叠伪相关))",
    "intent": "fp_topic_overlap(主题词重叠伪相关)",
    "subq": "cost",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
-   "annotation_basis": "构造：游戏显卡 VRAM 选购，主题词重叠（GPU memory）但与 KV cache 增长原因无关",
+   "annotation_basis": "构造：GPU memory 主题词重叠，但对『KV cache 为何耗显存』无任何回答信息",
    "title": "Best gaming GPUs by memory size: the 2024 VRAM tier list"
   },
   {
    "case": "E-jargon-cost",
    "source": "constructed (fn_jargon(行话表述漏检))",
    "intent": "fn_jargon(行话表述漏检)",
-   "subq": "cost",
-   "gold": true,
+   "subq": "definition",
+   "gold_level": "partial",
+   "gold_relevant": true,
    "pred": false,
-   "annotation_basis": "构造：以行话（HBM/中间态累积/上下文长度）表述显存耗尽原因——真实相关但词法难命中",
+   "annotation_basis": "构造：以行话描述逐 token 状态累积现象，隐含机制但未命名 KV cache",
+   "title": "The hidden memory wall of autoregressive serving"
+  },
+  {
+   "case": "E-jargon-cost",
+   "source": "constructed (fn_jargon(行话表述漏检))",
+   "intent": "fn_jargon(行话表述漏检)",
+   "subq": "cost",
+   "gold_level": "sufficient_support",
+   "gold_relevant": true,
+   "pred": false,
+   "annotation_basis": "构造：HBM 耗尽 + 随上下文累积的机制表述，真实相关但词法难命中",
    "title": "The hidden memory wall of autoregressive serving"
   },
   {
@@ -166,9 +166,10 @@
    "source": "constructed (fn_paraphrase(同义改写漏检))",
    "intent": "fn_paraphrase(同义改写漏检)",
    "subq": "techniques",
-   "gold": true,
+   "gold_level": "sufficient_support",
+   "gold_relevant": true,
    "pred": false,
-   "annotation_basis": "构造：同义表述（sharing heads / compressing cached states）概括两类缩减手段，无 MQA/GQA 等术语",
+   "annotation_basis": "构造：同义表述（sharing heads / compressing cached states）概括两类缩减手段",
    "title": "Cutting the memory bill of large-model serving"
   },
   {
@@ -176,19 +177,10 @@
    "source": "constructed (missing_condition(覆盖主题缺关键条件))",
    "intent": "missing_condition(覆盖主题缺关键条件)",
    "subq": "definition",
-   "gold": false,
+   "gold_level": "topic_only",
+   "gold_relevant": false,
    "pred": true,
-   "annotation_basis": "无",
-   "title": "KV cache memory calculator: plug in your model size"
-  },
-  {
-   "case": "CALC-missing-why",
-   "source": "constructed (missing_condition(覆盖主题缺关键条件))",
-   "intent": "missing_condition(覆盖主题缺关键条件)",
-   "subq": "cost",
-   "gold": false,
-   "pred": true,
-   "annotation_basis": "构造：用量计算器（数字/公式模板），主题高度相关但完全不含『为何增长』的机制信息——缺关键回答条件",
+   "annotation_basis": "同域主题，无定义",
    "title": "KV cache memory calculator: plug in your model size"
   }
  ],
@@ -776,59 +768,6 @@
     ]
    }
   },
-  "e012": {
-   "definition": {
-    "score": 0.438,
-    "matched": [
-     "kv cache",
-     "attention",
-     "inference"
-    ],
-    "missing_terms": [
-     "key",
-     "value",
-     "self attention",
-     "transformer"
-    ]
-   },
-   "cost": {
-    "score": 0.077,
-    "matched": [
-     "memory",
-     "kv",
-     "cache"
-    ],
-    "missing_terms": [
-     "gpu",
-     "sequence length",
-     "batch size",
-     "vram",
-     "bottleneck",
-     "consume",
-     "so",
-     "much"
-    ]
-   },
-   "techniques": {
-    "score": 0.149,
-    "matched": [
-     "techniques",
-     "kv",
-     "cache",
-     "memory"
-    ],
-    "missing_terms": [
-     "mqa",
-     "gqa",
-     "grouped query attention",
-     "multi query attention",
-     "pagedattention",
-     "quantization",
-     "reduce",
-     "usage"
-    ]
-   }
-  },
   "e013": {
    "definition": {
     "score": 0.312,
@@ -1255,7 +1194,7 @@
  "snapshots": [
   {
    "snapshot": "S1-homogeneous-definition",
-   "purpose": "同质冗余观察：三条入门解释内容高度重复",
+   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
    "arm_verdict": "insufficient",
    "arm_score": 0.458,
    "arm_stop_suggestion": "continue",
@@ -1267,27 +1206,27 @@
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "信息上足够（一条入门解释即可），三条互为冗余"
+     "annotation_basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"
     },
     "cost": {
      "accepted_count": 0,
      "arm_says_covered": false,
      "annotation_sufficient": false,
      "match": true,
-     "annotation_basis": "集合内无任何 cost 相关文档"
+     "annotation_basis": "集合内无 cost 相关文档"
     },
     "techniques": {
      "accepted_count": 0,
      "arm_says_covered": false,
      "annotation_sufficient": false,
      "match": true,
-     "annotation_basis": "集合内无任何 techniques 相关文档"
+     "annotation_basis": "集合内无 techniques 相关文档"
     }
    }
   },
   {
    "snapshot": "S2-pseudo-coverage-wrong-stop",
-   "purpose": "伪相关推高覆盖 → 构造错误停止建议场景：cost 仅有 e009 真正回答 why，C/CALC 为伪相关",
+   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
    "arm_verdict": "sufficient",
    "arm_score": 1.0,
    "arm_stop_suggestion": "stop",
@@ -1299,27 +1238,27 @@
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e001/e005 真相关"
+     "annotation_basis": "e001/e005 充分支持"
     },
     "cost": {
      "accepted_count": 3,
      "arm_says_covered": true,
      "annotation_sufficient": false,
      "match": false,
-     "annotation_basis": "仅 e009 真正解释原因；C（游戏选购）与 CALC（只有数字无机制）为伪相关，关键信息不足"
+     "annotation_basis": "仅 e010/CALC 部分回答 + C 仅主题相关；无任何文档给出增长机制——主题覆盖≠回答条件满足"
     },
     "techniques": {
      "accepted_count": 2,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e013/e015 点名具体技术"
+     "annotation_basis": "e013/e015 充分支持"
     }
    }
   },
   {
    "snapshot": "S3-real-after-round2",
-   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（正确继续决策的对照）",
+   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
    "arm_verdict": "insufficient",
    "arm_score": 0.883,
    "arm_stop_suggestion": "continue",
@@ -1331,27 +1270,27 @@
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "多条真相关（含冗余）"
+     "annotation_basis": "多条充分支持级（含冗余）"
     },
     "cost": {
      "accepted_count": 5,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e006-e010 中至少两条真相关（e007 含线性增长机制）"
+     "annotation_basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"
     },
     "techniques": {
      "accepted_count": 1,
      "arm_says_covered": false,
      "annotation_sufficient": false,
      "match": true,
-     "annotation_basis": "仅 e003 一条真相关，缺第二条"
+     "annotation_basis": "仅 e003 一条充分支持级，缺第二条"
     }
    }
   },
   {
    "snapshot": "S5-missing-condition",
-   "purpose": "覆盖主题但缺关键回答条件：cost 子问题主题命中但无任何机制信息",
+   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
    "arm_verdict": "insufficient",
    "arm_score": 0.883,
    "arm_stop_suggestion": "continue",
@@ -1363,27 +1302,27 @@
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e001/e002/e005 真相关"
+     "annotation_basis": "e001/e002/e005 充分支持"
     },
     "cost": {
      "accepted_count": 2,
      "arm_says_covered": true,
      "annotation_sufficient": false,
      "match": false,
-     "annotation_basis": "CALC 只有数字、C 是游戏页——无任何『为何增长』信息，主题覆盖≠回答条件满足"
+     "annotation_basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"
     },
     "techniques": {
      "accepted_count": 1,
      "arm_says_covered": false,
      "annotation_sufficient": false,
      "match": true,
-     "annotation_basis": "仅 e003 一条"
+     "annotation_basis": "仅 e003 一条充分支持级"
     }
    }
   },
   {
    "snapshot": "S6-real-final-state",
-   "purpose": "真实最终状态（demo 运行停止时）：全子问题充分，但含同质冗余",
+   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
    "arm_verdict": "sufficient",
    "arm_score": 1.0,
    "arm_stop_suggestion": "stop",
@@ -1391,25 +1330,25 @@
    "stop_decision_correct": true,
    "per_subq": {
     "definition": {
-     "accepted_count": 14,
+     "accepted_count": 13,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "多条真相关（冗余偏高）"
+     "annotation_basis": "多条充分支持级（冗余偏高）"
     },
     "cost": {
      "accepted_count": 6,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e006-e010 多条真相关"
+     "annotation_basis": "e006-e010 多条充分/部分支持"
     },
     "techniques": {
      "accepted_count": 3,
      "arm_says_covered": true,
      "annotation_sufficient": true,
      "match": true,
-     "annotation_basis": "e013/e014/e015 真相关（e014 词法仅 0.149 漏检）"
+     "annotation_basis": "e011/e013/e014/e015 充分支持"
     }
    }
   }

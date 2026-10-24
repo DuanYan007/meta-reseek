@@ -120,19 +120,31 @@ def compare_with_annotation(task: TaskSpec, snap: Snapshot, assessment, snapshot
 
 # -- doc-level scoring vs annotation -----------------------------------------
 
+RELEVANT_LEVELS = {"partial", "sufficient_support"}  # 二值相关性切点：部分回答及以上算相关
+SCALE_ORDER = ["irrelevant", "topic_only", "partial", "sufficient_support"]
+
+
 def doc_level_report(cases, accepted: dict[str, dict[str, bool]]):
+    """Confusion at the relevance cut (gold = level in RELEVANT_LEVELS), plus
+    the gold-level distribution of ARM-ACCEPTED pairs (how deep below
+    'sufficient_support' the accepted evidence actually sits)."""
     confusion = {"TP": 0, "FP": 0, "FN": 0, "TN": 0}
     errors, corrects = [], []
+    accepted_gold_levels: dict[str, int] = {}
     for case in cases:
         for sid, ann in case["doc_annotation"].items():
-            gold = ann["relevant"]
+            gold = ann["level"] in RELEVANT_LEVELS
             pred = accepted[case["id"]].get(sid, False)
             outcome = ("TP" if gold else "FP") if pred else ("FN" if gold else "TN")
             confusion[outcome] += 1
+            if pred:
+                accepted_gold_levels[ann["level"]] = (
+                    accepted_gold_levels.get(ann["level"], 0) + 1
+                )
             row = {
                 "case": case["id"], "source": case["source"], "intent": case["intent"],
-                "subq": sid, "gold": gold, "pred": pred,
-                "annotation_basis": ann["basis"], "title": case["title"],
+                "subq": sid, "gold_level": ann["level"], "gold_relevant": gold,
+                "pred": pred, "annotation_basis": ann["basis"], "title": case["title"],
             }
             (errors if outcome in {"FP", "FN"} else corrects).append(row)
-    return confusion, errors, corrects
+    return confusion, errors, corrects, accepted_gold_levels
