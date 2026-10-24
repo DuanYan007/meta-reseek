@@ -1,0 +1,4325 @@
+{
+ "doc_level": {
+  "e001": {
+   "definition": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-缓存对象",
+     "P2-机制与目的",
+     "P3-场景"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Explained for LLM Inference - krunalkan…",
+     "P2-机制与目的": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…",
+     "P3-场景": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-具体技术（名称或类别）": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…",
+     "P2-作用方式（缩减/管理）": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+    }
+   }
+  },
+  "e002": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Explained: Why LLMs Remember Keys and V…",
+     "P3-场景": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  },
+  "e003": {
+   "definition": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-缓存对象",
+     "P2-机制与目的",
+     "P3-场景"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache in LLMs Explained: How Transformers Mak…",
+     "P2-机制与目的": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…",
+     "P3-场景": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-具体技术（名称或类别）"
+    ],
+    "missing_points": [
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {
+     "P1-具体技术（名称或类别）": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+    }
+   }
+  },
+  "e004": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Explained with Examples from Real World…",
+     "P3-场景": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [
+     "P1-具体技术（名称或类别）"
+    ],
+    "evidence": {
+     "P2-作用方式（缩减/管理）": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+    }
+   }
+  },
+  "e005": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P1-缓存对象",
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P3-场景": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  },
+  "e006": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Explained: LLM Context and GPU Memory |…",
+     "P3-场景": "… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo…"
+    }
+   },
+   "cost": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-增长关系（机制）": "…culate its GPU memory use, and why long context and concurrency can exhaust VRAM.…",
+     "P2-量级与占用": "…ong context and concurrency can exhaust VRAM.…"
+    }
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  },
+  "e007": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P2-机制与目的"
+    ],
+    "missing_points": [
+     "P3-场景"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…The KV Cache Survival Guide: Why Your GPU Runs Out o…",
+     "P2-机制与目的": "…by storing these tensors so they can be reused. The critical property: the KV cache …"
+    }
+   },
+   "cost": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-增长关系（机制）": "…e critical property: the KV cache grows linearly with the number of tokens in the cont…",
+     "P2-量级与占用": "…Cache Survival Guide: Why Your GPU Runs Out of Memory ... Aug 1, 2026 · The KV cache trades m…"
+    }
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  },
+  "e008": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Memory Usage in LLMs – Formulas & Examp…",
+     "P3-场景": "…y the KV cache really consumes in large language models. Includes per-token estimates, exact f…"
+    }
+   },
+   "cost": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-增长关系（机制）": "…umes in large language models. Includes per-token estimates, exact formulas, real-world e…",
+     "P2-量级与占用": "…KV Cache Memory Usage in LLMs – Formulas & Examples Aug 11, 2…"
+    }
+   },
+   "techniques": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [
+     "P1-具体技术（名称或类别）"
+    ],
+    "evidence": {
+     "P2-作用方式（缩减/管理）": "…mulas, real-world examples, and ways to manage massive long-context requirements.…"
+    }
+   }
+  },
+  "e009": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Explained: Why It Eats Your VRAM GIGAGP…",
+     "P3-场景": "…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac…"
+    }
+   },
+   "cost": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-量级与占用"
+    ],
+    "missing_points": [
+     "P1-增长关系（机制）"
+    ],
+    "evidence": {
+     "P2-量级与占用": "…KV Cache Explained: Why It Eats Your VRAM GIGAGPU Apr 17, 2026 · Understanding ho…"
+    }
+   },
+   "techniques": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [
+     "P1-具体技术（名称或类别）"
+    ],
+    "evidence": {
+     "P2-作用方式（缩减/管理）": "… much VRAM, and practical techniques to manage it on dedicated GPU servers.…"
+    }
+   }
+  },
+  "e010": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象"
+    ],
+    "missing_points": [
+     "P2-机制与目的",
+     "P3-场景"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Optimization: Serve 10x More Users per …"
+    }
+   },
+   "cost": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-量级与占用"
+    ],
+    "missing_points": [
+     "P1-增长关系（机制）"
+    ],
+    "evidence": {
+     "P2-量级与占用": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+    }
+   },
+   "techniques": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [
+     "P1-具体技术（名称或类别）"
+    ],
+    "evidence": {
+     "P2-作用方式（缩减/管理）": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+    }
+   }
+  },
+  "e011": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV Cache Optimization Strategies for Scalable - …",
+     "P3-场景": "…me a first-order challenge for scalable LLM deployment. This paper provides a syste…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-具体技术（名称或类别）": "…cipal directions: cache eviction, cache compression, hybrid memory solutions, novel atte…",
+     "P2-作用方式（缩减/管理）": "…Scalable - arXiv.org Efficient KV cache management has thus become a first-order chal…"
+    }
+   }
+  },
+  "e013": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…",
+     "P3-场景": "… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f…"
+    }
+   },
+   "cost": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-量级与占用"
+    ],
+    "missing_points": [
+     "P1-增长关系（机制）"
+    ],
+    "evidence": {
+     "P2-量级与占用": "…ntion, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors.…"
+    }
+   },
+   "techniques": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-具体技术（名称或类别）": "…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce VRAM …",
+     "P2-作用方式（缩减/管理）": "…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…"
+    }
+   }
+  },
+  "e014": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…Top 10 KV Cache Compression Techniques for LLM Inferenc…",
+     "P3-场景": "…KV Cache Compression Techniques for LLM Inference: Reducing ... For reference, a 7-billio…"
+    }
+   },
+   "cost": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-量级与占用"
+    ],
+    "missing_points": [
+     "P1-增长关系（机制）"
+    ],
+    "evidence": {
+     "P2-量级与占用": "…on-parameter model's parameters consume 14 GB of GPU memory, while the KV cache for t…"
+    }
+   },
+   "techniques": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-具体技术（名称或类别）": "…Top 10 KV Cache Compression Techniques for LLM Inference: Reduci…",
+     "P2-作用方式（缩减/管理）": "… around 72 GB. Compressing the KV cache reduces memory pressure, increases batch sizes…"
+    }
+   }
+  },
+  "e015": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV-Cache Compression Techniques - emergentmind.c…",
+     "P3-场景": "…educe memory and compute bottlenecks in autoregressive models by applying quantization, low-ra…"
+    }
+   },
+   "cost": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-量级与占用"
+    ],
+    "missing_points": [
+     "P1-增长关系（机制）"
+    ],
+    "evidence": {
+     "P2-量级与占用": "…proaches that reduce memory and compute bottlenecks in autoregressive models by applying q…"
+    }
+   },
+   "techniques": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-具体技术（名称或类别）": "…ks in autoregressive models by applying quantization, low-rank factorization, token pru…",
+     "P2-作用方式（缩减/管理）": "…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…"
+    }
+   }
+  },
+  "B-syn-def": {
+   "definition": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-缓存对象",
+     "P2-机制与目的",
+     "P3-场景"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-缓存对象": "…Memoizing past attention states in decoder-only models Instead of recom…",
+     "P2-机制与目的": "…attention states in decoder-only models Instead of recomputing intermediate projections at every ge…",
+     "P3-场景": "…uting intermediate projections at every generation step, serving engines memoize them, tra…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  },
+  "C-topic-cost": {
+   "definition": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-缓存对象",
+     "P2-机制与目的",
+     "P3-场景"
+    ],
+    "evidence": {}
+   },
+   "cost": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-量级与占用"
+    ],
+    "missing_points": [
+     "P1-增长关系（机制）"
+    ],
+    "evidence": {
+     "P2-量级与占用": "…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …"
+    }
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  },
+  "E-jargon-cost": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象",
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…all of autoregressive serving Per-token intermediate states accumulate with context length and quic…",
+     "P3-场景": "…st HBM on accelerator cards during long-generation workloads.…"
+    }
+   },
+   "cost": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-增长关系（机制）": "…e serving Per-token intermediate states accumulate with context length and quickly exhaus…",
+     "P2-量级与占用": "…with context length and quickly exhaust HBM on accelerator cards during long-genera…"
+    }
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  },
+  "H-syn-tech": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P3-场景"
+    ],
+    "missing_points": [
+     "P1-缓存对象",
+     "P2-机制与目的"
+    ],
+    "evidence": {
+     "P3-场景": "…Cutting the memory bill of large-model serving Sharing attention heads and compressing…"
+    }
+   },
+   "cost": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-增长关系（机制）",
+     "P2-量级与占用"
+    ],
+    "evidence": {}
+   },
+   "techniques": {
+    "class": "condition_met",
+    "covered_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "missing_points": [],
+    "evidence": {
+     "P1-具体技术（名称或类别）": "…del serving Sharing attention heads and compressing cached token states are the two main…",
+     "P2-作用方式（缩减/管理）": "…Cutting the memory bill of large-model serv…"
+    }
+   }
+  },
+  "CALC-missing-why": {
+   "definition": {
+    "class": "partial_points",
+    "covered_points": [
+     "P1-缓存对象"
+    ],
+    "missing_points": [
+     "P2-机制与目的",
+     "P3-场景"
+    ],
+    "evidence": {
+     "P1-缓存对象": "…KV cache memory calculator: plug in your model s…"
+    }
+   },
+   "cost": {
+    "class": "partial_points",
+    "covered_points": [
+     "P2-量级与占用"
+    ],
+    "missing_points": [
+     "P1-增长关系（机制）"
+    ],
+    "evidence": {
+     "P2-量级与占用": "… context length to compute KV cache GPU memory usage for popular models. Numbers update inst…"
+    }
+   },
+   "techniques": {
+    "class": "topic_or_less",
+    "covered_points": [],
+    "missing_points": [
+     "P1-具体技术（名称或类别）",
+     "P2-作用方式（缩减/管理）"
+    ],
+    "evidence": {}
+   }
+  }
+ },
+ "v1_points_domains": [
+  {
+   "snapshot": "S1-homogeneous-definition",
+   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 3 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）",
+      "P2-量级与占用"
+     ],
+     "condition_met_docs": [],
+     "domains": [],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e004"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "要点未覆盖：['P1-增长关系（机制）', 'P2-量级与占用']",
+     "point_evidence": {}
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "inference.net",
+      "krunalkanojiya.com"
+     ],
+     "redundant_docs": [
+      "e002"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S2-pseudo-coverage-wrong-stop",
+   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "constructed.example",
+      "emergentmind.com",
+      "gpuyard.com",
+      "krunalkanojiya.com",
+      "machinelearningmastery.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 6 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…KV-Cache Compression Techniques - emergentmind.c…"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "…KV cache memory calculator: plug in your model s…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…educe memory and compute bottlenecks in autoregressive models by applying quantization, low-ra…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）"
+     ],
+     "condition_met_docs": [],
+     "domains": [
+      "constructed.example",
+      "emergentmind.com",
+      "gpuyard.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e005"
+     ],
+     "same_domain_redundancy": {
+      "P2-量级与占用": 1
+     },
+     "reason": "要点未覆盖：['P1-增长关系（机制）']",
+     "point_evidence": {
+      "P2-量级与占用": [
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…ntion, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors.…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…proaches that reduce memory and compute bottlenecks in autoregressive models by applying q…"
+       },
+       {
+        "doc": "C-topic-cost",
+        "domain": "constructed.example",
+        "evidence": "…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "… context length to compute KV cache GPU memory usage for popular models. Numbers update inst…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e013",
+      "e015"
+     ],
+     "domains": [
+      "emergentmind.com",
+      "gpuyard.com",
+      "krunalkanojiya.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "e005",
+      "C-topic-cost",
+      "CALC-missing-why"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 4 个，完整覆盖文档 ['e001', 'e013', 'e015']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce VRAM …"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…ks in autoregressive models by applying quantization, low-rank factorization, token pru…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S3-real-after-round2",
+   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
+   "criteria_stop_suggestion": "stop",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": false,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "hivenet.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "sitepoint.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 10 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…KV Cache Explained: LLM Context and GPU Memory |…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…The KV Cache Survival Guide: Why Your GPU Runs Out o…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examp…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGP…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…by storing these tensors so they can be reused. The critical property: the KV cache …"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…y the KV cache really consumes in large language models. Includes per-token estimates, exact f…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e006",
+      "e007",
+      "e008"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "hivenet.com",
+      "sitepoint.com",
+      "spheron.network",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 5 个，完整覆盖文档 ['e006', 'e007', 'e008']",
+     "point_evidence": {
+      "P1-增长关系（机制）": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…culate its GPU memory use, and why long context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…e critical property: the KV cache grows linearly with the number of tokens in the cont…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…umes in large language models. Includes per-token estimates, exact formulas, real-world e…"
+       }
+      ],
+      "P2-量级与占用": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…ong context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…Cache Survival Guide: Why Your GPU Runs Out of Memory ... Aug 1, 2026 · The KV cache trades m…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examples Aug 11, 2…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGPU Apr 17, 2026 · Understanding ho…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "e006",
+      "e007"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 6 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…mulas, real-world examples, and ways to manage massive long-context requirements.…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "… much VRAM, and practical techniques to manage it on dedicated GPU servers.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S5-missing-condition",
+   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "constructed.example",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "tensortonic.com"
+     ],
+     "redundant_docs": [
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 5 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "…KV cache memory calculator: plug in your model s…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）"
+     ],
+     "condition_met_docs": [],
+     "domains": [
+      "constructed.example"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e005"
+     ],
+     "same_domain_redundancy": {
+      "P2-量级与占用": 1
+     },
+     "reason": "要点未覆盖：['P1-增长关系（机制）']",
+     "point_evidence": {
+      "P2-量级与占用": [
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "… context length to compute KV cache GPU memory usage for popular models. Numbers update inst…"
+       },
+       {
+        "doc": "C-topic-cost",
+        "domain": "constructed.example",
+        "evidence": "…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "krunalkanojiya.com",
+      "tensortonic.com"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "CALC-missing-why",
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S6-real-final-state",
+   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
+   "criteria_stop_suggestion": "stop",
+   "annotation_stop_should_be": "stop",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "arxiv.org",
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "hivenet.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 14 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…KV Cache Explained: LLM Context and GPU Memory |…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…The KV Cache Survival Guide: Why Your GPU Runs Out o…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examp…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGP…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…KV Cache Optimization Strategies for Scalable - …"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…Top 10 KV Cache Compression Techniques for LLM Inferenc…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…KV-Cache Compression Techniques - emergentmind.c…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…by storing these tensors so they can be reused. The critical property: the KV cache …"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…y the KV cache really consumes in large language models. Includes per-token estimates, exact f…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac…"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…me a first-order challenge for scalable LLM deployment. This paper provides a syste…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…KV Cache Compression Techniques for LLM Inference: Reducing ... For reference, a 7-billio…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…educe memory and compute bottlenecks in autoregressive models by applying quantization, low-ra…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e006",
+      "e007",
+      "e008"
+     ],
+     "domains": [
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "hivenet.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005",
+      "e011"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 8 个，完整覆盖文档 ['e006', 'e007', 'e008']",
+     "point_evidence": {
+      "P1-增长关系（机制）": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…culate its GPU memory use, and why long context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…e critical property: the KV cache grows linearly with the number of tokens in the cont…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…umes in large language models. Includes per-token estimates, exact formulas, real-world e…"
+       }
+      ],
+      "P2-量级与占用": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…ong context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…Cache Survival Guide: Why Your GPU Runs Out of Memory ... Aug 1, 2026 · The KV cache trades m…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examples Aug 11, 2…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGPU Apr 17, 2026 · Understanding ho…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…ntion, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors.…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…on-parameter model's parameters consume 14 GB of GPU memory, while the KV cache for t…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…proaches that reduce memory and compute bottlenecks in autoregressive models by applying q…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e011",
+      "e013",
+      "e014",
+      "e015"
+     ],
+     "domains": [
+      "arxiv.org",
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "metaailabs.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "e006",
+      "e007"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 10 个，完整覆盖文档 ['e001', 'e011', 'e013', 'e014', 'e015']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…cipal directions: cache eviction, cache compression, hybrid memory solutions, novel atte…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce VRAM …"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…Top 10 KV Cache Compression Techniques for LLM Inference: Reduci…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…ks in autoregressive models by applying quantization, low-rank factorization, token pru…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…mulas, real-world examples, and ways to manage massive long-context requirements.…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "… much VRAM, and practical techniques to manage it on dedicated GPU servers.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…Scalable - arXiv.org Efficient KV cache management has thus become a first-order chal…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "… around 72 GB. Compressing the KV cache reduces memory pressure, increases batch sizes…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…"
+       }
+      ]
+     }
+    }
+   }
+  }
+ ],
+ "v2_antisplit": [
+  {
+   "snapshot": "S1-homogeneous-definition",
+   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 3 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）",
+      "P2-量级与占用"
+     ],
+     "condition_met_docs": [],
+     "domains": [],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e004"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "要点未覆盖：['P1-增长关系（机制）', 'P2-量级与占用']",
+     "point_evidence": {}
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "inference.net",
+      "krunalkanojiya.com"
+     ],
+     "redundant_docs": [
+      "e002"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S2-pseudo-coverage-wrong-stop",
+   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "constructed.example",
+      "emergentmind.com",
+      "gpuyard.com",
+      "krunalkanojiya.com",
+      "machinelearningmastery.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 6 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…KV-Cache Compression Techniques - emergentmind.c…"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "…KV cache memory calculator: plug in your model s…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…educe memory and compute bottlenecks in autoregressive models by applying quantization, low-ra…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）"
+     ],
+     "condition_met_docs": [],
+     "domains": [
+      "constructed.example",
+      "emergentmind.com",
+      "gpuyard.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e005"
+     ],
+     "same_domain_redundancy": {
+      "P2-量级与占用": 1
+     },
+     "reason": "要点未覆盖：['P1-增长关系（机制）']",
+     "point_evidence": {
+      "P2-量级与占用": [
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…ntion, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors.…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…proaches that reduce memory and compute bottlenecks in autoregressive models by applying q…"
+       },
+       {
+        "doc": "C-topic-cost",
+        "domain": "constructed.example",
+        "evidence": "…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "… context length to compute KV cache GPU memory usage for popular models. Numbers update inst…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e013",
+      "e015"
+     ],
+     "domains": [
+      "emergentmind.com",
+      "gpuyard.com",
+      "krunalkanojiya.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "e005",
+      "C-topic-cost",
+      "CALC-missing-why"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 4 个，完整覆盖文档 ['e001', 'e013', 'e015']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce VRAM …"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…ks in autoregressive models by applying quantization, low-rank factorization, token pru…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S3-real-after-round2",
+   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
+   "criteria_stop_suggestion": "stop",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": false,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "hivenet.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "sitepoint.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 10 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…KV Cache Explained: LLM Context and GPU Memory |…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…The KV Cache Survival Guide: Why Your GPU Runs Out o…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examp…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGP…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…by storing these tensors so they can be reused. The critical property: the KV cache …"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…y the KV cache really consumes in large language models. Includes per-token estimates, exact f…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e006",
+      "e007",
+      "e008"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "hivenet.com",
+      "sitepoint.com",
+      "spheron.network",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 5 个，完整覆盖文档 ['e006', 'e007', 'e008']",
+     "point_evidence": {
+      "P1-增长关系（机制）": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…culate its GPU memory use, and why long context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…e critical property: the KV cache grows linearly with the number of tokens in the cont…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…umes in large language models. Includes per-token estimates, exact formulas, real-world e…"
+       }
+      ],
+      "P2-量级与占用": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…ong context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…Cache Survival Guide: Why Your GPU Runs Out of Memory ... Aug 1, 2026 · The KV cache trades m…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examples Aug 11, 2…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGPU Apr 17, 2026 · Understanding ho…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "e006",
+      "e007"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 6 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…mulas, real-world examples, and ways to manage massive long-context requirements.…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "… much VRAM, and practical techniques to manage it on dedicated GPU servers.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S5-missing-condition",
+   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "constructed.example",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "tensortonic.com"
+     ],
+     "redundant_docs": [
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 5 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "…KV cache memory calculator: plug in your model s…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）"
+     ],
+     "condition_met_docs": [],
+     "domains": [
+      "constructed.example"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e005"
+     ],
+     "same_domain_redundancy": {
+      "P2-量级与占用": 1
+     },
+     "reason": "要点未覆盖：['P1-增长关系（机制）']",
+     "point_evidence": {
+      "P2-量级与占用": [
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "… context length to compute KV cache GPU memory usage for popular models. Numbers update inst…"
+       },
+       {
+        "doc": "C-topic-cost",
+        "domain": "constructed.example",
+        "evidence": "…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "krunalkanojiya.com",
+      "tensortonic.com"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "CALC-missing-why",
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S6-real-final-state",
+   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
+   "criteria_stop_suggestion": "stop",
+   "annotation_stop_should_be": "stop",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "arxiv.org",
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "hivenet.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 14 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…KV Cache Explained: LLM Context and GPU Memory |…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…The KV Cache Survival Guide: Why Your GPU Runs Out o…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examp…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGP…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…KV Cache Optimization Strategies for Scalable - …"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…Top 10 KV Cache Compression Techniques for LLM Inferenc…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…KV-Cache Compression Techniques - emergentmind.c…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…by storing these tensors so they can be reused. The critical property: the KV cache …"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…y the KV cache really consumes in large language models. Includes per-token estimates, exact f…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac…"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…me a first-order challenge for scalable LLM deployment. This paper provides a syste…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…KV Cache Compression Techniques for LLM Inference: Reducing ... For reference, a 7-billio…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…educe memory and compute bottlenecks in autoregressive models by applying quantization, low-ra…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e006",
+      "e007",
+      "e008"
+     ],
+     "domains": [
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "hivenet.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005",
+      "e011"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 8 个，完整覆盖文档 ['e006', 'e007', 'e008']",
+     "point_evidence": {
+      "P1-增长关系（机制）": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…culate its GPU memory use, and why long context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…e critical property: the KV cache grows linearly with the number of tokens in the cont…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…umes in large language models. Includes per-token estimates, exact formulas, real-world e…"
+       }
+      ],
+      "P2-量级与占用": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…ong context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…Cache Survival Guide: Why Your GPU Runs Out of Memory ... Aug 1, 2026 · The KV cache trades m…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examples Aug 11, 2…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGPU Apr 17, 2026 · Understanding ho…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…ntion, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors.…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…on-parameter model's parameters consume 14 GB of GPU memory, while the KV cache for t…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…proaches that reduce memory and compute bottlenecks in autoregressive models by applying q…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e011",
+      "e013",
+      "e014",
+      "e015"
+     ],
+     "domains": [
+      "arxiv.org",
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "metaailabs.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "e006",
+      "e007"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 10 个，完整覆盖文档 ['e001', 'e011', 'e013', 'e014', 'e015']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…cipal directions: cache eviction, cache compression, hybrid memory solutions, novel atte…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce VRAM …"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…Top 10 KV Cache Compression Techniques for LLM Inference: Reduci…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…ks in autoregressive models by applying quantization, low-rank factorization, token pru…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…mulas, real-world examples, and ways to manage massive long-context requirements.…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "… much VRAM, and practical techniques to manage it on dedicated GPU servers.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…Scalable - arXiv.org Efficient KV cache management has thus become a first-order chal…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "… around 72 GB. Compressing the KV cache reduces memory pressure, increases batch sizes…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…"
+       }
+      ]
+     }
+    }
+   }
+  }
+ ],
+ "snapshots": [
+  {
+   "snapshot": "S1-homogeneous-definition",
+   "purpose": "同质冗余观察：三条入门解释内容高度重复（真实搜索结果标题与摘要）",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 3 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）",
+      "P2-量级与占用"
+     ],
+     "condition_met_docs": [],
+     "domains": [],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e004"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "要点未覆盖：['P1-增长关系（机制）', 'P2-量级与占用']",
+     "point_evidence": {}
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "inference.net",
+      "krunalkanojiya.com"
+     ],
+     "redundant_docs": [
+      "e002"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S2-pseudo-coverage-wrong-stop",
+   "purpose": "伪覆盖错误停止（修订版）：cost 仅有 e010(部分) 与 CALC(部分)、C(仅主题)，无任何充分支持级文档——主题命中推高覆盖但关键回答条件（增长机制）缺失",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "constructed.example",
+      "emergentmind.com",
+      "gpuyard.com",
+      "krunalkanojiya.com",
+      "machinelearningmastery.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 6 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…KV-Cache Compression Techniques - emergentmind.c…"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "…KV cache memory calculator: plug in your model s…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…educe memory and compute bottlenecks in autoregressive models by applying quantization, low-ra…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）"
+     ],
+     "condition_met_docs": [],
+     "domains": [
+      "constructed.example",
+      "emergentmind.com",
+      "gpuyard.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e005"
+     ],
+     "same_domain_redundancy": {
+      "P2-量级与占用": 1
+     },
+     "reason": "要点未覆盖：['P1-增长关系（机制）']",
+     "point_evidence": {
+      "P2-量级与占用": [
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…ntion, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors.…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…proaches that reduce memory and compute bottlenecks in autoregressive models by applying q…"
+       },
+       {
+        "doc": "C-topic-cost",
+        "domain": "constructed.example",
+        "evidence": "…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "… context length to compute KV cache GPU memory usage for popular models. Numbers update inst…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e013",
+      "e015"
+     ],
+     "domains": [
+      "emergentmind.com",
+      "gpuyard.com",
+      "krunalkanojiya.com",
+      "spheron.network"
+     ],
+     "redundant_docs": [
+      "e005",
+      "C-topic-cost",
+      "CALC-missing-why"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 4 个，完整覆盖文档 ['e001', 'e013', 'e015']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce VRAM …"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…ks in autoregressive models by applying quantization, low-rank factorization, token pru…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S3-real-after-round2",
+   "purpose": "真实对照：demo 运行第 2 轮后的实际证据状态（标题与摘要）",
+   "criteria_stop_suggestion": "stop",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": false,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "hivenet.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "sitepoint.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 10 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…KV Cache Explained: LLM Context and GPU Memory |…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…The KV Cache Survival Guide: Why Your GPU Runs Out o…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examp…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGP…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…by storing these tensors so they can be reused. The critical property: the KV cache …"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…y the KV cache really consumes in large language models. Includes per-token estimates, exact f…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e006",
+      "e007",
+      "e008"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "hivenet.com",
+      "sitepoint.com",
+      "spheron.network",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 5 个，完整覆盖文档 ['e006', 'e007', 'e008']",
+     "point_evidence": {
+      "P1-增长关系（机制）": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…culate its GPU memory use, and why long context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…e critical property: the KV cache grows linearly with the number of tokens in the cont…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…umes in large language models. Includes per-token estimates, exact formulas, real-world e…"
+       }
+      ],
+      "P2-量级与占用": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…ong context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…Cache Survival Guide: Why Your GPU Runs Out of Memory ... Aug 1, 2026 · The KV cache trades m…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examples Aug 11, 2…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGPU Apr 17, 2026 · Understanding ho…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "gigagpu.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "e006",
+      "e007"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 6 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…mulas, real-world examples, and ways to manage massive long-context requirements.…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "… much VRAM, and practical techniques to manage it on dedicated GPU servers.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S5-missing-condition",
+   "purpose": "覆盖主题但缺关键回答条件：cost 主题命中（e003/CALC 部分 + C 仅主题）但无机制文档",
+   "criteria_stop_suggestion": "continue",
+   "annotation_stop_should_be": "continue",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "constructed.example",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "tensortonic.com"
+     ],
+     "redundant_docs": [
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 5 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "…KV cache memory calculator: plug in your model s…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": false,
+     "annotation_sufficient": false,
+     "match": true,
+     "missing_points": [
+      "P1-增长关系（机制）"
+     ],
+     "condition_met_docs": [],
+     "domains": [
+      "constructed.example"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e005"
+     ],
+     "same_domain_redundancy": {
+      "P2-量级与占用": 1
+     },
+     "reason": "要点未覆盖：['P1-增长关系（机制）']",
+     "point_evidence": {
+      "P2-量级与占用": [
+       {
+        "doc": "CALC-missing-why",
+        "domain": "constructed.example",
+        "evidence": "… context length to compute KV cache GPU memory usage for popular models. Numbers update inst…"
+       },
+       {
+        "doc": "C-topic-cost",
+        "domain": "constructed.example",
+        "evidence": "…st gaming GPUs by memory size: the 2024 VRAM tier list We compare GPU memory across …"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": false,
+     "match": false,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001"
+     ],
+     "domains": [
+      "krunalkanojiya.com",
+      "tensortonic.com"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "CALC-missing-why",
+      "C-topic-cost"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 2 个，完整覆盖文档 ['e001']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "snapshot": "S6-real-final-state",
+   "purpose": "真实最终状态（demo 运行停止时，同源 pdf 已去重后 14 条标题与摘要）",
+   "criteria_stop_suggestion": "stop",
+   "annotation_stop_should_be": "stop",
+   "stop_decision_correct": true,
+   "per_subq": {
+    "definition": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e003"
+     ],
+     "domains": [
+      "arxiv.org",
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "hivenet.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "learncodecamp.net",
+      "machinelearningmastery.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 14 个，完整覆盖文档 ['e001', 'e003']",
+     "point_evidence": {
+      "P1-缓存对象": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkan…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…KV Cache Explained: Why LLMs Remember Keys and V…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…KV Cache in LLMs Explained: How Transformers Mak…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…KV Cache Explained with Examples from Real World…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…KV Cache Explained: LLM Context and GPU Memory |…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…The KV Cache Survival Guide: Why Your GPU Runs Out o…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examp…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGP…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per …"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…KV Cache Optimization Strategies for Scalable - …"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…The Ultimate Guide to KV Cache Optimization for LLM Inference (2026) L…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…Top 10 KV Cache Compression Techniques for LLM Inferenc…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…KV-Cache Compression Techniques - emergentmind.c…"
+       }
+      ],
+      "P2-机制与目的": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…Cache Explained: How LLMs Generate Text Without Recomputing Everything KV cache is the reason yo…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…che in LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM infere…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…by storing these tensors so they can be reused. The critical property: the KV cache …"
+       }
+      ],
+      "P3-场景": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…KV Cache Explained for LLM Inference - krunalkanojiya.com KV Cache Explained…"
+       },
+       {
+        "doc": "e002",
+        "domain": "learncodecamp.net",
+        "evidence": "…hy LLMs Remember Keys and Values During Inference A practical, matrix-level explanation o…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…n LLMs Explained: How Transformers Make Inference Fast Learn how the KV cache makes LLM i…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…he Explained for Optimizing Transformer Inference Efficiency from Scratch Registering Cac…"
+       },
+       {
+        "doc": "e005",
+        "domain": "machinelearningmastery.com",
+        "evidence": "…The Complete Guide to Inference Caching in LLMs - Machine Learning Mast…"
+       },
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "… 2026 · Learn what KV cache is, why LLM inference needs it, how to calculate its GPU memo…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…y the KV cache really consumes in large language models. Includes per-token estimates, exact f…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…rstanding how the KV cache works in LLM inference, why it consumes so much VRAM, and prac…"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…me a first-order challenge for scalable LLM deployment. This paper provides a syste…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "… Guide to KV Cache Optimization for LLM Inference (2026) Learn how to optimize KV Cache f…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…KV Cache Compression Techniques for LLM Inference: Reducing ... For reference, a 7-billio…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…educe memory and compute bottlenecks in autoregressive models by applying quantization, low-ra…"
+       }
+      ]
+     }
+    },
+    "cost": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e006",
+      "e007",
+      "e008"
+     ],
+     "domains": [
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "hivenet.com",
+      "metaailabs.com",
+      "sitepoint.com",
+      "spheron.network",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e001",
+      "e002",
+      "e003",
+      "e004",
+      "e005",
+      "e011"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 8 个，完整覆盖文档 ['e006', 'e007', 'e008']",
+     "point_evidence": {
+      "P1-增长关系（机制）": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…culate its GPU memory use, and why long context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…e critical property: the KV cache grows linearly with the number of tokens in the cont…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…umes in large language models. Includes per-token estimates, exact formulas, real-world e…"
+       }
+      ],
+      "P2-量级与占用": [
+       {
+        "doc": "e006",
+        "domain": "hivenet.com",
+        "evidence": "…ong context and concurrency can exhaust VRAM.…"
+       },
+       {
+        "doc": "e007",
+        "domain": "sitepoint.com",
+        "evidence": "…Cache Survival Guide: Why Your GPU Runs Out of Memory ... Aug 1, 2026 · The KV cache trades m…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…KV Cache Memory Usage in LLMs – Formulas & Examples Aug 11, 2…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "…KV Cache Explained: Why It Eats Your VRAM GIGAGPU Apr 17, 2026 · Understanding ho…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…t at 128K context uses approximately 42.9 GB for the KV cache at BF16 precision.…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…ntion, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors.…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…on-parameter model's parameters consume 14 GB of GPU memory, while the KV cache for t…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…proaches that reduce memory and compute bottlenecks in autoregressive models by applying q…"
+       }
+      ]
+     }
+    },
+    "techniques": {
+     "sufficient": true,
+     "annotation_sufficient": true,
+     "match": true,
+     "missing_points": [],
+     "condition_met_docs": [
+      "e001",
+      "e011",
+      "e013",
+      "e014",
+      "e015"
+     ],
+     "domains": [
+      "arxiv.org",
+      "emergentmind.com",
+      "gigagpu.com",
+      "gpuyard.com",
+      "inference.net",
+      "krunalkanojiya.com",
+      "metaailabs.com",
+      "spheron.network",
+      "tensortonic.com",
+      "unanswered.io"
+     ],
+     "redundant_docs": [
+      "e002",
+      "e005",
+      "e006",
+      "e007"
+     ],
+     "same_domain_redundancy": {},
+     "reason": "全部要点已覆盖，独立来源域 10 个，完整覆盖文档 ['e001', 'e011', 'e013', 'e014', 'e015']",
+     "point_evidence": {
+      "P1-具体技术（名称或类别）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "… systems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e003",
+        "domain": "tensortonic.com",
+        "evidence": "…e fast. Prefill vs decode, memory math, GQA, MQA, PagedAttention, and the geometry …"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…cipal directions: cache eviction, cache compression, hybrid memory solutions, novel atte…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…timize KV Cache for LLM inference using PagedAttention, quantization, and vLLM to reduce VRAM …"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "…Top 10 KV Cache Compression Techniques for LLM Inference: Reduci…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…ks in autoregressive models by applying quantization, low-rank factorization, token pru…"
+       }
+      ],
+      "P2-作用方式（缩减/管理）": [
+       {
+        "doc": "e001",
+        "domain": "krunalkanojiya.com",
+        "evidence": "…tems like vLLM, PagedAttention, and GQA manage it at scale.…"
+       },
+       {
+        "doc": "e004",
+        "domain": "inference.net",
+        "evidence": "…ans In Plain Words Questions That Guide Optimization Choices Short, Actionable Checklis…"
+       },
+       {
+        "doc": "e008",
+        "domain": "unanswered.io",
+        "evidence": "…mulas, real-world examples, and ways to manage massive long-context requirements.…"
+       },
+       {
+        "doc": "e009",
+        "domain": "gigagpu.com",
+        "evidence": "… much VRAM, and practical techniques to manage it on dedicated GPU servers.…"
+       },
+       {
+        "doc": "e010",
+        "domain": "spheron.network",
+        "evidence": "…KV Cache Optimization: Serve 10x More Users per GPU (202…"
+       },
+       {
+        "doc": "e011",
+        "domain": "arxiv.org",
+        "evidence": "…Scalable - arXiv.org Efficient KV cache management has thus become a first-order chal…"
+       },
+       {
+        "doc": "e013",
+        "domain": "gpuyard.com",
+        "evidence": "…gedAttention, quantization, and vLLM to reduce VRAM bottlenecks and prevent OOM errors…"
+       },
+       {
+        "doc": "e014",
+        "domain": "metaailabs.com",
+        "evidence": "… around 72 GB. Compressing the KV cache reduces memory pressure, increases batch sizes…"
+       },
+       {
+        "doc": "e015",
+        "domain": "emergentmind.com",
+        "evidence": "…hniques are algorithmic approaches that reduce memory and compute bottlenecks in autor…"
+       }
+      ]
+     }
+    }
+   }
+  }
+ ],
+ "criteria_definition": {
+  "definition": {
+   "P1-缓存对象": [
+    "kv[- ]cache",
+    "key[- ]value",
+    "keys and values",
+    "cache[sd]? (the )?(key|past|attention)",
+    "past attention states",
+    "intermediate (projections|states|tensors)",
+    "memoiz"
+   ],
+   "P2-机制与目的": [
+    "without recomput",
+    "avoid recomput",
+    "instead of recomput",
+    "reus",
+    "trades? memory for",
+    "faster",
+    "speed",
+    "latency",
+    "make[s]? (llm|inference|transformer)\\w* fast"
+   ],
+   "P3-场景": [
+    "inference",
+    "generation",
+    "decod",
+    "autoregressive",
+    "prefill",
+    "serving",
+    "\\bllm\\b",
+    "language model"
+   ]
+  },
+  "cost": {
+   "P1-增长关系（机制）": [
+    "linear",
+    "scales? with",
+    "grows? (linearly|with)",
+    "growth",
+    "accumulat",
+    "per[- ]token",
+    "each token",
+    "as (the )?(context|sequence|batch)",
+    "(context|sequence|batch)[^.;]{0,40}(exhaust|increas)",
+    "long context[^.;]{0,40}(exhaust|can)"
+   ],
+   "P2-量级与占用": [
+    "\\d+\\s*(gb|mb|tb)",
+    "memory (usage|footprint|consum\\w+|require\\w+)",
+    "vram",
+    "hbm",
+    "bottleneck",
+    "exhaust",
+    "out of memory",
+    "\\boom\\b",
+    "consum\\w+ (so )?much",
+    "dominat"
+   ]
+  },
+  "techniques": {
+   "P1-具体技术（名称或类别）": [
+    "\\bgqa\\b",
+    "\\bmqa\\b",
+    "multi[- ]query",
+    "grouped[- ]query",
+    "pagedattention",
+    "paged attention",
+    "quantiz",
+    "\\bint8\\b",
+    "\\bint4\\b",
+    "compress",
+    "shar\\w+ (attention|query|\\w* heads)",
+    "evict",
+    "sliding window",
+    "sparsif",
+    "low[- ]rank"
+   ],
+   "P2-作用方式（缩减/管理）": [
+    "reduce",
+    "cut",
+    "halv",
+    "manag",
+    "optimiz",
+    "serve (more|\\d+x)",
+    "fit (long )?(context|\\w+ contexts)",
+    "prevent oom",
+    "memory (bill|waste|saving)"
+   ]
+  }
+ },
+ "experiment": "p1a-taskB-sufficiency-criteria",
+ "date": "2026-10-24"
+}
