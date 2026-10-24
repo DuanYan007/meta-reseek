@@ -17,7 +17,15 @@ from meta_reseek.memory import EpisodicMemory, WorkingMemory, episodes_from_log
 from meta_reseek.memory.episodic import SCHEMA, SCHEMA_VERSION
 from meta_reseek.metacog.controller import MetacognitiveController
 
+import pytest
+
 from conftest import MockProvider, WINNERS_HITS, WORK_HITS, make_task
+
+_CACHE = Path(__file__).resolve().parents[1] / "artifacts/cache"
+_HAS_CACHE = _CACHE.exists() and bool(list(_CACHE.glob("*.json")))
+_needs_cache = pytest.mark.skipif(
+    not _HAS_CACHE, reason="本机无检索缓存：离线回放类 CLI 测试需要 artifacts/cache")
+
 
 
 def _run(task=None, provider=None):
@@ -244,6 +252,7 @@ def test_run_id_content_fingerprint_avoids_same_second_collision():
     assert len(mem.records) == len(log_a.records)
 
 
+@_needs_cache
 def test_save_episodes_flag_does_not_affect_decisions(tmp_path):
     """整改④：--save-episodes 开关不影响检索决策（离线回放口径下轨迹一致）。"""
     import shutil

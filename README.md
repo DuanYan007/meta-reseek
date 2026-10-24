@@ -74,6 +74,10 @@ meta_reseek/
 - **LongTermMemory**（`meta_reseek/memory/longterm.py`，P1-b 第二轮）：跨任务策略统计（schema `meta-reseek/longterm` v1）——按任务×策略聚合尝试/反馈分布/通道错误，每格保存来源 episode ID 可回溯；幂等导入、确定性持久化、`reconcile()` 双向核对；`--save-longterm PATH` 可选开启。**effect=helpful 为 P0 反馈代理，非真实答案质量**；只保存与查询统计，不参与策略选择；
 - 边界：不含跨任务策略学习 / 参数自动更新 / 元元认知校准 / RSI。
 
+## 评测集（P1-c，2026-10-24）
+
+`experiments/p1c/`：12 个冻结场景（9 mock 确定性 + 3 真实任务缓存回放），覆盖八类证据条件与三种停止路径；六类指标 + 自动汇总报告（`python experiments/p1c/run_eval.py`，mock 类完全离线可重算）。
+
 ## 测试与演示
 
 ```bash

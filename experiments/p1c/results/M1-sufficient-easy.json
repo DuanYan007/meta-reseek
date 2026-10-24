@@ -1,0 +1,47 @@
+{
+ "actual_stop": "stop_sufficient",
+ "attribution_mentions_channel": false,
+ "channel_error_rounds": 0,
+ "channel_errors_consistent": true,
+ "class": "mock",
+ "conditions": [
+  "sufficient_evidence"
+ ],
+ "duplicates_rejected": 0,
+ "evidence_total": 4,
+ "expected_stop": "stop_sufficient",
+ "final_coverage": {
+  "a": 2,
+  "b": 2
+ },
+ "id": "M1-sufficient-easy",
+ "irrelevant_rejected": 0,
+ "memory_trace": {
+  "episodes": 2,
+  "ltm_cells": 1,
+  "ltm_reconcile_fully_verified": true,
+  "ltm_reconcile_ok": true,
+  "working_memory_fields": [
+   "channel_state",
+   "coverage",
+   "gaps",
+   "last_feedback",
+   "recent_strategies",
+   "rounds_so_far",
+   "task",
+   "tried_queries"
+  ]
+ },
+ "memory_traceable": true,
+ "purpose": "证据充分，首轮命中后正常停止",
+ "queries": [
+  "seed query one"
+ ],
+ "queries_unique": true,
+ "retries_consistent": true,
+ "retries_total": 0,
+ "rounds_consistent": true,
+ "rounds_searched": 1,
+ "status": "ok",
+ "stop_consistent": true
+}
