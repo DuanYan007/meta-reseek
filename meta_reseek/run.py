@@ -40,6 +40,11 @@ def main(argv: list[str] | None = None) -> int:
         "--show-working-memory", action="store_true",
         help="P1-b: 运行后打印 WorkingMemory 任务上下文视图（只读，不影响运行）",
     )
+    parser.add_argument(
+        "--save-longterm", default=None, metavar="PATH",
+        help="P1-b: 把本次运行经历聚合进 LongTermMemory 统计并保存为 JSON"
+             "（默认关闭；与既有文件合并，重复导入不重复计数）",
+    )
     args = parser.parse_args(argv)
 
     task = TaskSpec.from_yaml(args.task)
@@ -78,6 +83,25 @@ def main(argv: list[str] | None = None) -> int:
         n = mem.extend_from_log(log)
         path = mem.save(args.save_episodes)
         emit(f"EpisodicMemory: 已保存 {n} 条经历 -> {path}")
+
+    if args.save_longterm:
+        from .memory import EpisodicMemory, LongTermMemory
+        from .memory.episodic import episodes_from_log
+
+        ltm_path = Path(args.save_longterm)
+        ltm = LongTermMemory.load(ltm_path) if ltm_path.exists() else LongTermMemory()
+        added = ltm.ingest(episodes_from_log(log))
+        ltm.save(ltm_path)
+        emit(f"LongTermMemory: 新增聚合 {added} 条经历，统计已保存 -> {ltm_path}")
+        if args.save_episodes:
+            emit(f"来源经历已由 --save-episodes 持久化 -> {args.save_episodes}")
+        else:
+            # 整改③：单独启用时自动持久化来源经历，保证统计可追溯/可核对
+            auto = ltm_path.parent / f"{task.name}_episodes.jsonl"
+            emem = EpisodicMemory()
+            emem.extend_from_log(log)
+            emem.save(auto)
+            emit(f"LongTermMemory 来源经历已自动持久化 -> {auto}")
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)

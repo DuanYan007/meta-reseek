@@ -10,6 +10,8 @@ EpisodicMemory — 任务经历库：把 RoundRecord 投影为完整经历
 """
 
 from .episodic import EpisodicMemory, SCHEMA_VERSION, episodes_from_log
+from .longterm import LongTermMemory
 from .working import WorkingMemory
 
-__all__ = ["WorkingMemory", "EpisodicMemory", "episodes_from_log", "SCHEMA_VERSION"]
+__all__ = ["WorkingMemory", "EpisodicMemory", "LongTermMemory",
+           "episodes_from_log", "SCHEMA_VERSION"]
