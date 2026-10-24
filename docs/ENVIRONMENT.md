@@ -28,6 +28,12 @@ P0 完全复用系统已有 Python 环境，仅新增 1 个小依赖（`ddgs`）
 
 运行依赖固化在 `requirements.txt`（ddgs / PyYAML / requests）。torch/transformers 有意不列入 P0 依赖。
 
+### 2026-10-24 P1-a 实验（记录）
+
+- 模型缓存：`sentence-transformers/all-MiniLM-L6-v2`（约 90MB）下载至用户级 `~/.cache/huggingface`，**不入仓库**；
+- 零新增 pip 包（复用已装 transformers 4.57.6 + torch 2.6.0 CPU）：`experiments/p1a/run_semantic.py` 仅语义臂需要该模型，词法臂 `experiments/p1a/run_baseline.py` 完全离线；
+- 下载途径：`hf-mirror.com` 的 hub 元数据接口与 huggingface_hub 不兼容（FileMetadataError），实际经 `huggingface.co` 直连成功；两域名连通性均间歇波动，失败时按规范记录阻塞并保留词法基线结果。
+
 ## 风险与注意事项
 
 1. **torch 为 CPU 版**：若 P1 要用本地 GPU 嵌入（RTX 5060 Ti 为 Blackwell 架构），需 torch ≥ 2.7 + cu128 构建。属环境变更，届时单独评估并记录，v0.1 内不动。
