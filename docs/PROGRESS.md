@@ -89,3 +89,8 @@ GPT 验收结论"有条件通过"，反馈四项：
 
 - 分支 `feature/p1b-memory-foundation`（基于 main `a0f2bbf`）。记忆=P0 轨迹只读视图+JSONL 投影，控制器零改动；CLI 旗标默认关闭。
 - 验收五项全过（真实↔回放记忆一致、关闭等价、重载可追溯）；测试 71 passed（+8）。演示产物 `artifacts/demo/memory/`。版本 v0.1，未做跨任务学习/参数更新/元元认知/RSI。
+
+## 2026-10-24 — P1-b 第二轮：LongTermMemory（跨任务经验统计）
+
+- 分支 `feature/p1b-longterm-memory`（基于 main `5294d0a`）→ PR #10（待评审）。任务×策略聚合 + episode ID 溯源 + 幂等导入 + 确定性持久化 + reconcile 双向核对（含 missing_sources 区分来源不全）；版本拒绝；helpful 代理口径声明入持久化 note。
+- 验收六项全过（多任务 kv+frameworks 演示、重复导入字节不变、全量核对 ok）；83 passed（+8）；P0 零改动；`--save-longterm` 默认关。版本 v0.1，不做策略学习/参数自更新/元元认知/RSI。

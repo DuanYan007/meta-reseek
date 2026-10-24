@@ -71,6 +71,7 @@ meta_reseek/
 - **WorkingMemory**（`meta_reseek/memory/working.py`）：任务内工作记忆——P0 决策日志的**只读视图**（覆盖状态/最近策略与理由/已试查询/证据缺口/最近反馈与通道状态），不建第二状态源、不参与决策；
 - **EpisodicMemory**（`meta_reseek/memory/episodic.py`）：版本化 JSONL 经历库（schema `meta-reseek/episodic` v1），每条完整经历保留「调整前状态 → 调整动作 → 调整理由 → 检索反馈 → 实际结果」，支持按任务/子问题/策略查询与去重加载；
 - CLI 可选开启（默认关闭，行为与 P0 完全一致）：`--save-episodes PATH`、`--show-working-memory`；
+- **LongTermMemory**（`meta_reseek/memory/longterm.py`，P1-b 第二轮）：跨任务策略统计（schema `meta-reseek/longterm` v1）——按任务×策略聚合尝试/反馈分布/通道错误，每格保存来源 episode ID 可回溯；幂等导入、确定性持久化、`reconcile()` 双向核对；`--save-longterm PATH` 可选开启。**effect=helpful 为 P0 反馈代理，非真实答案质量**；只保存与查询统计，不参与策略选择；
 - 边界：不含跨任务策略学习 / 参数自动更新 / 元元认知校准 / RSI。
 
 ## 测试与演示

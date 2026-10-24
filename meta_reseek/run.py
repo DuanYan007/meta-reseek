@@ -40,6 +40,11 @@ def main(argv: list[str] | None = None) -> int:
         "--show-working-memory", action="store_true",
         help="P1-b: 运行后打印 WorkingMemory 任务上下文视图（只读，不影响运行）",
     )
+    parser.add_argument(
+        "--save-longterm", default=None, metavar="PATH",
+        help="P1-b: 把本次运行经历聚合进 LongTermMemory 统计并保存为 JSON"
+             "（默认关闭；与既有文件合并，重复导入不重复计数）",
+    )
     args = parser.parse_args(argv)
 
     task = TaskSpec.from_yaml(args.task)
@@ -78,6 +83,16 @@ def main(argv: list[str] | None = None) -> int:
         n = mem.extend_from_log(log)
         path = mem.save(args.save_episodes)
         emit(f"EpisodicMemory: 已保存 {n} 条经历 -> {path}")
+
+    if args.save_longterm:
+        from .memory import LongTermMemory
+        from .memory.episodic import episodes_from_log
+
+        ltm_path = Path(args.save_longterm)
+        ltm = LongTermMemory.load(ltm_path) if ltm_path.exists() else LongTermMemory()
+        added = ltm.ingest(episodes_from_log(log))
+        ltm.save(ltm_path)
+        emit(f"LongTermMemory: 新增聚合 {added} 条经历，统计已保存 -> {ltm_path}")
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
