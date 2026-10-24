@@ -71,7 +71,7 @@
    "gold_relevant": false,
    "pred": true,
    "annotation_basis": "综述不提供入门定义",
-   "title": "KV Cache Optimization Strategies for Scalable - arXiv.org"
+   "title": "KV Cache Optimization Strategies for Scalableand Efficient ..."
   },
   {
    "case": "e011",
@@ -82,7 +82,7 @@
    "gold_relevant": true,
    "pred": false,
    "annotation_basis": "系统综述各类 KV cache 管理技术；注：同一论文的 html/pdf 双版本曾被系统同时接受（去重未命中），案例集按单一来源计",
-   "title": "KV Cache Optimization Strategies for Scalable - arXiv.org"
+   "title": "KV Cache Optimization Strategies for Scalableand Efficient ..."
   },
   {
    "case": "e013",
@@ -717,14 +717,14 @@
   },
   "e011": {
    "definition": {
-    "score": 0.312,
+    "score": 0.188,
     "matched": [
-     "kv cache",
-     "attention"
+     "kv cache"
     ],
     "missing_terms": [
      "key",
      "value",
+     "attention",
      "self attention",
      "inference",
      "transformer"
@@ -749,9 +749,8 @@
     ]
    },
    "techniques": {
-    "score": 0.149,
+    "score": 0.064,
     "matched": [
-     "techniques",
      "kv",
      "cache",
      "memory"
@@ -763,6 +762,7 @@
      "multi query attention",
      "pagedattention",
      "quantization",
+     "techniques",
      "reduce",
      "usage"
     ]

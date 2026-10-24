@@ -117,7 +117,9 @@ SNAPSHOTS = [
      "sufficiency": {
          "definition": {"sufficient": True, "basis": "e001/e002/e004 均为充分支持级，信息上足够（三条互为冗余）"},
          "cost": {"sufficient": False, "basis": "集合内无 cost 相关文档"},
-         "techniques": {"sufficient": False, "basis": "集合内无 techniques 相关文档"},
+         "techniques": {"sufficient": False, "basis": "集合内无 techniques 相关文档",
+                        "uncertain": True,
+                        "uncertainty": "任务 3 核查发现 e001 完整摘要含 vLLM/PagedAttention/GQA 技术名（起草时基于截断视图未计入）；techniques 是否应为充分存争议，见 freeze_validation 敏感性分析（2026-10-24）"},
      }},
     {"id": "S2-pseudo-coverage-wrong-stop",
      "members": ["e001", "e005", "e010", "e013", "e015", "C-topic-cost", "CALC-missing-why"],
@@ -133,7 +135,9 @@ SNAPSHOTS = [
      "sufficiency": {
          "definition": {"sufficient": True, "basis": "多条充分支持级（含冗余）"},
          "cost": {"sufficient": True, "basis": "e006/e007/e008/e009 中多条充分支持级（含线性增长机制）"},
-         "techniques": {"sufficient": False, "basis": "仅 e003 一条充分支持级，缺第二条"},
+         "techniques": {"sufficient": False, "basis": "仅 e003 一条充分支持级，缺第二条",
+                        "uncertain": True,
+                        "uncertainty": "判据复核发现：e001 完整摘要（标题与摘要全文）含『systems like vLLM, PagedAttention, and GQA manage it at scale』，自身即覆盖技术名与管理作用两要点——本标注起草于截断视图，techniques 是否应为『充分』待人工核查（2026-10-24 任务 B 发现）"},
      }},
     {"id": "S5-missing-condition",
      "members": ["e001", "e002", "e003", "e005", "CALC-missing-why", "C-topic-cost"],
@@ -141,7 +145,9 @@ SNAPSHOTS = [
      "sufficiency": {
          "definition": {"sufficient": True, "basis": "e001/e002/e005 充分支持"},
          "cost": {"sufficient": False, "basis": "e003/CALC 均为部分回答、C 仅主题相关——无增长机制，回答条件未满足"},
-         "techniques": {"sufficient": False, "basis": "仅 e003 一条充分支持级"},
+         "techniques": {"sufficient": False, "basis": "仅 e003 一条充分支持级",
+                        "uncertain": True,
+                        "uncertainty": "同 S1/S3：e001 完整摘要含技术名，替代合理标注下结论变化见 freeze_validation 敏感性分析"},
      }},
     {"id": "S6-real-final-state",
      "members": ["e001", "e002", "e003", "e004", "e005", "e006", "e007", "e008",
@@ -178,6 +184,12 @@ REVISION_LOG = [
     {"item": "争议标注不确定性记录（2026-10-24 任务 A）",
      "change": "为 e003→cost、E→definition、CALC→cost 三条 partial 标注增加 uncertain/uncertainty 字段",
      "basis": "任务 A 第 5 条：仍有争议的候选标注记录不确定性；标签本身维持复核后的判定，重跑实验验证统计不变"},
+    {"item": "S1/S5/techniques 充分性标注（2026-10-24 任务 3 核查）",
+     "change": "增加 uncertain 标记（判定暂维持『不充分』）",
+     "basis": "与 S3 同源：e001 完整摘要含技术名而起草基于截断视图；两种合理标注下的停止结论变化见 freeze_validation.md 第 3 节"},
+    {"item": "S3/techniques 充分性标注（2026-10-24 任务 B 发现）",
+     "change": "增加 uncertain 标记（判定暂维持『不充分』）",
+     "basis": "判据评估读完整摘要发现 e001 含 vLLM/PagedAttention/GQA 及 manage 表述，与『仅 e003 支持』的起草依据冲突；标注是否应改为『充分』由人工核查裁决，不在本轮擅自改动"},
 ]
 
 
